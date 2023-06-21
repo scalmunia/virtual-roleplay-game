@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Character } from 'src/app/models/Character';
+import { Character } from 'src/app/models/Character/Character';
 import { User } from 'src/app/models/User';
 
 
@@ -14,24 +14,25 @@ export class TestingComponent {
   
   ngOnInit() {
     const user = new User("Hola", "hola@hola.com", "hola");
+    
     const character = new Character();
     try {
       character.create({
         name: 'Bruenor',
         class: 'fighter',
         abilities: {
-          charisma: 19,
-          constitution: 12341234,
-          dexterity: 12341234,
-          intelligence: 12341234,
-          strength: 12341234,
-          wisdom: 12341234,
+          strength: 12,
+          dexterity: 12,
+          constitution: 9,
+          intelligence: 9,
+          wisdom: 9,
+          charisma: 9
         }
       });
     } catch(error) {
       this.error = (error as Error).message;
     }
-    console.log(character)
+    console.log(character);
   
     // console.log(user.name); 
     // console.log(user.email);
