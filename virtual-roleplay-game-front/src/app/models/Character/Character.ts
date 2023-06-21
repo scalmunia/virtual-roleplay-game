@@ -2,7 +2,7 @@ import { POINT_COST_OF_ABILITY_SCORES } from "./character.constants";
 
 type Classes = 'barbarian' | 'bard' | 'warlock' | 'cleric' | 'druid' | 'ranegr' | 'fighter' | 'sorcerer' | 'wizard' | 'monk' | 'paladin' | 'rogue';
 
-type Abilities = {
+export type Abilities = {
   strength: number;
   dexterity: number;
   constitution: number;

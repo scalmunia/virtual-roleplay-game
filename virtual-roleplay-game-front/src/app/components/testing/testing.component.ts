@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/Character/Character';
+import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
 import { User } from 'src/app/models/User';
 
 
@@ -14,6 +15,9 @@ export class TestingComponent {
   
   ngOnInit() {
     const user = new User("Hola", "hola@hola.com", "hola");
+    // console.log(user.name); 
+    // console.log(user.email);
+    // console.log(user.password);
     
     const character = new Character();
     try {
@@ -33,10 +37,8 @@ export class TestingComponent {
       this.error = (error as Error).message;
     }
     console.log(character);
-  
-    // console.log(user.name); 
-    // console.log(user.email);
-    // console.log(user.password);
-  }
 
+    const modifier = calcAbilityModifier(7);
+    console.log('MODIFICADOR', modifier);  
+  }
 }
