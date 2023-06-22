@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
+import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 import { User } from 'src/app/models/User';
 
 
@@ -40,5 +41,8 @@ export class TestingComponent {
 
     const modifier = calcAbilityModifier(7);
     console.log('MODIFICADOR', modifier);  
+
+    const maximunLife = calcMaximunLife('bard', 14);
+    console.log('VIDA MAXIMA', maximunLife);
   }
 }

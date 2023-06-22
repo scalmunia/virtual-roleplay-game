@@ -41,3 +41,18 @@ export const ABILITY_SCORES_AND_MODIFIERS = {
   29: +9,
   30: +10
 };
+
+export const HIT_DICE_ACCORDING_TO_CLASSES = {
+  'barbarian': 12,
+  'bard': 8,
+  'warlock': 8,
+  'cleric': 8,
+  'druid': 8,
+  'ranegr': 10,
+  'fighter': 10,
+  'sorcerer': 6,
+  'wizard': 6,
+  'monk': 8,
+  'paladin': 10,
+  'rogue': 8
+};
