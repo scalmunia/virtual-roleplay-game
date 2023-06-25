@@ -42,7 +42,7 @@ export class TestingComponent {
     const modifier = calcAbilityModifier(7);
     console.log('MODIFICADOR', modifier);  
 
-    const maximunLife = calcMaximunLife('bard', 14);
+    const maximunLife = calcMaximunLife(2, 'barbarian', 14);
     console.log('VIDA MAXIMA', maximunLife);
   }
 }
