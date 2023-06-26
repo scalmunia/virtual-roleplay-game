@@ -27,17 +27,10 @@
   gap: 18px;
 }
 
-.avatar {
-  padding-bottom: 95px;
-}
-
 .characterInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  margin-bottom: 20px;
-  margin-left: 80px;
 }
 
 .inputName{

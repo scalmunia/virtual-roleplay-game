@@ -1,20 +1,24 @@
 .image {
-  position: realtive;
+  position: relative;
+  width: 86px;
+  height: 80px;
 }
 
 .border {
   position: absolute;
-  z-index: 2;
+  top: 0;
+  left: 0;
 }
 
 .avatar {
   position: absolute;
-  z-index: 1;
+  top: 0;
+  left: 0;
 
   border-radius: 40px; 
-  padding-left: 2px;
-  padding-top: 8px;
+  top: 11px;
+  left: 8px;
 
-  height: 80px;
-  width: 80px;
+  height: 64px;
+  width: 64px;
 }
