@@ -1,7 +1,20 @@
-:host {
-  /* position: realtive;
-  top: 0;
-  left: 0;
-  z-index: 1; */
+.image {
+  position: realtive;
+}
 
+.border {
+  position: absolute;
+  z-index: 2;
+}
+
+.avatar {
+  position: absolute;
+  z-index: 1;
+
+  border-radius: 40px; 
+  padding-left: 2px;
+  padding-top: 8px;
+
+  height: 80px;
+  width: 80px;
 }
