@@ -62,6 +62,73 @@
   line-height: 100%;
 }
 
+.bonus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
+  row-gap: 130px;
+  flex-wrap: wrap;
+  
+  margin-top: 30px;
+  width: 992px;
+}
+
+.abilities {
+  display: flex;  
+}
+
+.ability {
+  position: relative;
+
+  margin-right: 10px;  
+}
+
+.abilities p {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  margin-bottom: 0;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 100%;
+}
+
+.inputModifier {
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  position:absolute;
+  top: 35px;
+  left: 27px;  
+  
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 24px;
+  line-height: 100%;
+}
+
+.inputAbilityScore {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  
+  position:absolute;
+  top: 85px;
+  left: 33.5px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 100%;
+}
+
 
 
 
