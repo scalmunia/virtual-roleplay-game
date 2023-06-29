@@ -342,3 +342,51 @@ input[type="checkbox"]:checked + .labelCheck1:before {
   font-size: 14px;
   line-height: 115%;
 }
+
+.additionalInformation {
+  display:flex;
+  justify-content: space-between;
+
+  margin-top: 20px;
+}
+
+.attacksAndSpells {
+  display: flex;
+  flex-direction: column;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.inputAttacks {
+  width: 395px;
+  height: 32px;
+  margin-bottom: 10px;
+
+  border-radius: 8px;
+  border: none;
+  background: rgba(28, 28, 34, 0.60);
+}
+
+.annotations {
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+.textarea {
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 13px;
+  line-height: 160%;
+
+  background-color: transparent;
+  border: 1px solid rgba(249, 249, 249, 0.33);
+  
+}
