@@ -90,6 +90,7 @@
   text-align: center;
 
   margin-bottom: 0;
+  text-transform: uppercase;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
@@ -144,11 +145,9 @@
 
 .score p {
   display: flex;
-  /* text-align: center; */
-  /* width: 81px; */
-  /* flex-shrink: 0; */
 
   margin-top: 0;
+  text-transform: uppercase;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
@@ -218,4 +217,128 @@
   font-family: var(--primary-typography);
   font-size: 24px;
   line-height: 100%;
+}
+
+.line { 
+  max-width: 1024px;
+  margin-top: 20px;
+  width: 100%;
+  border: none;
+  height: 1px;
+
+  background: rgba(156, 156, 189, 0.33);
+}
+
+.skillsContainer {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  margin-top: 40px;
+
+  border-radius: 8px;
+  background: rgba(28, 28, 34, 0.60);
+}
+
+.pSkill {
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.contSkill {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+
+  padding-right: 15px;
+}
+
+.skill {
+  display: flex;
+  width: 228px;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 10px;
+}
+
+
+.labelCheck1 {
+  /* display: inline-block; */
+  width: 23px;
+  height: 14px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 140%;
+}
+
+.labelCheck2 {
+  width: 150px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 12px;
+  line-height: 120%;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 25px;
+}
+
+.labelCheck1:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  background-color: transparent;
+  border: 1.5px solid #fff;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"]:checked + .labelCheck1:before {
+  background-color: var(--primary-text-color);
+  border: 1.5px solid var(--primary-text-color);
+}
+
+.inputSkill {
+  display: flex;
+  width: 25px;
+  height: 13px;
+  flex-direction: column;
+  flex-shrink: 0;
+  text-align: right;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 14px;
+  line-height: 115%;
 }
