@@ -1,0 +1,7 @@
+.armor {
+  width: 81px;
+  height: 92px;
+  flex-shrink: 0;
+
+  box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.40);
+}

@@ -1,6 +1,7 @@
-.ability {
-  width: 83px;
+.hitPoints {
+  width: 89.538px;
   height: 96px;
+  flex-shrink: 0;
 
   box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.40);
 }

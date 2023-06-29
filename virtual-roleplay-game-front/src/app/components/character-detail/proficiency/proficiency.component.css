@@ -1,0 +1,7 @@
+.proficiency {
+  width: 82px;
+  height: 85px;
+  flex-shrink: 0;
+
+  box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.40);
+}
