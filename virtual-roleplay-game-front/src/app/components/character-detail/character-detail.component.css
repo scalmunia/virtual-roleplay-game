@@ -348,11 +348,14 @@ input[type="checkbox"]:checked + .labelCheck1:before {
   justify-content: space-between;
 
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .attacksAndSpells {
   display: flex;
   flex-direction: column;
+
+  margin-right: 30px;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
@@ -370,9 +373,14 @@ input[type="checkbox"]:checked + .labelCheck1:before {
   border-radius: 8px;
   border: none;
   background: rgba(28, 28, 34, 0.60);
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 13px;
+  line-height: 160%;
 }
 
-.annotations {
+.annotations p {
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
   font-size: 16px;
@@ -380,7 +388,8 @@ input[type="checkbox"]:checked + .labelCheck1:before {
   line-height: 100%;
   text-transform: uppercase;
 }
-.textarea {
+
+/* .textarea {
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
   font-size: 13px;
@@ -389,4 +398,4 @@ input[type="checkbox"]:checked + .labelCheck1:before {
   background-color: transparent;
   border: 1px solid rgba(249, 249, 249, 0.33);
   
-}
+} */

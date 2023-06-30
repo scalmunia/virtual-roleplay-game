@@ -210,10 +210,12 @@
         </div>
         <div class="annotations">
           <p>ANOTACIONES</p>
-          <textarea class="textarea" rows="11" cols="74"></textarea>
+          <quill-editor name="annotations" id="annotations" [modules]="modulesQuill" (onEditorChange)="onChangedEditor($event)"></quill-editor>
+             <!-- <textarea class="textarea" rows="11" cols="74"></textarea> -->
         </div>
-
       </div>
+
+      <hr class="line">
 
 
 

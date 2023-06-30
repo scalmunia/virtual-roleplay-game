@@ -1,5 +1,7 @@
 @import url(//db.onlinewebfonts.com/c/ce7ee1905f939d4e0f4cfcb3470c4d4e?family=Old+Fenris);
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
 
 :root {
   --primary-text-color: #FFB800;
@@ -16,5 +18,20 @@ body,html {
 }
 
 * {
-  box-sizing: border-box;  
+  box-sizing: border-box;
+}
+
+.ql-editor {
+  height: 190px;
+  width: 550px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 13px;
+  line-height: 160%;
+
+  background-color: transparent;
+  border: 1px solid rgba(249, 249, 249, 0.33);
+  /* border: none; */
+  
 }
