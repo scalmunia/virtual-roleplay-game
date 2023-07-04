@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import mongodb from "../../clients/mongodb";
 
 export async function getCharactersController(req: Request, res: Response) {
+  console.log('ENTRANDO EN GETCHARACTERS');
   try {
     //Inicializar la conexión con mongodb
     const db = await mongodb(); 

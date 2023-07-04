@@ -1,5 +1,4 @@
 import { Application, Request, Response } from "express";
-import CoursesData from "../../data/courses.json";
 
 import { loginController } from './user/login';
 import { registerController } from './user/register';
@@ -13,24 +12,15 @@ import { logger } from '../handlers/logger';
 import { authGuard } from '../handlers/authGuard';
 
 export const loadApiEndpoints = (app: Application): void => {
-
 	// Routes
 	app.get('/api', logger, (req: Request, res: Response) => { res.send({ message: 'node-mongo-api works!' }); });
-	app.post('/api/user/register', logger, registerController); //--> HECHO (falta token)
-	app.post('/api/user/login', logger, loginController); //--> HECHO (falta token)
+	app.post('/api/user/register', logger, registerController);
+	app.post('/api/user/login', logger, loginController);
 
-	app.get('/api/characters', logger, getCharactersController); //--> HECHO
-	
-	app.get('/api/character/:id', logger, getCharacterController); //--> HECHO
-	app.post('/api/character', logger, createCharacterController); //--> HECHO
-	app.put('/api/character/:id', logger, updateCharacterController); //--> HECHO
-	app.delete('/api/character/:id', logger, deleteCharacterController); //--> HECHO
+	app.get('/api/characters', logger, authGuard, getCharactersController);
 
-	// app.get('/api/characters', logger, authGuard, getCharactersController);
-
-	// app.get('/api/character/:id', logger, authGuard, getCharacterController);
-	// app.post('/api/character', logger, authGuard, createCharacterController);
-	// app.put('/api/character/:id', logger, authGuard, updateCharacterController);
-	// app.delete('/api/character/:id', logger, authGuard, deleteCharacterController);
-
+	app.get('/api/character/:id', logger, authGuard, getCharacterController);
+	app.post('/api/character', logger, authGuard, createCharacterController);
+	app.put('/api/character/:id', logger, authGuard, updateCharacterController);
+	app.delete('/api/character/:id', logger, authGuard, deleteCharacterController);
 };
