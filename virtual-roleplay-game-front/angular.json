@@ -8,11 +8,12 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "vrg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["quill"],
             "outputPath": "dist/virtual-roleplay-game-front",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -1,0 +1,23 @@
+.image {
+  position: relative;
+
+  width: 86px;
+  height: 80px;
+}
+
+.border {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.avatar {
+  position: absolute;
+  top: 11px;
+  left: 8px;
+
+  height: 64px;
+  width: 64px;
+
+  border-radius: 40px; 
+}

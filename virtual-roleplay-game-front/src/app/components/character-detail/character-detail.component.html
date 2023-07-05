@@ -1,0 +1,224 @@
+<div class="root">
+  <div class="container">
+    <form>
+
+      <div class="header">
+        <div class="avatar">
+          <vrg-avatar></vrg-avatar>
+        </div>
+        <div class="characterInfo">
+          <div class="name"><input class="inputName" type="text" value="Bruenor"></div>
+          <div class="characterClass"><input class="inputCharacterClass" type="text" value="Enano gerrero"></div>
+        </div>
+      </div>
+
+      <div class="bonus">
+        <div class="abilities">
+          <div class="ability">
+            <p>FUERZA</p>
+            <vrg-ability></vrg-ability>
+            <input class="inputModifier" type="text" value="+2">
+            <input class="inputAbilityScore" type="text" value="15">
+          </div>
+          <div class="ability">
+            <p>DESTREZA</p>
+            <vrg-ability></vrg-ability>
+            <input class="inputModifier" type="text" value="+0">
+            <input class="inputAbilityScore" type="text" value="10">
+          </div>
+          <div class="ability">
+            <p>CONSTITUCION</p>
+            <vrg-ability></vrg-ability>
+            <input class="inputModifier" type="text" value="+2">
+            <input class="inputAbilityScore" type="text" value="14">
+          </div>
+          <div class="ability">
+            <p>INTELECTO</p>
+            <vrg-ability></vrg-ability>
+            <input class="inputModifier" type="text" value="-1">
+            <input class="inputAbilityScore" type="text" value="8">
+          </div>
+          <div class="ability">
+            <p>SABIDURIA</p>
+            <vrg-ability></vrg-ability>
+            <input class="inputModifier" type="text" value="+1">
+            <input class="inputAbilityScore" type="text" value="13">
+          </div>
+          <div class="ability">
+            <p>CARISMA</p>
+            <vrg-ability></vrg-ability>
+            <input class="inputModifier" type="text" value="+1">
+            <input class="inputAbilityScore" type="text" value="12">
+          </div>
+        </div>
+        <div class="scores">
+          <div class="score">
+            <vrg-hit-points></vrg-hit-points>
+            <input class="inputHitPoints" type="text" value="18">
+            <p class="pHitPoints">P. DE GOLPE</p>
+          </div>
+          <div class="score">
+            <vrg-armor></vrg-armor>
+            <input class="inputArmor" type="text" value="12">
+            <p class="pArmor">ARMADURA</p>
+          </div>
+          <div class="score">
+            <vrg-proficiency></vrg-proficiency>
+            <input class="inputProficiency" type="text" value="+2">
+            <p class="pProficiency">COMPETENCIA</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line">
+
+      <div class="skillsContainer">
+        <p class="pSkill">HABILIDADES</p>
+        <div class="contSkill">
+          <div class="skills">
+            <div class="skill">
+              <input class="check" type="checkbox" id="check1">
+              <label class="labelCheck1" for="check1">DES</label>
+              <label class="labelCheck2" for="check1">Acrobacias</label>
+              <input class="inputSkill" type="text" value="+0">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check2">
+              <label class="labelCheck1" for="check2">INT</label>
+              <label class="labelCheck2" for="check2">Arcanos</label>
+              <input class="inputSkill" type="text" value="-1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check3">
+              <label class="labelCheck1" for="check3">FUE</label>
+              <label class="labelCheck2" for="check3">Atletismo</label>
+              <input class="inputSkill" type="text" value="+2">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check4">
+              <label class="labelCheck1" for="check4">CAR</label>
+              <label class="labelCheck2" for="check4">Engaño</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check5">
+              <label class="labelCheck1" for="check5">INT</label>
+              <label class="labelCheck2" for="check5">Historia</label>
+              <input class="inputSkill" type="text" value="-1">
+            </div>
+          </div>
+          
+          <div class="skills">
+            <div class="skill">
+              <input class="check" type="checkbox" id="check6">
+              <label class="labelCheck1" for="check6">CAR</label>
+              <label class="labelCheck2" for="check6">Interpretació</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check7">
+              <label class="labelCheck1" for="check7">CAR</label>
+              <label class="labelCheck2" for="check7">Intimidación</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check8">
+              <label class="labelCheck1" for="check8">INT</label>
+              <label class="labelCheck2" for="check8">Investigación</label>
+              <input class="inputSkill" type="text" value="-1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check9">
+              <label class="labelCheck1" for="check9">DES</label>
+              <label class="labelCheck2" for="check9">Juego de manos</label>
+              <input class="inputSkill" type="text" value="+0">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check10">
+              <label class="labelCheck1" for="check10">SAB</label>
+              <label class="labelCheck2" for="check10">Medicina</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+          </div>
+          
+          <div class="skills">
+            <div class="skill">
+              <input class="check" type="checkbox" id="check11">
+              <label class="labelCheck1" for="check11">INT</label>
+              <label class="labelCheck2" for="check11">Naturaleza</label>
+              <input class="inputSkill" type="text" value="-1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check12">
+              <label class="labelCheck1" for="check12">SAB</label>
+              <label class="labelCheck2" for="check12">Percepción</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check13">
+              <label class="labelCheck1" for="check13">SAB</label>
+              <label class="labelCheck2" for="check13">Perspicacia</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check14">
+              <label class="labelCheck1" for="check14">CAR</label>
+              <label class="labelCheck2" for="check14">Persuasión</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check15">
+              <label class="labelCheck1" for="check15">INT</label>
+              <label class="labelCheck2" for="check15">Religión</label>
+              <input class="inputSkill" type="text" value="-1">
+            </div>
+          </div>
+          
+          <div class="skills">
+            <div class="skill">
+              <input class="check" type="checkbox" id="check16">
+              <label class="labelCheck1" for="check16">DES</label>
+              <label class="labelCheck2" for="check16">Sigilo</label>
+              <input class="inputSkill" type="text" value="+0">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check17">
+              <label class="labelCheck1" for="check17">DES</label>
+              <label class="labelCheck2" for="check17">Supervivencia</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+            <div class="skill">
+              <input class="check" type="checkbox" id="check18">
+              <label class="labelCheck1" for="check18">SAB</label>
+              <label class="labelCheck2" for="check18">Trato con animales</label>
+              <input class="inputSkill" type="text" value="+1">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="additionalInformation">
+        <div class="attacksAndSpells">
+          <p>ATAQUES Y CONJUROS</p>
+          <input class="inputAttacks" type="text">
+          <input class="inputAttacks" type="text">
+          <input class="inputAttacks" type="text">
+          <input class="inputAttacks" type="text">
+          <input class="inputAttacks" type="text">
+        </div>
+        <div class="annotations">
+          <p>ANOTACIONES</p>
+          <quill-editor name="annotations" id="annotations" [modules]="modulesQuill" (onEditorChange)="onChangedEditor($event)"></quill-editor>
+             <!-- <textarea class="textarea" rows="11" cols="74"></textarea> -->
+        </div>
+      </div>
+
+      <hr class="line">
+
+
+
+    </form>
+  </div>
+</div>
