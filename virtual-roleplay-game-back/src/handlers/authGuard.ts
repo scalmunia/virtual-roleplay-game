@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-export function authGuard(req: Request, res: Response, next: any) {
+export function authGuard(req: Request, res: Response, next: NextFunction) {
   try {
     const authorization = req.header('Authorization');
 
@@ -11,9 +11,9 @@ export function authGuard(req: Request, res: Response, next: any) {
     // Sacar solo el token
     const token = authorization.replace('Bearer ', '');
     console.log(token);
-    const SECRET_KEY = process.env.SECRET_KEY as string;
-    console.log(SECRET_KEY);
-    jwt.verify(token, SECRET_KEY, (err, user) => {
+    const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
+    console.log(JWT_SECRET_KEY);
+    jwt.verify(token, JWT_SECRET_KEY, (err, user) => {
       if (err) {
         throw 'Acceso denegado, token expirado o incorrecto';
       } else {
