@@ -22,6 +22,7 @@ export async function registerController(req: Request, res: Response) {
     const [ emailResult ] = await db.collection('users').find({ email }).toArray();
     if (emailResult != null) {
       res.status(400).send({ error: 'El email ya existe' });
+      return;
     }
     
     const user = {

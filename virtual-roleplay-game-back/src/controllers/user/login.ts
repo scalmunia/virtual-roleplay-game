@@ -37,7 +37,7 @@ export async function loginController(req: Request, res: Response) {
     const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
     // const privateKey = fs.readFileSync(JWT_SECRET_KEY);
     const accessToken = jwt.sign(payload, JWT_SECRET_KEY, {expiresIn: expiresIn});
-    res.status(200).header('Authorization', accessToken).send({
+    res.status(200).send({
       message: 'Usuario autenticado',
       token: accessToken
     });

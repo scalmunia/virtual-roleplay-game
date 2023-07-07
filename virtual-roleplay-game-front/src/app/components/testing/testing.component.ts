@@ -15,7 +15,7 @@ export class TestingComponent {
   error: string = '';
   
   ngOnInit() {
-    const user = new User("Hola", "hola@hola.com", "hola");
+    // const user = new User("Hola", "hola@hola.com", "hola");
     // console.log(user.name); 
     // console.log(user.email);
     // console.log(user.password);

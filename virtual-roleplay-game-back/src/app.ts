@@ -1,5 +1,5 @@
 import express from "express";
-// import cors from 'cors';
+import cors from 'cors';
 import path from "path";
 import 'dotenv/config';
 
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../public"), { maxAge: 31557600000 }));
-// app.use(cors());
+app.use(cors());
 
 loadApiEndpoints(app);
 
