@@ -10,14 +10,11 @@ export function authGuard(req: Request, res: Response, next: NextFunction) {
 
     // Sacar solo el token
     const token = authorization.replace('Bearer ', '');
-    console.log(token);
     const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
-    console.log(JWT_SECRET_KEY);
     jwt.verify(token, JWT_SECRET_KEY, (err, user) => {
       if (err) {
         throw 'Acceso denegado, token expirado o incorrecto';
       } else {
-        console.log('TODO OK');
         // req.user = user;
         next();
       }

@@ -14,6 +14,7 @@ import { ArmorComponent } from './components/character-detail/armor/armor.compon
 import { ProficiencyComponent } from './components/character-detail/proficiency/proficiency.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { CharactersListComponent } from './components/characters-list/characters-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoginComponent } from './components/login/login.component';
     ArmorComponent,
     ProficiencyComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CharactersListComponent
   ],
   imports: [
     BrowserModule,
