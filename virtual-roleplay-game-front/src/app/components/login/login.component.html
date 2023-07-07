@@ -1,10 +1,6 @@
 <div class="container">
-  <h1>FORMULARIO DE REGISTRO</h1>
-  <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="inputName">Name:</label>
-      <input type="text" id="inputName" formControlName="name">
-    </div>
+  <h1>FORMULARIO DE LOGIN</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">   
     <div>
       <label for="inputEmail">Email:</label>
       <input type="email" id="inputEmail" formControlName="email">
@@ -16,6 +12,7 @@
     
     <button type="submit">ENVIAR</button>
   </form>
+  <a routerLink="/register">Regístrate</a>
 </div>
 
 <pre>
