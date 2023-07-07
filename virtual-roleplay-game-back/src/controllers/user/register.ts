@@ -8,12 +8,12 @@ export async function registerController(req: Request, res: Response) {
     const hashPassword = bcrypt.hashSync(password);
 
     if (!email) {
-      res.status(400).send({ error: 'Email no enviado' });
+      res.status(400).send({ code: '400', error: 'Email no enviado' });
       return;
     }
     
     if (!password) {
-      res.status(400).send({ error: 'Contraseña no enviada' });
+      res.status(400).send({ code: '400', error: 'Contraseña no enviada' });
       return;
     }
 
@@ -21,7 +21,7 @@ export async function registerController(req: Request, res: Response) {
 
     const [ emailResult ] = await db.collection('users').find({ email }).toArray();
     if (emailResult != null) {
-      res.status(400).send({ error: 'El email ya existe' });
+      res.status(400).send({ code: '400', error: 'El email ya existe' });
       return;
     }
     
@@ -34,7 +34,7 @@ export async function registerController(req: Request, res: Response) {
     
     const result = await db.collection('users').insertOne(user);
     
-    res.status(200).send({ result });
+    res.status(200).send({ code: '200', result });
   } catch(error) {
     res.status(500).send(error);
   }
