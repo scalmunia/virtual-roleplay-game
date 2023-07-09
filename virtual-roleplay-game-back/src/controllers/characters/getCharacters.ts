@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import mongodb from "../../clients/mongodb";
+import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
 
 export async function getCharactersController(req: Request, res: Response) {
@@ -21,8 +22,21 @@ export async function getCharactersController(req: Request, res: Response) {
     //Inicializar la conexión con mongodb
     const db = await mongodb(); 
 
-    const result = await db.collection('characters').find({ idUser: userId }).toArray(); 
-   
+    const info = await db.collection('user_character').find({ userId: userId }).toArray(); 
+    // let result: any = [];
+
+    if (!info) {
+      res.send(204);
+      return;
+    }
+
+    const characterIds = info.map((element) => new ObjectId(element.characterId));
+
+    const result = await db
+      .collection('characters')
+      .find({ _id: { $in: characterIds } })
+      .toArray();
+
     res.status(200).send({ result });
   } catch(error) {
     res.status(500).send(error);
