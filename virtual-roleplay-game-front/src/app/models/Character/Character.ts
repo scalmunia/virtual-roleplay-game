@@ -14,15 +14,22 @@ export type Abilities = {
   // [key: string]: number;
 };
 
-export class Character {
+export interface ICharacter {
   name: string | null;
-  level: number;
+  // level: number;
+  class: Classes | null;
+  abilities: Abilities;
+}
+
+export class Character implements ICharacter {
+  name: string | null;
+  // level: number;
   class: Classes | null;
   abilities: Abilities;
 
-  constructor(character?: Character) {
+  constructor(character?: ICharacter) {
     this.name = character?.name || null;
-    this.level = character?.level || 1
+    // this.level = character?.level || 1
     this.class = character?.class || null
     this.abilities = character?.abilities || {
       strength: 0,
@@ -34,7 +41,7 @@ export class Character {
     }
   }
 
-  create(character: { name: string; class: Classes; abilities: Abilities; }) {
+  create(character: ICharacter) {
     let availableAbilityPoints = 27;
 
     // Validaciones
@@ -55,7 +62,7 @@ export class Character {
 
     // Seteos
     this.name = character.name;
-    this.level = 1;
+    // this.level = 1;
     this.class = character.class;
 
     this.abilities = {

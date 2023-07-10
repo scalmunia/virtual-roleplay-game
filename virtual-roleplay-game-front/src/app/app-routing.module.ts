@@ -12,8 +12,9 @@ const routes: Routes = [
   { path: 'testing', component: TestingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'characters-list', component: CharactersListComponent  },
-  { path: 'character-detail', component: CharacterDetailComponent  }
+  { path: 'characters-list', component: CharactersListComponent },
+  { path: 'character', component: CharacterDetailComponent }
+  // { path: 'character', component: CharacterDetailComponent, data: { edit: true } }
 ];
 
 @NgModule({

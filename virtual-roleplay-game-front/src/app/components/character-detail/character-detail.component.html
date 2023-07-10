@@ -1,12 +1,14 @@
 <div class="root">
   <div class="container">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <div class="header">
         <div class="avatar">
           <vrg-avatar></vrg-avatar>
         </div>
         <div class="characterInfo">
+          <!-- <div class="name"><input class="inputName" type="text" formControlName="name" value="Bruenor"></div> -->
+          <!-- <div class="characterClass"><input class="inputCharacterClass" type="text" formControlName="characterClass" value="Enano gerrero"></div> -->
           <div class="name"><input class="inputName" type="text" value="Bruenor"></div>
           <div class="characterClass"><input class="inputCharacterClass" type="text" value="Enano gerrero"></div>
         </div>
@@ -218,6 +220,7 @@
       <hr class="line">
 
 
+      <button type="submit">CREAR PERSONAJE</button>
 
     </form>
   </div>

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) {  
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+.\[a-z0-9.-]+[a-z]{2,3}$')]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4)])
     });
   }
 
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
     // const response = await this.loginService.loginUser(this.form.value.email, this.form.value.password);
     if(response) {
       console.log('-----USUARIO LOGUEADO CORRECTAMENTE');
-      this.router.navigate(['/characters-list']);
-      // this.router.navigate(['/character-detail']);
+      // this.router.navigate(['/characters-list']);
+      this.router.navigate(['/character']);
     } else {
       console.log('ERROR EN LA RESPUESTA');
     }
