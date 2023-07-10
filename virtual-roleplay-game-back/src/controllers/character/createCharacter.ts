@@ -5,10 +5,7 @@ import jwt from "jsonwebtoken";
 export async function createCharacterController(req: Request, res: Response) {
   try {
     //Obtener el token de la cabecera
-    const authorization = req.header('Authorization');
-
-    // Comprobar que hay cabecera con el token
-    if (!authorization) throw 'Falta cabecera Authorization con el token';
+    const authorization = req.header('Authorization') as string;
 
     // Sacar solo el token
     const token = authorization.replace('Bearer ', '');
@@ -35,7 +32,7 @@ export async function createCharacterController(req: Request, res: Response) {
     //AÑADIR A NUEVA COLECCION IDUSER + IDCHARACTER
     const result = await db.collection('user_character').insertOne({userId, characterId});
     
-    res.status(200).send({ code: '200', result });
+    res.status(201).send({ result });
   } catch(error) {
     res.status(500).send(error);
   }

@@ -2,6 +2,11 @@ import { MongoClient } from 'mongodb';
 
 // Connection URL
 const url: any = process.env.CONNECTION_MONGODB;
+
+if (!url) {
+  throw 'Cadena de conexión a MongoDB no se ha encontrado'
+}
+
 const client = new MongoClient(url);
 
 console.log(process.env.CONNECTION_MONGODB);

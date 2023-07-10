@@ -9,7 +9,7 @@ export async function deleteCharacterController(req: Request, res: Response) {
   
     //Inicializar la conexión con mongodb
     const db = await mongodb();
-    const result = await db.collection('characters').deleteMany({ _id});
+    await db.collection('characters').deleteMany({ _id});
   
     // res.status(200).send({ result });
     res.status(200).send({ message: `Usuario con id ${req.params.id} borrado` });

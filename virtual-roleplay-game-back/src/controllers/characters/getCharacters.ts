@@ -6,10 +6,7 @@ import jwt from "jsonwebtoken";
 export async function getCharactersController(req: Request, res: Response) {
   try {
     //Obtener el token de la cabecera
-    const authorization = req.header('Authorization');
-
-    // Comprobar que hay cabecera con el token
-    if (!authorization) throw 'Falta cabecera Authorization con el token';
+    const authorization = req.header('Authorization') as string;
 
     // Sacar solo el token
     const token = authorization.replace('Bearer ', '');
@@ -23,7 +20,6 @@ export async function getCharactersController(req: Request, res: Response) {
     const db = await mongodb(); 
 
     const info = await db.collection('user_character').find({ userId: userId }).toArray(); 
-    // let result: any = [];
 
     if (!info) {
       res.send(204);

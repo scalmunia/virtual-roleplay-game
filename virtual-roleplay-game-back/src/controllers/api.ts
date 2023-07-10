@@ -19,8 +19,8 @@ export const loadApiEndpoints = (app: Application): void => {
 
 	app.get('/api/characters', logger, authGuard, getCharactersController);
 
-	app.get('/api/character/:id', logger, authGuard, getCharacterController);
 	app.post('/api/character', logger, authGuard, createCharacterController);
+	app.get('/api/character/:id', logger, authGuard, getCharacterController);
 	app.put('/api/character/:id', logger, authGuard, updateCharacterController);
 	app.delete('/api/character/:id', logger, authGuard, deleteCharacterController);
 };

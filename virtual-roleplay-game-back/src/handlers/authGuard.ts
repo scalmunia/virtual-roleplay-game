@@ -11,13 +11,13 @@ export function authGuard(req: Request, res: Response, next: NextFunction) {
     // Sacar solo el token
     const token = authorization.replace('Bearer ', '');
     const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
+
     jwt.verify(token, JWT_SECRET_KEY, (err, user) => {
       if (err) {
         throw 'Acceso denegado, token expirado o incorrecto';
-      } else {
-        // req.user = user;
-        next();
       }
+
+      next();
     });
     
   } catch (error) {    
