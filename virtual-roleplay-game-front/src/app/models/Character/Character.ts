@@ -1,6 +1,6 @@
 import { POINT_COST_OF_ABILITY_SCORES } from "./character.constants";
 
-type Classes = 'barbarian' | 'bard' | 'warlock' | 'cleric' | 'druid' | 'ranegr' | 'fighter' | 'sorcerer' | 'wizard' | 'monk' | 'paladin' | 'rogue';
+type Classes = 'barbarian' | 'bard' | 'warlock' | 'cleric' | 'druid' | 'ranger' | 'fighter' | 'sorcerer' | 'wizard' | 'monk' | 'paladin' | 'rogue';
 
 export type Abilities = {
   strength: number;
@@ -47,8 +47,7 @@ export class Character implements ICharacter {
     // Validaciones
     for (const ability in character.abilities) {
       const value = character.abilities[ability as keyof Abilities];
-      console.log(value);
-
+      
       if (!character.name) throw new Error('nameRequired');
       if (!character.class) throw new Error('classRequired');
 

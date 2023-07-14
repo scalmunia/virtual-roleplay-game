@@ -11,7 +11,6 @@ export class CharacterService {
   async create(data: ICharacter, token: string) {
     const character = new Character();
     character.create(data);
-    console.log(character);
       
     const response = await fetch(this.URL, {
       method: 'POST',
@@ -21,10 +20,7 @@ export class CharacterService {
       },
       body: JSON.stringify(data)
     });
-
-    console.log('RESPONSE', response);
     
     const result = await response.json();
-    console.log('RESULT', result);
   }
 }

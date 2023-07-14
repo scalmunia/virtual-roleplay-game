@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-// import { Character, ICharacter } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
-// import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
+import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
@@ -41,6 +40,7 @@ export class CharacterDetailComponent implements OnInit {
   }
   
   calcAbilityModifier = calcAbilityModifier;
+  calcMaximunLife = calcMaximunLife;
 
   ngOnInit(): void {}
 

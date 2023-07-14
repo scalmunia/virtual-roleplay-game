@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
     // const response = await this.loginService.loginUser(this.form.value.email, this.form.value.password);
     if(response) {
       console.log('-----USUARIO LOGUEADO CORRECTAMENTE');
-      // this.router.navigate(['/characters-list']);
-      this.router.navigate(['/character']);
+      this.router.navigate(['/characters-list']);
+      // this.router.navigate(['/character']);
     } else {
       console.log('ERROR EN LA RESPUESTA');
     }

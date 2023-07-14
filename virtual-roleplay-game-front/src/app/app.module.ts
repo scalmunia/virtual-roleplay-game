@@ -5,7 +5,6 @@ import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestingComponent } from './components/testing/testing.component';
 import { CharacterDetailComponent } from './components/character-detail/character-detail.component';
 import { AvatarComponent } from './components/character-detail/avatar/avatar.component';
 import { AbilityComponent } from './components/character-detail/ability/ability.component';
@@ -20,8 +19,7 @@ import { AddSignFilter } from 'src/app/filters/addSignFilter';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TestingComponent,
+    AppComponent, 
     CharacterDetailComponent,
     AvatarComponent,
     AbilityComponent,

@@ -48,7 +48,7 @@ export const HIT_DICE_ACCORDING_TO_CLASSES = {
   'warlock': 8,
   'cleric': 8,
   'druid': 8,
-  'ranegr': 10,
+  'ranger': 10,
   'fighter': 10,
   'sorcerer': 6,
   'wizard': 6,
