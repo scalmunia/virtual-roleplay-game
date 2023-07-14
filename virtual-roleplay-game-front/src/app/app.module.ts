@@ -16,6 +16,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
 
+import { AddSignFilter } from 'src/app/filters/addSignFilter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { CharactersListComponent } from './components/characters-list/characters
     ProficiencyComponent,
     RegisterComponent,
     LoginComponent,
-    CharactersListComponent
+    CharactersListComponent,
+    AddSignFilter
   ],
   imports: [
     BrowserModule,

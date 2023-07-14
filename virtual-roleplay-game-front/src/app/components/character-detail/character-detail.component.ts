@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Character, ICharacter } from 'src/app/models/Character/Character';
+// import { Character, ICharacter } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
-import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
+// import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { CharacterService } from 'src/app/services/character.service';
   styleUrls: ['./character-detail.component.css']
 })
 
-export class CharacterDetailComponent {
-
+export class CharacterDetailComponent implements OnInit {
+  error: null | Error = null;
   htmlContent: any;
   modulesQuill = {
     toolbar: [
@@ -26,7 +26,7 @@ export class CharacterDetailComponent {
   }
   
   form: FormGroup; 
-
+  
   constructor(private characterService: CharacterService) {  
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -39,8 +39,16 @@ export class CharacterDetailComponent {
       charisma: new FormControl('')
     });
   }
+  
+  calcAbilityModifier = calcAbilityModifier;
 
   ngOnInit(): void {}
+
+  onChangedEditor(event: any): void {
+    if(event.html) {
+      this.htmlContent = event.html;
+    }
+  }
 
   async onSubmit() {
     try {
@@ -64,7 +72,8 @@ export class CharacterDetailComponent {
       return true;
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      this.error = error as Error;
 
       return error;
     }
@@ -73,11 +82,6 @@ export class CharacterDetailComponent {
   }
 
 
-  onChangedEditor(event: any): void {
-    if(event.html) {
-      this.htmlContent = event.html;
-    }
-  }
 }
 
 

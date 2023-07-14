@@ -9,8 +9,6 @@ export class RegisterService {
 
   private URL = 'http://localhost:3000/api/user/register';
 
-  constructor() {}
-
   async registerUser(user: User) {
     try {
       const response = await fetch(this.URL, {
@@ -19,11 +17,14 @@ export class RegisterService {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(user)
-      }).then(res => res.json());
+      });
+
+      await response.json();
               
-      if (response.code === '200') {
+      if (response.status === 200) {
         return true;
       } else {
+        console.log('ha fallado')
         return false;
       }
 

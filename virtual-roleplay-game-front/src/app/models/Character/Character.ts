@@ -47,7 +47,11 @@ export class Character implements ICharacter {
     // Validaciones
     for (const ability in character.abilities) {
       const value = character.abilities[ability as keyof Abilities];
-      
+      console.log(value);
+
+      if (!character.name) throw new Error('nameRequired');
+      if (!character.class) throw new Error('classRequired');
+
       // Chequea que las habilidades tienen sus valores en el rango definido
       if (value < 8) throw new Error('abilityBelowMinValueAllowed');
       if (value > 15) throw new Error('abilityOverMaxValueAllowed');

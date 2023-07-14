@@ -35,7 +35,9 @@
 
 .inputName{
   background-color: transparent;
-  border: none;
+  border: 1.5px solid #FFB800;
+  border-radius: 8px;
+  /* border: none; */
   outline: none;
   
   color: var(--primary-text-color);
@@ -52,7 +54,9 @@
   padding-bottom: 10px;
 
   background-color: transparent;
-  border: none;
+  border: 1.5px solid #FFB800;
+  border-radius: 8px;
+  /* border: none; */
   outline: none;
   
   color: var(--secondary-text-color);
@@ -99,13 +103,9 @@
   line-height: 100%;
 }
 
-.inputModifier {
-  background-color: transparent;
-  border: none;
-  outline: none;
-
+.modifier {
   position: absolute;
-  top: 35px;
+  top: 45px;
   left: 27px;  
   
   color: var(--primary-text-color);
@@ -116,18 +116,29 @@
 
 .inputAbilityScore {
   background-color: transparent;
-  border: none;
+  border: 1.5px solid #FFB800;
+  border-radius: 5px;
+  /* border: none; */
   outline: none;
   
   position: absolute;
   top: 85px;
-  left: 33.5px;
+  left: 23px;
+
+  padding-left: 12px;
+  /* align-items: center;s */
+  width: 40px;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
   font-size: 14px;
   font-weight: 800;
   line-height: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .scores {
@@ -387,6 +398,10 @@ input[type="checkbox"]:checked + .labelCheck1:before {
   font-weight: 800;
   line-height: 100%;
   text-transform: uppercase;
+}
+
+.error {
+  color: red;
 }
 
 /* .textarea {

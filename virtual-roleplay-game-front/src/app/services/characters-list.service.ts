@@ -8,8 +8,6 @@ export class CharactersListService {
 
   private URL = 'http://localhost:3000/api/characters';
 
-  constructor() { }
-
   async getCharactersList(token: string) {
     try {
       const response = await fetch(this.URL, {
@@ -18,9 +16,13 @@ export class CharactersListService {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
         }
-      }).then(res => res.json());
+      });
 
-      return response.result;
+      const result = await response.json();
+
+      if (response.status === 200) {
+        return result;
+      }
 
     } catch (error) {
       console.log(error);

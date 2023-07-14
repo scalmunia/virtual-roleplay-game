@@ -1,5 +1,15 @@
 <div class="root">
   <div class="container">
+
+    <div class="error" *ngIf="error">
+      <span *ngIf="error.message === 'nameRequired'">Nombre del personaje requerido</span>
+      <span *ngIf="error.message === 'classRequired'">Clase del personaje requerida</span>
+      <span *ngIf="error.message === 'abilityBelowMinValueAllowed'">El valor de las características debe ser superior a 8</span>
+      <span *ngIf="error.message === 'abilityOverMaxValueAllowed'">El valor de las características debe ser inferior a 15</span>
+      <span *ngIf="error.message === 'creationPointsForAbilitiesExceeded'">Has excedido el número máximo de puntos que puedes asignar al personaje</span>
+    </div>
+    <br>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <div class="header">
@@ -7,10 +17,10 @@
           <vrg-avatar></vrg-avatar>
         </div>
         <div class="characterInfo">
-          <!-- <div class="name"><input class="inputName" type="text" formControlName="name" value="Bruenor"></div> -->
-          <!-- <div class="characterClass"><input class="inputCharacterClass" type="text" formControlName="characterClass" value="Enano gerrero"></div> -->
-          <div class="name"><input class="inputName" type="text" value="Bruenor"></div>
-          <div class="characterClass"><input class="inputCharacterClass" type="text" value="Enano gerrero"></div>
+          <div class="name"><input class="inputName" type="text" formControlName="name"></div>
+          <div class="characterClass"><input class="inputCharacterClass" type="text" formControlName="characterClass"></div>
+          <!-- <div class="name"><input class="inputName" type="text" value="Bruenor"></div> -->
+          <!-- <div class="characterClass"><input class="inputCharacterClass" type="text" value="Enano gerrero"></div> -->
         </div>
       </div>
 
@@ -19,39 +29,39 @@
           <div class="ability">
             <p>FUERZA</p>
             <vrg-ability></vrg-ability>
-            <input class="inputModifier" type="text" value="+2">
-            <input class="inputAbilityScore" type="text" value="15">
-          </div>
+            <div class="modifier">{{ calcAbilityModifier(form.controls['strength'].value) | addSignFilter}}</div>
+            <input class="inputAbilityScore" type="number" formControlName="strength">
+            </div>
           <div class="ability">
             <p>DESTREZA</p>
             <vrg-ability></vrg-ability>
-            <input class="inputModifier" type="text" value="+0">
-            <input class="inputAbilityScore" type="text" value="10">
-          </div>
+            <div class="modifier">{{ calcAbilityModifier(form.controls['dexterity'].value) | addSignFilter}}</div>
+            <input class="inputAbilityScore" type="number" formControlName="dexterity">
+            </div>
           <div class="ability">
             <p>CONSTITUCION</p>
             <vrg-ability></vrg-ability>
-            <input class="inputModifier" type="text" value="+2">
-            <input class="inputAbilityScore" type="text" value="14">
-          </div>
+            <div class="modifier">{{ calcAbilityModifier(form.controls['constitution'].value) | addSignFilter}}</div>
+            <input class="inputAbilityScore" type="number" formControlName="constitution">
+            </div>
           <div class="ability">
             <p>INTELECTO</p>
             <vrg-ability></vrg-ability>
-            <input class="inputModifier" type="text" value="-1">
-            <input class="inputAbilityScore" type="text" value="8">
-          </div>
+            <div class="modifier">{{ calcAbilityModifier(form.controls['intelligence'].value) | addSignFilter}}</div>
+            <input class="inputAbilityScore" type="number" formControlName="intelligence">
+            </div>
           <div class="ability">
             <p>SABIDURIA</p>
             <vrg-ability></vrg-ability>
-            <input class="inputModifier" type="text" value="+1">
-            <input class="inputAbilityScore" type="text" value="13">
-          </div>
+            <div class="modifier">{{ calcAbilityModifier(form.controls['wisdom'].value) | addSignFilter}}</div>
+            <input class="inputAbilityScore" type="number" formControlName="wisdom">
+            </div>
           <div class="ability">
             <p>CARISMA</p>
             <vrg-ability></vrg-ability>
-            <input class="inputModifier" type="text" value="+1">
-            <input class="inputAbilityScore" type="text" value="12">
-          </div>
+            <div class="modifier">{{ calcAbilityModifier(form.controls['charisma'].value) | addSignFilter}}</div>
+            <input class="inputAbilityScore" type="number" formControlName="charisma">
+            </div>
         </div>
         <div class="scores">
           <div class="score">
