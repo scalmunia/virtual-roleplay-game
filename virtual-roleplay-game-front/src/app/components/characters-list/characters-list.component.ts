@@ -5,26 +5,23 @@ import { Character } from 'src/app/models/Character/Character';
 @Component({
   selector: 'vrg-characters-list',
   templateUrl: './characters-list.component.html',
-  styleUrls: ['./characters-list.component.css']
+  styleUrls: ['./characters-list.component.css'],
 })
-
 export class CharactersListComponent implements OnInit {
-  list: Array<Character> = [];
+  characters: Array<Character> = [];
 
   constructor(private charactersList: CharactersListService) {}
-  
+
   ngOnInit(): void {
     this.getList();
   }
-  
+
   async getList() {
     try {
-      const token = localStorage.getItem('token');
-      const response = await this.charactersList.getCharactersList(token as string);
-      this.list = response;
+      const response = await this.charactersList.getCharactersList();
+      this.characters = response.result;
 
-      return this.list;
-
+      return this.characters;
     } catch (error) {
       console.log(error);
 

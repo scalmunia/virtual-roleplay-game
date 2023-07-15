@@ -39,55 +39,75 @@
 
       <div class="bonus">
         <div class="abilities">
+
+          <!--
+            El input y todo lo demas dentro de ability dentro de
+            Ej:
+
+            <vrg-ability
+              [value]="form.controls['strength'].value"
+              (change)="form.setValue('strength', $event)"
+            ></vrg-ability>
+          -->
+
+
           <div class="ability">
             <p>FUERZA</p>
             <vrg-ability></vrg-ability>
             <div class="modifier">{{ calcAbilityModifier(form.controls['strength'].value) | addSignFilter}}</div>
             <input class="inputAbilityScore" type="number" formControlName="strength">
-            </div>
+          </div>
+
+
           <div class="ability">
             <p>DESTREZA</p>
             <vrg-ability></vrg-ability>
             <div class="modifier">{{ calcAbilityModifier(form.controls['dexterity'].value) | addSignFilter}}</div>
             <input class="inputAbilityScore" type="number" formControlName="dexterity">
-            </div>
+          </div>
           <div class="ability">
             <p>CONSTITUCION</p>
             <vrg-ability></vrg-ability>
             <div class="modifier">{{ calcAbilityModifier(form.controls['constitution'].value) | addSignFilter}}</div>
             <input class="inputAbilityScore" type="number" formControlName="constitution">
-            </div>
+          </div>
           <div class="ability">
             <p>INTELECTO</p>
             <vrg-ability></vrg-ability>
             <div class="modifier">{{ calcAbilityModifier(form.controls['intelligence'].value) | addSignFilter}}</div>
             <input class="inputAbilityScore" type="number" formControlName="intelligence">
-            </div>
+          </div>
           <div class="ability">
             <p>SABIDURIA</p>
             <vrg-ability></vrg-ability>
             <div class="modifier">{{ calcAbilityModifier(form.controls['wisdom'].value) | addSignFilter}}</div>
             <input class="inputAbilityScore" type="number" formControlName="wisdom">
-            </div>
+          </div>
           <div class="ability">
             <p>CARISMA</p>
             <vrg-ability></vrg-ability>
             <div class="modifier">{{ calcAbilityModifier(form.controls['charisma'].value) | addSignFilter}}</div>
             <input class="inputAbilityScore" type="number" formControlName="charisma">
-            </div>
+          </div>
         </div>
         <div class="scores">
+
+          <!-- todo el "score" debería ser hit-points -->
           <div class="score">
             <vrg-hit-points></vrg-hit-points>
             <div class="inputHitPoints" *ngIf="form.controls['characterClass'].value && form.controls['constitution'].value">{{ calcMaximunLife(form.controls['characterClass'].value, form.controls['constitution'].value) }}</div>
             <!-- <input class="inputHitPoints" type="text" value="18"> -->
             <p class="pHitPoints">P. DE GOLPE</p>
           </div>
+
+          <!-- todo este "score" debería estar dentro de vrg-armor -->
           <div class="score">
             <vrg-armor></vrg-armor>
             <input class="inputArmor" type="text" value="12">
             <p class="pArmor">ARMADURA</p>
           </div>
+
+          <!-- idem -->
           <div class="score">
             <vrg-proficiency></vrg-proficiency>
             <input class="inputProficiency" type="text" value="+2">
@@ -133,7 +153,7 @@
               <input class="inputSkill" type="text" value="-1">
             </div>
           </div>
-          
+
           <div class="skills">
             <div class="skill">
               <input class="check" type="checkbox" id="check6">
@@ -166,7 +186,7 @@
               <input class="inputSkill" type="text" value="+1">
             </div>
           </div>
-          
+
           <div class="skills">
             <div class="skill">
               <input class="check" type="checkbox" id="check11">
@@ -199,7 +219,7 @@
               <input class="inputSkill" type="text" value="-1">
             </div>
           </div>
-          
+
           <div class="skills">
             <div class="skill">
               <input class="check" type="checkbox" id="check16">

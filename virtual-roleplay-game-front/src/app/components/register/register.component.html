@@ -13,11 +13,13 @@
       <label for="inputPassword">Password:</label>
       <input type="password" id="inputPassword" formControlName="password">
     </div>
-    
+
     <button type="submit">ENVIAR</button>
   </form>
+  <p *ngIf="error">{{error.message}}</p>
 </div>
 
+<!--
 <pre>
   Estado del formulario: {{ form.valid }}
   <br>
@@ -25,4 +27,4 @@
 </pre>
 <pre>
   {{ form.value | json }}
-</pre>
+</pre> -->

@@ -1,6 +1,18 @@
-import { POINT_COST_OF_ABILITY_SCORES } from "./character.constants";
+import { POINT_COST_OF_ABILITY_SCORES } from './character.constants';
 
-type Classes = 'barbarian' | 'bard' | 'warlock' | 'cleric' | 'druid' | 'ranger' | 'fighter' | 'sorcerer' | 'wizard' | 'monk' | 'paladin' | 'rogue';
+type Classes =
+  | 'barbarian'
+  | 'bard'
+  | 'warlock'
+  | 'cleric'
+  | 'druid'
+  | 'ranger'
+  | 'fighter'
+  | 'sorcerer'
+  | 'wizard'
+  | 'monk'
+  | 'paladin'
+  | 'rogue';
 
 export type Abilities = {
   strength: number;
@@ -15,6 +27,7 @@ export type Abilities = {
 };
 
 export interface ICharacter {
+  _id: string;
   name: string | null;
   // level: number;
   class: Classes | null;
@@ -22,32 +35,34 @@ export interface ICharacter {
 }
 
 export class Character implements ICharacter {
+  _id: string;
   name: string | null;
   // level: number;
   class: Classes | null;
   abilities: Abilities;
 
   constructor(character?: ICharacter) {
+    this._id = character?._id || '';
     this.name = character?.name || null;
     // this.level = character?.level || 1
-    this.class = character?.class || null
+    this.class = character?.class || null;
     this.abilities = character?.abilities || {
       strength: 0,
       dexterity: 0,
       constitution: 0,
       intelligence: 0,
       wisdom: 0,
-      charisma: 0
-    }
+      charisma: 0,
+    };
   }
 
-  create(character: ICharacter) {
+  create(character: Omit<ICharacter, '_id'>) {
     let availableAbilityPoints = 27;
 
     // Validaciones
     for (const ability in character.abilities) {
       const value = character.abilities[ability as keyof Abilities];
-      
+
       if (!character.name) throw new Error('nameRequired');
       if (!character.class) throw new Error('classRequired');
 
@@ -57,10 +72,14 @@ export class Character implements ICharacter {
 
       // Chequea que las puntuaciones asignadas no exceden el máximo
       //1º convertir a type, 2º hacer keyof
-      const abilityPoints = POINT_COST_OF_ABILITY_SCORES[value as keyof typeof POINT_COST_OF_ABILITY_SCORES];
+      const abilityPoints =
+        POINT_COST_OF_ABILITY_SCORES[
+          value as keyof typeof POINT_COST_OF_ABILITY_SCORES
+        ];
 
       availableAbilityPoints = availableAbilityPoints - abilityPoints;
-      if (availableAbilityPoints < 0) throw new Error('creationPointsForAbilitiesExceeded');
+      if (availableAbilityPoints < 0)
+        throw new Error('creationPointsForAbilitiesExceeded');
     }
 
     // Seteos
@@ -74,7 +93,7 @@ export class Character implements ICharacter {
       constitution: character.abilities.constitution,
       intelligence: character.abilities.intelligence,
       wisdom: character.abilities.wisdom,
-      charisma: character.abilities.charisma
-    }
+      charisma: character.abilities.charisma,
+    };
   }
 }

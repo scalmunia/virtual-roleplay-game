@@ -7,26 +7,25 @@ import { CharacterService } from 'src/app/services/character.service';
 @Component({
   selector: 'vrg-character-detail',
   templateUrl: './character-detail.component.html',
-  styleUrls: ['./character-detail.component.css']
+  styleUrls: ['./character-detail.component.css'],
 })
-
 export class CharacterDetailComponent implements OnInit {
   error: null | Error = null;
   htmlContent: any;
   modulesQuill = {
     toolbar: [
-      [{ 'size': ['small', false, 'large', 'huge'] }], 
-      ['bold', 'italic', 'underline', 'strike'], 
-      [{ 'color': [] }, { 'background': [] }],  
-      // [{ 'align': [] }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      ['clean']         
-    ]
-  }
-  
-  form: FormGroup; 
-  
-  constructor(private characterService: CharacterService) {  
+      [{ size: ['small', false, 'large', 'huge'] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['clean'],
+    ],
+  };
+
+  form: FormGroup;
+
+  constructor(private characterService: CharacterService) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       characterClass: new FormControl('', [Validators.required]),
@@ -35,17 +34,17 @@ export class CharacterDetailComponent implements OnInit {
       constitution: new FormControl(''),
       intelligence: new FormControl(''),
       wisdom: new FormControl(''),
-      charisma: new FormControl('')
+      charisma: new FormControl(''),
     });
   }
-  
+
   calcAbilityModifier = calcAbilityModifier;
   calcMaximunLife = calcMaximunLife;
 
   ngOnInit(): void {}
 
   onChangedEditor(event: any): void {
-    if(event.html) {
+    if (event.html) {
       this.htmlContent = event.html;
     }
   }
@@ -53,39 +52,43 @@ export class CharacterDetailComponent implements OnInit {
   async onSubmit() {
     try {
       const token = localStorage.getItem('token');
-      const { name, characterClass, strength, dexterity, constitution, intelligence, wisdom, charisma } = this.form.value;
-      
-      await this.characterService.create({
-        name: name, 
-        class: characterClass, 
-        abilities: {
-          strength: strength,
-          dexterity: dexterity,
-          constitution: constitution,
-          intelligence: intelligence,
-          wisdom: wisdom,
-          charisma: charisma
-        }
-      }, token as string);
+      const {
+        name,
+        characterClass,
+        strength,
+        dexterity,
+        constitution,
+        intelligence,
+        wisdom,
+        charisma,
+      } = this.form.value;
+
+      await this.characterService.create(
+        {
+          name: name,
+          class: characterClass,
+          abilities: {
+            strength: strength,
+            dexterity: dexterity,
+            constitution: constitution,
+            intelligence: intelligence,
+            wisdom: wisdom,
+            charisma: charisma,
+          },
+        },
+        token as string
+      );
       console.log('PRESONAJE CREADO CORRECTAMENTE');
 
       return true;
-
     } catch (error) {
       console.error(error);
       this.error = error as Error;
 
       return error;
     }
-    
-    
   }
-
-
 }
-
-
-
 
 // var toolbarOptions = [
 //   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
