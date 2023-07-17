@@ -1,28 +1,16 @@
 import { Injectable } from '@angular/core';
-import { headersWithAuth } from '../config/fetch.config';
+import { fetcher } from '../config/fetch.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharactersListService {
-  private URL = 'http://localhost:3000/api/characters';
+  private URL = 'api/characters';
 
   async getCharactersList() {
-    try {
-      const response = await fetch(this.URL, {
-        method: 'GET',
-        headers: headersWithAuth,
-      });
+    const response = await fetcher(this.URL);
+    const result = await response.json();
 
-      const result = await response.json();
-
-      if (response.status === 200) {
-        return result;
-      }
-    } catch (error) {
-      console.log(error);
-
-      return error;
-    }
+    return result;
   }
 }

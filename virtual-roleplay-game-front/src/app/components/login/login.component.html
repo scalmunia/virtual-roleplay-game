@@ -1,6 +1,6 @@
 <div class="container">
   <h1>FORMULARIO DE LOGIN</h1>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">   
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <label for="inputEmail">Email:</label>
       <input type="email" id="inputEmail" formControlName="email">
@@ -9,17 +9,18 @@
       <label for="inputPassword">Password:</label>
       <input type="password" id="inputPassword" formControlName="password">
     </div>
-    
+
     <button type="submit">ENVIAR</button>
   </form>
   <a routerLink="/register">Regístrate</a>
+  <p *ngIf="error">{{error.message}}</p>
 </div>
 
-<pre>
+<!-- <pre>
   Estado del formulario: {{ form.valid }}
   <br>
   Status: {{ form.status }}
 </pre>
 <pre>
   {{ form.value | json }}
-</pre>
+</pre> -->

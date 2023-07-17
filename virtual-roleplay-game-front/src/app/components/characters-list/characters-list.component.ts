@@ -9,8 +9,9 @@ import { Character } from 'src/app/models/Character/Character';
 })
 export class CharactersListComponent implements OnInit {
   characters: Array<Character> = [];
+  error: Error | null = null;
 
-  constructor(private charactersList: CharactersListService) {}
+  constructor(private charactersList: CharactersListService) { }
 
   ngOnInit(): void {
     this.getList();
@@ -23,9 +24,7 @@ export class CharactersListComponent implements OnInit {
 
       return this.characters;
     } catch (error) {
-      console.log(error);
-
-      return error;
+      return this.error = error as Error;
     }
   }
 }

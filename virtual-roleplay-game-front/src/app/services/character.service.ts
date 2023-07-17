@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Character, ICharacter } from '../models/Character/Character';
+import { fetcher } from '../config/fetch.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharacterService {
-  private URL = 'http://localhost:3000/api/character';
+  private URL = 'api/character';
 
   async create(data: Omit<ICharacter, '_id'>, token: string) {
     const character = new Character();
     character.create(data);
 
-    const response = await fetch(this.URL, {
+    const response = await fetcher(this.URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
-      },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
-
-    const result = await response.json();
   }
 }

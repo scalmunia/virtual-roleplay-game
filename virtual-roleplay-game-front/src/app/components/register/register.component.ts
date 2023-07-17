@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   async onSubmit() {
     const user: User = {

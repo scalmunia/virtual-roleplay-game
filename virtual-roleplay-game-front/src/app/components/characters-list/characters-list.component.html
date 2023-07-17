@@ -14,4 +14,8 @@
   </li>
 </ul>
 
-<span><pre>{{characters | json}}</pre></span>
+<span>
+  <pre>{{characters | json}}</pre>
+</span>
+
+<p *ngIf="error">{{error.message}}</p>
