@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
 import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 import { CharacterService } from 'src/app/services/character.service';
+import { AbilityComponent } from 'src/app/components/character-detail/ability/ability.component';
 
 @Component({
   selector: 'vrg-character-detail',
@@ -10,6 +11,7 @@ import { CharacterService } from 'src/app/services/character.service';
   styleUrls: ['./character-detail.component.css'],
 })
 export class CharacterDetailComponent implements OnInit {
+  form: FormGroup;
   error: null | Error = null;
   htmlContent: any;
   modulesQuill = {
@@ -23,7 +25,8 @@ export class CharacterDetailComponent implements OnInit {
     ],
   };
 
-  form: FormGroup;
+  calcAbilityModifier = calcAbilityModifier;
+  calcMaximunLife = calcMaximunLife;
 
   constructor(private characterService: CharacterService) {
     this.form = new FormGroup({
@@ -38,10 +41,7 @@ export class CharacterDetailComponent implements OnInit {
     });
   }
 
-  calcAbilityModifier = calcAbilityModifier;
-  calcMaximunLife = calcMaximunLife;
-
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onChangedEditor(event: any): void {
     if (event.html) {
@@ -78,41 +78,28 @@ export class CharacterDetailComponent implements OnInit {
         },
         token as string
       );
-      console.log('PRESONAJE CREADO CORRECTAMENTE');
-
-      return true;
     } catch (error) {
       console.error(error);
       this.error = error as Error;
-
-      return error;
     }
   }
+
+  get strengthControl(): FormControl {
+    return this.form.get('strength') as FormControl;
+  }
+  get dexterityControl(): FormControl {
+    return this.form.get('dexterity') as FormControl;
+  }
+  get constitutionControl(): FormControl {
+    return this.form.get('constitution') as FormControl;
+  }
+  get intelligenceControl(): FormControl {
+    return this.form.get('intelligence') as FormControl;
+  }
+  get wisdomControl(): FormControl {
+    return this.form.get('wisdom') as FormControl;
+  }
+  get charismaControl(): FormControl {
+    return this.form.get('charisma') as FormControl;
+  }
 }
-
-// var toolbarOptions = [
-//   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-//   ['blockquote', 'code-block'],
-
-//   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-//   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-//   [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-//   [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-//   [{ 'direction': 'rtl' }],                         // text direction
-
-//   [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-//   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-//   [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-//   [{ 'font': [] }],
-//   [{ 'align': [] }],
-
-//   ['clean']                                         // remove formatting button
-// ];
-
-// var quill = new Quill('#editor', {
-//   modules: {
-//     toolbar: toolbarOptions
-//   },
-//   theme: 'snow'
-// });

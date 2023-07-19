@@ -2,7 +2,7 @@
   background-image: url("src/assets/images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center; 
+  background-position: top center;
   display: block;
   min-height: 100%;
 }
@@ -23,7 +23,6 @@
 .header {
   display: flex;
   align-items: center;
-  
   gap: 18px;
 }
 
@@ -33,38 +32,40 @@
   justify-content: center;
 }
 
-.inputName{
-  background-color: transparent;
-  border: 1.5px solid #FFB800;
-  border-radius: 8px;
-  /* border: none; */
+.inputName {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  border: none;
   outline: none;
-  
+
+  padding-left: 5px;
+
   color: var(--primary-text-color);
   font-family: var(--primary-typography);
   font-size: 38px;
   line-height: 100%;
 }
 
-.selectCharacterClass{
+.selectCharacterClass {
   display: flex;
   justify-content: start;
   align-items: center;
 
-  background-color: transparent;
-  border: 1.5px solid #FFB800;
-  border-radius: 4px;
-  /* border: none; */
+  margin-top: 7px;
+  padding-left: 5px;
+
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  border: none;
   outline: none;
 
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  
 
   height: 20px;
   width: 100px;
-  
+
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
   font-size: 14px;
@@ -84,73 +85,16 @@
   align-content: flex-start;
   gap: 60px;
   flex-wrap: wrap;
-  
+
   margin-top: 30px;
   width: 992px;
 }
 
 .abilities {
-  display: flex;  
-}
-
-.ability {
-  position: relative;
-
-  margin-right: 10px;  
-}
-
-.abilities p {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  margin-bottom: 0;
-  text-transform: uppercase;
-
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 100%;
 }
 
-.modifier {
-  position: absolute;
-  top: 45px;
-  left: 27px;  
-  
-  color: var(--primary-text-color);
-  font-family: var(--primary-typography);
-  font-size: 24px;
-  line-height: 100%;
-}
 
-.inputAbilityScore {
-  background-color: transparent;
-  border: 1.5px solid #FFB800;
-  border-radius: 5px;
-  /* border: none; */
-  outline: none;
-  
-  position: absolute;
-  top: 85px;
-  left: 23px;
-
-  padding-left: 12px;
-  /* align-items: center;s */
-  width: 40px;
-
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 100%;
-}
-
-input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
 .scores {
   display: flex;
@@ -179,46 +123,64 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 .pHitPoints {
-  position:absolute;  
+  position: absolute;
   top: 62px;
-  left: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .pArmor {
-  position:absolute;  
+  position: absolute;
   top: 59px;
-  left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .pProficiency {
-  position:absolute;  
+  position: absolute;
   top: 55px;
-  left: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .inputHitPoints {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+
   background-color: transparent;
   border: none;
   outline: none;
-  
-  position: absolute;
-  top: 20px;
-  left: 28px;
-  
+  text-align: center;
+
+
   color: var(--primary-text-color);
   font-family: var(--primary-typography);
   font-size: 24px;
   line-height: 100%;
 }
 
+.pHitPoints {
+  width: 70px;
+}
+
 .inputArmor {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 35px;
+
   background-color: transparent;
   border: none;
   outline: none;
-  
-  position: absolute;
-  top: 18px;
-  left: 25px;
+
 
   color: var(--primary-text-color);
   font-family: var(--primary-typography);
@@ -227,13 +189,17 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 .inputProficiency {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 35px;
+
   background-color: transparent;
   border: none;
   outline: none;
-  
-  position: absolute;
-  top: 14px;
-  left: 25px;
+
 
   color: var(--primary-text-color);
   font-family: var(--primary-typography);
@@ -241,7 +207,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
   line-height: 100%;
 }
 
-.line { 
+.line {
   max-width: 1024px;
   margin-top: 20px;
   width: 100%;
@@ -342,7 +308,7 @@ label {
   box-sizing: border-box;
 }
 
-input[type="checkbox"]:checked + .labelCheck1:before {
+input[type="checkbox"]:checked+.labelCheck1:before {
   background-color: var(--primary-text-color);
   border: 1.5px solid var(--primary-text-color);
 }
@@ -366,7 +332,7 @@ input[type="checkbox"]:checked + .labelCheck1:before {
 }
 
 .additionalInformation {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 
   margin-top: 20px;
@@ -414,14 +380,3 @@ input[type="checkbox"]:checked + .labelCheck1:before {
 .error {
   color: red;
 }
-
-/* .textarea {
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 13px;
-  line-height: 160%;
-
-  background-color: transparent;
-  border: 1px solid rgba(249, 249, 249, 0.33);
-  
-} */

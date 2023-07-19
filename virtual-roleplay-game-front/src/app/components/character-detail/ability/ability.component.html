@@ -1,3 +1,8 @@
-<div class="image">
-  <img class="ability" src="assets/images/ability.svg" alt="Imagen">
+<div class="ability">
+  <p>{{ ability }}</p>
+  <div class="image">
+    <img class="ability" src="assets/images/ability.svg" alt="Imagen">
+  </div>
+  <div class="modifier">{{ modifier }}</div>
+  <input class="inputAbilityScore" type="number" [formControl]="control">
 </div>

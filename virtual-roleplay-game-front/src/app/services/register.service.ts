@@ -6,7 +6,7 @@ import { fetcher } from '../config/fetch.config';
   providedIn: 'root',
 })
 export class RegisterService {
-  private URL = 'http://localhost:3000/api/user/register';
+  private URL = 'api/user/register';
 
   async registerUser(user: User) {
     await fetcher(this.URL, {

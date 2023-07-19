@@ -24,7 +24,9 @@ export class CharactersListComponent implements OnInit {
 
       return this.characters;
     } catch (error) {
-      return this.error = error as Error;
+      this.error = error as Error;
+
+      return error;
     }
   }
 }

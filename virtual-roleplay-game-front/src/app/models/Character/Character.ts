@@ -21,15 +21,11 @@ export type Abilities = {
   intelligence: number;
   wisdom: number;
   charisma: number;
-
-  /** Para definir que Abilities acepta cualquier propiedad cuyo valor sea number */
-  // [key: string]: number;
 };
 
 export interface ICharacter {
   _id: string;
   name: string | null;
-  // level: number;
   class: Classes | null;
   abilities: Abilities;
 }
@@ -37,7 +33,6 @@ export interface ICharacter {
 export class Character implements ICharacter {
   _id: string;
   name: string | null;
-  // level: number;
   class: Classes | null;
   abilities: Abilities;
 
@@ -57,7 +52,22 @@ export class Character implements ICharacter {
   }
 
   create(character: Omit<ICharacter, '_id'>) {
-    let availableAbilityPoints = 27;
+    const totalAbilityPoints = 27;
+    let availableAbilityPoints = totalAbilityPoints;
+
+    // Seteos
+    this.name = character.name;
+    // this.level = 1;
+    this.class = character.class;
+
+    this.abilities = {
+      strength: character.abilities.strength,
+      dexterity: character.abilities.dexterity,
+      constitution: character.abilities.constitution,
+      intelligence: character.abilities.intelligence,
+      wisdom: character.abilities.wisdom,
+      charisma: character.abilities.charisma,
+    };
 
     // Validaciones
     for (const ability in character.abilities) {
@@ -74,26 +84,14 @@ export class Character implements ICharacter {
       //1º convertir a type, 2º hacer keyof
       const abilityPoints =
         POINT_COST_OF_ABILITY_SCORES[
-          value as keyof typeof POINT_COST_OF_ABILITY_SCORES
+        value as keyof typeof POINT_COST_OF_ABILITY_SCORES
         ];
 
       availableAbilityPoints = availableAbilityPoints - abilityPoints;
-      if (availableAbilityPoints < 0)
-        throw new Error('creationPointsForAbilitiesExceeded');
     }
 
-    // Seteos
-    this.name = character.name;
-    // this.level = 1;
-    this.class = character.class;
-
-    this.abilities = {
-      strength: character.abilities.strength,
-      dexterity: character.abilities.dexterity,
-      constitution: character.abilities.constitution,
-      intelligence: character.abilities.intelligence,
-      wisdom: character.abilities.wisdom,
-      charisma: character.abilities.charisma,
-    };
+    if (availableAbilityPoints < 0) {
+      throw new Error('creationPointsForAbilitiesExceeded');
+    }
   }
 }
