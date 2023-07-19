@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
 
 @Component({
   selector: 'vrg-ability',
@@ -8,6 +9,8 @@ import { FormControl } from '@angular/forms';
 })
 export class AbilityComponent {
   @Input() ability: string = '';
-  @Input() modifier: any;
+  @Input() form!: FormGroup;
   @Input() control: FormControl = new FormControl();
+
+  calcAbilityModifier = calcAbilityModifier;
 }

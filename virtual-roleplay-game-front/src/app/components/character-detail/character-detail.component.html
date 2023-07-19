@@ -51,28 +51,17 @@
               (change)="form.setValue('strength', $event)"
             ></vrg-ability>
           -->
-          <vrg-ability ability="FUERZA"
-            [modifier]="calcAbilityModifier(form.controls['strength'].value) | addSignFilter"
-            [control]="strengthControl">
+          <vrg-ability ability="FUERZA" [form]="form" [control]="strengthControl">
           </vrg-ability>
-          <vrg-ability ability="DESTREZA"
-            [modifier]="calcAbilityModifier(form.controls['dexterity'].value) | addSignFilter"
-            [control]="dexterityControl">
+          <vrg-ability ability="DESTREZA" [form]="form" [control]="dexterityControl">
           </vrg-ability>
-          <vrg-ability ability="CONSTITUCION"
-            [modifier]="calcAbilityModifier(form.controls['constitution'].value) | addSignFilter"
-            [control]="constitutionControl">
+          <vrg-ability ability="CONSTITUCION" [form]="form" [control]="constitutionControl">
           </vrg-ability>
-          <vrg-ability ability="INTELECTO"
-            [modifier]="calcAbilityModifier(form.controls['intelligence'].value) | addSignFilter"
-            [control]="intelligenceControl">
+          <vrg-ability ability="INTELECTO" [form]="form" [control]="intelligenceControl">
           </vrg-ability>
-          <vrg-ability ability="SABIDURIA"
-            [modifier]="calcAbilityModifier(form.controls['wisdom'].value) | addSignFilter" [control]="wisdomControl">
+          <vrg-ability ability="SABIDURIA" [form]="form" [control]="wisdomControl">
           </vrg-ability>
-          <vrg-ability ability="CARISMA"
-            [modifier]="calcAbilityModifier(form.controls['charisma'].value) | addSignFilter"
-            [control]="charismaControl">
+          <vrg-ability ability="CARISMA" [form]="form" [control]="charismaControl">
           </vrg-ability>
         </div>
         <div class="scores">

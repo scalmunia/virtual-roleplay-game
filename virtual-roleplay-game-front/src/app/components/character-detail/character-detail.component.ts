@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
-import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 import { CharacterService } from 'src/app/services/character.service';
-import { AbilityComponent } from 'src/app/components/character-detail/ability/ability.component';
 
 @Component({
   selector: 'vrg-character-detail',
@@ -24,9 +21,6 @@ export class CharacterDetailComponent implements OnInit {
       ['clean'],
     ],
   };
-
-  calcAbilityModifier = calcAbilityModifier;
-  calcMaximunLife = calcMaximunLife;
 
   constructor(private characterService: CharacterService) {
     this.form = new FormGroup({
