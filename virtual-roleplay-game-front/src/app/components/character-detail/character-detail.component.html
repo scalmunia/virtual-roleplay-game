@@ -66,21 +66,8 @@
         </div>
         <div class="scores">
           <vrg-hit-points [form]="form"></vrg-hit-points>
-
-
-          <!-- todo este "score" debería estar dentro de vrg-armor -->
-          <div class="score">
-            <vrg-armor></vrg-armor>
-            <input class="inputArmor" type="text" value="12">
-            <p class="pArmor">ARMADURA</p>
-          </div>
-
-          <!-- idem -->
-          <div class="score">
-            <vrg-proficiency></vrg-proficiency>
-            <input class="inputProficiency" type="text" value="+2">
-            <p class="pProficiency">COMPETENCIA</p>
-          </div>
+          <vrg-armor></vrg-armor>
+          <vrg-proficiency></vrg-proficiency>
         </div>
       </div>
 
