@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 
 @Component({
   selector: 'vrg-hit-points',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./hit-points.component.css']
 })
 export class HitPointsComponent {
-
+  @Input() form!: FormGroup;
+  calcMaximunLife = calcMaximunLife;
 }

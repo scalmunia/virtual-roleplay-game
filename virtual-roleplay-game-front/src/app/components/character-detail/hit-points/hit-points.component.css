@@ -1,7 +1,50 @@
+.score {
+  position: relative;
+}
+
 .hitPoints {
   width: 89.538px;
   height: 96px;
   flex-shrink: 0;
 
   box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.40);
+}
+
+.inputHitPoints {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 24px;
+  line-height: 100%;
+}
+
+
+
+.pHitPoints {
+  display: flex;
+  margin-top: 0;
+  width: 70px;
+
+  position: absolute;
+  top: 62px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 100%;
+  text-transform: uppercase;
 }

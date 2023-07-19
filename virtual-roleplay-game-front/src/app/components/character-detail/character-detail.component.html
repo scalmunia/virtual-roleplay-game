@@ -76,16 +76,8 @@
           </vrg-ability>
         </div>
         <div class="scores">
+          <vrg-hit-points [form]="form"></vrg-hit-points>
 
-          <!-- todo el "score" debería ser hit-points -->
-          <div class="score">
-            <vrg-hit-points></vrg-hit-points>
-            <div class="inputHitPoints"
-              *ngIf="form.controls['characterClass'].value && form.controls['constitution'].value">{{
-              calcMaximunLife(form.controls['characterClass'].value, form.controls['constitution'].value) }}</div>
-            <!-- <input class="inputHitPoints" type="text" value="18"> -->
-            <p class="pHitPoints">P. DE GOLPE</p>
-          </div>
 
           <!-- todo este "score" debería estar dentro de vrg-armor -->
           <div class="score">
