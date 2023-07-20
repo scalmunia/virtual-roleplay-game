@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { QuillModule } from 'ngx-quill';
-
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './components/shared/shared.module';
+
 import { AppComponent } from './app.component';
 import { CharacterDetailComponent } from './components/character-detail/character-detail.component';
 import { AvatarComponent } from './components/character-detail/avatar/avatar.component';
@@ -19,7 +20,7 @@ import { AddSignFilter } from 'src/app/filters/addSignFilter';
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
     CharacterDetailComponent,
     AvatarComponent,
     AbilityComponent,
@@ -35,7 +36,8 @@ import { AddSignFilter } from 'src/app/filters/addSignFilter';
     BrowserModule,
     QuillModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
