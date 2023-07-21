@@ -1,7 +1,7 @@
 <div class="container">
-  <img class="leftSide" src="assets/images/button_side.svg" alt="Imagen">
-  <button class="button" [type]="type">
+  <img class="leftSide" [src]="sideImageSrc" alt="Imagen">
+  <button class="button" [type]="type" [ngClass]="colorClass">
     <ng-content></ng-content>
   </button>
-  <img class="rightSide" src="assets/images/button_side.svg" alt="Imagen">
+  <img class="rightSide" [src]="sideImageSrc" alt="Imagen">
 </div>

@@ -9,7 +9,6 @@
   width: 126px;
   flex-shrink: 0;
 
-  background: var(--primary-text-color);
   border-top: 2px solid #1C1C22;
   border-bottom: 2px solid #1C1C22;
   border-left: none;
@@ -28,4 +27,12 @@
 
 .rightSide {
   transform: scaleX(-1);
+}
+
+.button-primary {
+  background: var(--primary-text-color);
+}
+
+.button-secondary {
+  background: #DDDDE8;
 }
