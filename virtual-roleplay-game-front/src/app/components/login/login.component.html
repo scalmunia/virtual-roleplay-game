@@ -1,26 +1,23 @@
 <div class="container">
-  <h1>FORMULARIO DE LOGIN</h1>
+  <img class="logoImg" src="assets/images/logo.png" alt="Imagen">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-      <label for="inputEmail">Email:</label>
-      <input type="email" id="inputEmail" formControlName="email">
+      <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
+        [control]="form.get('email')"></vrg-input>
     </div>
     <div>
-      <label for="inputPassword">Password:</label>
-      <input type="password" id="inputPassword" formControlName="password">
+      <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
+        [control]="form.get('password')"></vrg-input>
     </div>
-
-    <vrg-button type="submit" text="ENVIAR"></vrg-button>
+    <div class="recoverpwdContainer">
+      <a class="recoverpwd">¿Has olvidado la contraseña?</a>
+    </div>
+    <vrg-button type="submit">ENVIAR</vrg-button>
   </form>
-  <a routerLink="/register">Regístrate</a>
+
+  <hr class="line">
+
+  <a class="register" routerLink="/register">Regístrate</a>
+
   <p *ngIf="error">{{error.message}}</p>
 </div>
-
-<!-- <pre>
-  Estado del formulario: {{ form.valid }}
-  <br>
-  Status: {{ form.status }}
-</pre>
-<pre>
-  {{ form.value | json }}
-</pre> -->

@@ -1,0 +1,80 @@
+:host {
+  background-image: url("src/assets/images/background_login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  display: block;
+  min-height: 100%;
+}
+
+.root {
+  height: 100%;
+  width: 100%;
+}
+
+/* Estilos para la versión desktop */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 749px;
+  height: 1024px;
+  flex-shrink: 0;
+  max-height: 100%;
+
+  background: rgba(28, 28, 34, 0.65);
+  backdrop-filter: blur(18px);
+}
+
+.logoImg {
+  width: 247.935px;
+  height: 109.001px;
+  flex-shrink: 0;
+
+  margin-bottom: 40px;
+}
+
+.recoverpwdContainer {
+  margin-top: 10px;
+}
+
+.recoverpwd {
+  color: var(--primary-text-color);
+  font-size: 14px;
+  font-family: Montserrat;
+  line-height: 100%;
+  text-decoration-line: underline;
+}
+
+.line {
+  max-width: 1024px;
+  margin-top: 30px;
+  width: 120px;
+  border: none;
+  height: 1px;
+
+  background: rgba(156, 156, 189, 0.33);
+}
+
+.register {
+  color: var(--primary-text-color);
+  font-size: 16px;
+  font-family: Montserrat;
+  line-height: 100%;
+  text-decoration-line: underline;
+
+  margin-top: 20px;
+}
+
+/* Estilos para la versión móvil */
+@media (max-width: 720px) {
+  .container {
+    width: 100%;
+  }
+}

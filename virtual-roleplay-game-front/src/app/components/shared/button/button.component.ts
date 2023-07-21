@@ -6,6 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
-  @Input() text: string = '';
   @Input() type: string = '';
 }
