@@ -36,3 +36,20 @@
 .button-secondary {
   background: #DDDDE8;
 }
+
+
+
+
+.icon {
+  width: 15.407px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+/* .button-primary .icon-path {
+  fill: var(--primary-text-color);
+}
+
+.button-secondary .icon-path {
+  fill: #DDDDE8;
+} */
