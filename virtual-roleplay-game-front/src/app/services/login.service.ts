@@ -10,7 +10,6 @@ export class LoginService {
   private URL = 'api/user/login';
 
   async loginUser(user: Pick<User, 'email' & 'password'>) {
-    console.log(user);
     const response = await fetcher(this.URL, {
       method: 'POST',
       body: JSON.stringify(user)
