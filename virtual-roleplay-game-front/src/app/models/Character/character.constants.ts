@@ -56,3 +56,18 @@ export const HIT_DICE_ACCORDING_TO_CLASSES = {
   'paladin': 10,
   'rogue': 8
 };
+
+export const CLASSES_TRANSLATION = {
+  'barbarian': 'bárbaro',
+  'bard': 'bardo',
+  'warlock': 'brujo',
+  'cleric': 'clérigo',
+  'druid': 'druida',
+  'ranger': 'explorador',
+  'fighter': 'guerrero',
+  'sorcerer': 'hechicero',
+  'wizard': 'mago',
+  'monk': 'monje',
+  'paladin': 'paladín',
+  'rogue': 'pícaro'
+}

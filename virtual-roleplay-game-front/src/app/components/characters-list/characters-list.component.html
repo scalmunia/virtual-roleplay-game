@@ -1,21 +1,32 @@
-<h2>LISTADO DE PERSONAJES</h2>
+<div class="root">
+  <div class="container">
+    <div class="title">Mis personajes</div>
+    <div class="characterLinkContainer">
+      <vrg-character-link *ngFor="let character of characters" src="assets/images/bruenor.jpg"
+        srcLeft="assets/images/character_link_left_side.svg" [name]="character.name" [characterClass]="character.class"
+        srcRight="assets/images/character_link_right_side.svg"
+        [routerLink]="'/character/' + character._id"></vrg-character-link>
+    </div>
+    <div class="button">
+      <vrg-character-link srcLeft="assets/images/character_link_button_left_side.svg"
+        srcRight="assets/images/character_link_button_right_side.svg" routerLink="/create-character">
+        Nuevo personaje
+      </vrg-character-link>
+    </div>
 
-<a routerLink="/create-character">NUEVO PERSONAJE</a>
-<br>
 
-<ul>
-  <li *ngFor="let character of characters">
-    <a [routerLink]="'/character/' + character._id">{{character.name}}</a>
-    <!--
-      forma alternativa, aunque la anterior es preferible:
 
-      <a routerLink="/character/{{character._id}}">{{character.name}}</a>
-    -->
-  </li>
-</ul>
-
-<span>
-  <pre>{{characters | json}}</pre>
-</span>
+    <a class="button" routerLink="/create-character">
+      <vrg-avatar></vrg-avatar>
+      <div class="field">
+        <img class="leftSide" src="assets/images/character_link_button_left_side.svg" alt="Imagen">
+        <div class="rectangle">
+          <p>Nuevo personaje</p>
+        </div>
+        <img class="rightSide" src="assets/images/character_link_button_right_side.svg" alt="Imagen">
+      </div>
+    </a>
+  </div>
+</div>
 
 <p *ngIf="error">{{error.message}}</p>

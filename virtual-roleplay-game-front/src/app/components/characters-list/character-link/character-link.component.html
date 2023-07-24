@@ -1,0 +1,11 @@
+<a class="container" [routerLink]="routerLink">
+  <vrg-avatar [src]="src"></vrg-avatar>
+  <div class="field">
+    <img class="leftSide" [src]="srcLeft" alt="Imagen">
+    <div class="rectangle">
+      <p class="name">{{ name }}</p>
+      <p class="characterClass">{{ getClassTranslation(characterClass) }}</p>
+    </div>
+    <img class="rightSide" [src]="srcRight" alt="Imagen">
+  </div>
+</a>

@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'vrg-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css']
 })
-// export class ButtonComponent implements AfterViewInit {
+
 export class ButtonComponent implements OnChanges {
   @Input() type: string = 'button';
   @Input() color: 'primary' | 'secondary' = 'primary';

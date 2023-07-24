@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, AbstractControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'vrg-input',
@@ -13,6 +13,7 @@ import { ControlValueAccessor, AbstractControl, FormGroup, NG_VALUE_ACCESSOR } f
     },
   ],
 })
+
 export class InputComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() type: string = '';

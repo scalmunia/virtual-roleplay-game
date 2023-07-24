@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
 
 import { AddSignFilter } from 'src/app/filters/addSignFilter';
+import { CharacterLinkComponent } from './components/characters-list/character-link/character-link.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddSignFilter } from 'src/app/filters/addSignFilter';
     RegisterComponent,
     LoginComponent,
     CharactersListComponent,
-    AddSignFilter
+    AddSignFilter,
+    CharacterLinkComponent
   ],
   imports: [
     BrowserModule,
