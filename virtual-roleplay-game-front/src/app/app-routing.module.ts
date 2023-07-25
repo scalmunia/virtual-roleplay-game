@@ -13,11 +13,11 @@ const routes: Routes = [
   { path: 'characters', component: CharactersListComponent },
   { path: 'create-character', component: CharacterDetailComponent },
   { path: 'character/:id', component: CharacterDetailComponent },
-  // { path: 'character', component: CharacterDetailComponent, data: { edit: true } }
+  { path: 'character/:id', component: CharacterDetailComponent, data: { edit: true } }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

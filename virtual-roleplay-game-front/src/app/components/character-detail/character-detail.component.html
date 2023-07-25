@@ -23,7 +23,7 @@
           <div class="name"><input class="inputName" type="text" formControlName="name"></div>
           <div class="characterClass">
             <select class="selectCharacterClass" formControlName="characterClass">
-              <option class="selectOption" value="barbarian">Bárbaro</option>
+              <option value="barbarian">Bárbaro</option>
               <option value="bard">Bardo</option>
               <option value="warlock">Brujo</option>
               <option value="cleric">Clérigo</option>
@@ -213,7 +213,6 @@
           <p>ANOTACIONES</p>
           <quill-editor name="annotations" id="annotations" [modules]="modulesQuill"
             (onEditorChange)="onChangedEditor($event)"></quill-editor>
-          <!-- <textarea class="textarea" rows="11" cols="74"></textarea> -->
         </div>
       </div>
 

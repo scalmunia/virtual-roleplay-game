@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -9,6 +11,8 @@ import { CharacterService } from 'src/app/services/character.service';
 })
 export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
+  id: string | null = null;
+  mode: 'create' | 'edit' | 'view' | null = null;
   error: null | Error = null;
   htmlContent: any;
   modulesQuill = {
@@ -22,7 +26,7 @@ export class CharacterDetailComponent implements OnInit {
     ],
   };
 
-  constructor(private characterService: CharacterService) {
+  constructor(private characterService: CharacterService, private route: ActivatedRoute, private router: Router) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       characterClass: new FormControl('', [Validators.required]),
@@ -35,7 +39,30 @@ export class CharacterDetailComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    //Diferenciar las distintas rutas que tiene este componente
+    const isCreate = !this.id; //Si no hay id
+    const isView = this.id; //Si sí que hay id
+    const isEdit = isView && this.route.snapshot.queryParamMap.has('edit'); //Si hay id y el query param 'edit'
+
+    // if (isCreate) this.mode === 'create';
+    // if (isView) this.mode === 'view';
+    // if (isEdit) this.mode === 'edit';
+
+    this.mode =
+      (isCreate && 'create') ||
+      (isView && 'view') ||
+      (isEdit && 'edit') ||
+      null;
+
+    console.log('mode', this.mode);
+
+    if (this.mode = 'view') {
+      this.loadCharacter();
+    }
+  }
 
   onChangedEditor(event: any): void {
     if (event.html) {
@@ -45,37 +72,55 @@ export class CharacterDetailComponent implements OnInit {
 
   async onSubmit() {
     try {
-      const token = localStorage.getItem('token');
-      const {
-        name,
-        characterClass,
-        strength,
-        dexterity,
-        constitution,
-        intelligence,
-        wisdom,
-        charisma,
-      } = this.form.value;
+      if (this.mode = 'create') {
+        const {
+          name,
+          characterClass,
+          strength,
+          dexterity,
+          constitution,
+          intelligence,
+          wisdom,
+          charisma,
+        } = this.form.value;
 
-      await this.characterService.create(
-        {
-          name: name,
-          class: characterClass,
-          abilities: {
-            strength: strength,
-            dexterity: dexterity,
-            constitution: constitution,
-            intelligence: intelligence,
-            wisdom: wisdom,
-            charisma: charisma,
+        await this.characterService.save(
+          {
+            name: name,
+            class: characterClass,
+            abilities: {
+              strength: strength,
+              dexterity: dexterity,
+              constitution: constitution,
+              intelligence: intelligence,
+              wisdom: wisdom,
+              charisma: charisma,
+            },
           },
-        },
-        token as string
-      );
+        );
+      }
+
+      if (this.mode = 'edit') { }
+
+      this.router.navigate(['/characters']);
     } catch (error) {
       console.error(error);
       this.error = error as Error;
     }
+  }
+
+  async loadCharacter() {
+    const response = await this.characterService.getOne(this.id as string);
+    console.log('response', response);
+    //Cargar los valores en el formulario
+    this.form.controls['name'].setValue(response.result.name);
+    this.form.controls['characterClass'].setValue(response.result.class);
+    this.form.controls['strength'].setValue(response.result.abilities.strength);
+    this.form.controls['dexterity'].setValue(response.result.abilities.dexterity);
+    this.form.controls['constitution'].setValue(response.result.abilities.constitution);
+    this.form.controls['intelligence'].setValue(response.result.abilities.intelligence);
+    this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
+    this.form.controls['charisma'].setValue(response.result.abilities.charisma);
   }
 
   get strengthControl(): FormControl {

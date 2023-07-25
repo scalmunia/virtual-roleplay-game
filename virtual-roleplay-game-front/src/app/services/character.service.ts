@@ -8,13 +8,26 @@ import { fetcher } from '../config/fetch.config';
 export class CharacterService {
   private URL = 'api/character';
 
-  async create(data: Omit<ICharacter, '_id'>, token: string) {
+  async save(data: Omit<ICharacter, '_id'>, id?: ICharacter['_id']) {
     const character = new Character();
     character.create(data);
 
-    const response = await fetcher(this.URL, {
+    if (id) {
+      // aquí hace PUT
+      return;
+    }
+
+    await fetcher(this.URL, {
       method: 'POST',
       body: JSON.stringify(data)
     });
+  }
+
+  async getOne(id: string) {
+    const url = `${this.URL}/${id}`;
+    const response = await fetcher(url);
+    const result = await response.json();
+
+    return result;
   }
 }
