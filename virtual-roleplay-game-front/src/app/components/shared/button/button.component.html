@@ -2,7 +2,8 @@
   <img class="leftSide" [src]="sideImageSrc" alt="Imagen">
   <button class="button" [type]="type" [ngClass]="{
       'button-primary': color === 'primary',
-      'button-secondary': color === 'secondary'
+      'button-secondary': color === 'secondary',
+      'button-terciary': color === 'terciary'
     }">
     <ng-content></ng-content>
   </button>

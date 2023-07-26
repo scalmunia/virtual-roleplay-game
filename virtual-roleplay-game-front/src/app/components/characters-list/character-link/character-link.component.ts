@@ -8,6 +8,7 @@ import { CLASSES_TRANSLATION } from 'src/app/models/Character/character.constant
 })
 export class CharacterLinkComponent {
   @Input() routerLink: string = '';
+  @Input() borderColor: 'characterLink' | 'newCharacterLink' = 'characterLink';
   @Input() src: string = '';
   @Input() srcLeft: string = '';
   @Input() name: string | null = null;

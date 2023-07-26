@@ -1,11 +1,15 @@
 <a class="container" [routerLink]="routerLink">
   <vrg-avatar [src]="src"></vrg-avatar>
   <div class="field">
-    <img class="leftSide" [src]="srcLeft" alt="Imagen">
-    <div class="rectangle">
-      <p class="name">{{ name }}</p>
-      <p class="characterClass">{{ getClassTranslation(characterClass) }}</p>
+    <img class="left-side" [src]="srcLeft" alt="Imagen">
+    <div class="rectangle" [ngClass]="{
+      'character-link': borderColor === 'characterLink',
+      'new-character-link': borderColor === 'newCharacterLink'
+    }">
+      <p *ngIf="borderColor === 'newCharacterLink'" class="new-character">Nuevo personaje</p>
+      <p *ngIf="borderColor === 'characterLink'" class="name">{{ name }}</p>
+      <p *ngIf="borderColor === 'characterLink'" class="character-class">{{ getClassTranslation(characterClass) }}</p>
     </div>
-    <img class="rightSide" [src]="srcRight" alt="Imagen">
+    <img class="right-side" [src]="srcRight" alt="Imagen">
   </div>
 </a>

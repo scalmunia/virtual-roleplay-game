@@ -279,10 +279,6 @@ input[type="checkbox"]:checked+.labelCheck1:before {
   justify-content: flex-end;
 }
 
-.pbutton {
-  margin-left: 10px;
-}
-
 .error {
   color: red;
 }

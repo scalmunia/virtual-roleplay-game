@@ -9,11 +9,28 @@
   position: absolute;
   top: 11px;
   left: 8px;
-
   height: 64px;
   width: 64px;
 
   border-radius: 40px;
+}
+
+.noAvatar {
+  position: absolute;
+  top: 11px;
+  left: 8px;
+  height: 64px;
+  width: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 48px;
+  line-height: 100%;
 }
 
 .border {

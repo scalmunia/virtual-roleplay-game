@@ -219,10 +219,17 @@
       <hr class="line">
 
       <div class="buttonContainer">
-        <vrg-button type="button" color="secondary">Cancelar</vrg-button>
-        <vrg-button class="pbutton" type="submit" color="primary">Guardar</vrg-button>
-      </div>
+        <!-- Modo Creación -->
+        <vrg-button *ngIf="mode === 'create'" color="primary" type="submit">Crear</vrg-button>
 
+        <!-- Modo Edición -->
+        <vrg-button *ngIf="mode === 'edit'" color="secondary" (click)="redirectToCharacter()">Cancelar</vrg-button>
+        <vrg-button *ngIf="mode === 'edit'" color="primary" type="submit">Guardar</vrg-button>
+
+        <!-- Modo visualización -->
+        <vrg-button *ngIf="mode === 'view'" color="terciary">Eliminar</vrg-button>
+        <vrg-button *ngIf="mode === 'view'" color="secondary">Editar</vrg-button>
+      </div>
     </form>
   </div>
 </div>

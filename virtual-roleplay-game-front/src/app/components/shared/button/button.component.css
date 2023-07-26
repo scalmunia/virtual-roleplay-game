@@ -1,6 +1,8 @@
 .container {
   display: flex;
-  margin-top: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 15px;
   justify-content: center;
 }
 
@@ -37,19 +39,6 @@
   background: #DDDDE8;
 }
 
-
-
-
-.icon {
-  width: 15.407px;
-  height: 48px;
-  flex-shrink: 0;
+.button-terciary {
+  background: #FF9A9A;
 }
-
-/* .button-primary .icon-path {
-  fill: var(--primary-text-color);
-}
-
-.button-secondary .icon-path {
-  fill: #DDDDE8;
-} */

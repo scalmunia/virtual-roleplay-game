@@ -16,7 +16,7 @@
   margin-left: -27px;
 }
 
-.leftSide {
+.left-side {
   width: 28.261px;
   height: 60px;
   flex-shrink: 0;
@@ -28,11 +28,29 @@
   height: 60px;
 
   background: #1C1C22;
-  border-top: 3px solid #3C3C48;
-  border-bottom: 3px solid #3C3C48;
 
   margin-left: -6px;
   margin-right: -2px;
+}
+
+.character-link {
+  border-top: 3px solid #3C3C48;
+  border-bottom: 3px solid #3C3C48;
+}
+
+.new-character-link {
+  border-top: 3px solid var(--primary-text-color);
+  border-bottom: 3px solid var(--primary-text-color);
+}
+
+.new-character {
+  margin-top: 15px;
+  margin-left: 15px;
+
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 24px;
+  line-height: 100%;
 }
 
 .name {
@@ -47,7 +65,7 @@
   text-transform: capitalize;
 }
 
-.characterClass {
+.character-class {
   margin-top: 5px;
   margin-left: 15px;
 
@@ -58,7 +76,7 @@
   text-transform: capitalize;
 }
 
-.rightSide {
+.right-side {
   width: 28.261px;
   height: 60px;
   flex-shrink: 0;
