@@ -13,7 +13,12 @@ export class CharacterService {
     character.create(data);
 
     if (id) {
-      // aquí hace PUT
+      console.log('entrando en servicio');
+      const url = `${this.URL}/${id}`;
+      await fetcher(url, {
+        method: 'PUT',
+        body: JSON.stringify(data)
+      });
       return;
     }
 

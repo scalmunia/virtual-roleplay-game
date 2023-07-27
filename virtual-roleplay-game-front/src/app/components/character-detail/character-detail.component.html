@@ -19,10 +19,12 @@
         <div class="avatar">
           <vrg-avatar></vrg-avatar>
         </div>
-        <div class="characterInfo">
-          <div class="name"><input class="inputName" type="text" formControlName="name"></div>
-          <div class="characterClass">
-            <select class="selectCharacterClass" formControlName="characterClass">
+        <div class="character-info">
+          <div class="name"><input class="input-name" type="text" formControlName="name"
+              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}"></div>
+          <div class="character-class">
+            <select class="select-character-class" formControlName="characterClass"
+              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
               <option value="barbarian">Bárbaro</option>
               <option value="bard">Bardo</option>
               <option value="warlock">Brujo</option>
@@ -73,9 +75,9 @@
 
       <hr class="line">
 
-      <div class="skillsContainer">
-        <p class="pSkill">HABILIDADES</p>
-        <div class="contSkill">
+      <div class="skills-container">
+        <p class="p-skill">HABILIDADES</p>
+        <div class="cont-skill">
           <div class="skills">
             <div class="skill">
               <input class="check" type="checkbox" id="check1">
@@ -223,12 +225,13 @@
         <vrg-button *ngIf="mode === 'create'" color="primary" type="submit">Crear</vrg-button>
 
         <!-- Modo Edición -->
-        <vrg-button *ngIf="mode === 'edit'" color="secondary" (click)="redirectToCharacter()">Cancelar</vrg-button>
+        <vrg-button *ngIf="mode === 'edit'" color="secondary" [routerLink]="'/character/' + id">Cancelar</vrg-button>
+        <!-- <vrg-button *ngIf="mode === 'edit'" color="secondary" routerLink="/characters">Cancelar</vrg-button> -->
         <vrg-button *ngIf="mode === 'edit'" color="primary" type="submit">Guardar</vrg-button>
 
         <!-- Modo visualización -->
-        <vrg-button *ngIf="mode === 'view'" color="terciary">Eliminar</vrg-button>
-        <vrg-button *ngIf="mode === 'view'" color="secondary">Editar</vrg-button>
+        <vrg-button *ngIf="mode === 'view'" color="terciary" routerLink="/characters">Eliminar</vrg-button>
+        <vrg-button *ngIf="mode === 'view'" color="secondary" (click)="navigate()">Editar</vrg-button>
       </div>
     </form>
   </div>
