@@ -7,6 +7,7 @@ import { Character } from 'src/app/models/Character/Character';
   templateUrl: './characters-list.component.html',
   styleUrls: ['./characters-list.component.css'],
 })
+
 export class CharactersListComponent implements OnInit {
   characters: Array<Character> = [];
   error: Error | null = null;

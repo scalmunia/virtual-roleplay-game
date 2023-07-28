@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router, NavigationExtras } from '@angular/router';
-import { merge } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
@@ -11,6 +9,7 @@ import { CharacterService } from 'src/app/services/character.service';
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.css'],
 })
+
 export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
   id: string | null = null;
@@ -30,6 +29,7 @@ export class CharacterDetailComponent implements OnInit {
 
   constructor(private characterService: CharacterService, private route: ActivatedRoute, private router: Router) {
     this.form = new FormGroup({
+      avatar: new FormControl(''),
       name: new FormControl(''),
       characterClass: new FormControl(''),
       strength: new FormControl(''),
@@ -40,24 +40,20 @@ export class CharacterDetailComponent implements OnInit {
       charisma: new FormControl(''),
     });
 
-    //'merge' combina varias fuentes de observables en una sola secuencia de emisiones
+    //'combineLatest' combina varias fuentes de observables en una sola secuencia de emisiones
     //te permite suscribirte una única vez para escuchar tanto los cambios en los parámetros de ruta como en los parámetros de consulta
-    merge(
+    //https://gist.github.com/PCreations/99765f48b1f60c9427c479c25f3e3bbd
+    combineLatest([
       this.route.queryParams,
       this.route.params
-    ).pipe(
-      map(() => this.loadCharacter())
-    ).subscribe();
-
-    // this.route.params.subscribe(params => {
-    //   this.loadMode();
-    // })
-    // this.route.queryParams.subscribe(queryParams => {
-    //   this.loadMode();
-    // })
+    ]).subscribe(() => {
+      this.loadMode();
+    });
   }
 
   ngOnInit(): void {
+    if (this.mode === 'create') return;
+
     this.loadCharacter();
   }
 
@@ -82,6 +78,12 @@ export class CharacterDetailComponent implements OnInit {
       null;
 
     console.log('mode', this.mode);
+
+    if (this.mode === 'view') {
+      this.form.disable(); // Deshabilitar el formulario en modo 'view'
+    } else {
+      this.form.enable(); // Habilitar el formulario en modo 'create' o 'edit'
+    }
   }
 
   onChangedEditor(event: any): void {
@@ -93,6 +95,7 @@ export class CharacterDetailComponent implements OnInit {
   async onSubmit() {
     try {
       const {
+        avatar,
         name,
         characterClass,
         strength,
@@ -106,6 +109,7 @@ export class CharacterDetailComponent implements OnInit {
       if (this.mode === 'create') {
         await this.characterService.save(
           {
+            avatar: avatar,
             name: name,
             class: characterClass,
             abilities: {
@@ -124,6 +128,7 @@ export class CharacterDetailComponent implements OnInit {
         console.log('entrando en edit');
         await this.characterService.save(
           {
+            avatar: avatar,
             name: name,
             class: characterClass,
             abilities: {
@@ -147,17 +152,10 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   async loadCharacter() {
-    this.loadMode();
-
-    if (this.mode === 'view') {
-      this.form.disable(); // Deshabilitar el formulario en modo 'view'
-    } else {
-      this.form.enable(); // Habilitar el formulario en modo 'create' o 'edit'
-    }
-
     const response = await this.characterService.getOne(this.id as string);
-    console.log('response', response);
+
     //Cargar los valores en el formulario
+    this.form.controls['avatar'].setValue(response.result.avatar);
     this.form.controls['name'].setValue(response.result.name);
     this.form.controls['characterClass'].setValue(response.result.class);
     this.form.controls['strength'].setValue(response.result.abilities.strength);

@@ -14,12 +14,12 @@
     <br>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
       <div class="header">
         <div class="avatar">
-          <vrg-avatar></vrg-avatar>
+          <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
+            (change)="form.controls['avatar'].setValue($event)"></vrg-avatar>
         </div>
-        <div class="character-info">
+        <div class=" character-info">
           <div class="name"><input class="input-name" type="text" formControlName="name"
               [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}"></div>
           <div class="character-class">

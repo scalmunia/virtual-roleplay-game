@@ -25,6 +25,7 @@ export type Abilities = {
 
 export interface ICharacter {
   _id: string;
+  avatar: string | null;
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
@@ -32,6 +33,7 @@ export interface ICharacter {
 
 export class Character implements ICharacter {
   _id: string;
+  avatar: string | null;
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
@@ -39,6 +41,7 @@ export class Character implements ICharacter {
   constructor(character?: ICharacter) {
     this._id = character?._id || '';
     this.name = character?.name || null;
+    this.avatar = character?.avatar || null;
     // this.level = character?.level || 1
     this.class = character?.class || null;
     this.abilities = character?.abilities || {
@@ -57,7 +60,7 @@ export class Character implements ICharacter {
 
     // Seteos
     this.name = character.name;
-    // this.level = 1;
+    this.name = character.avatar;
     this.class = character.class;
 
     this.abilities = {

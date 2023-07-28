@@ -1,5 +1,7 @@
 <div class="image">
   <img *ngIf="src" class="avatar" [src]="src">
-  <span class="noAvatar" *ngIf="!src">+</span>
   <img class="border" src="assets/images/image_outline.svg" alt="Imagen">
+  <button type="button" (click)="loadAvatar()" class="noAvatar">
+    <span *ngIf="!src">+</span>
+  </button>
 </div>
