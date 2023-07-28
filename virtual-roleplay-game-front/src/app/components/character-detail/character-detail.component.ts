@@ -160,8 +160,16 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   async deleteCharacter() {
-    await this.characterService.deleteOne(this.id as string);
-    this.router.navigate(['/characters']);
+    const isConfirmed = window.confirm('¿Estás seguro de que quieres borrar el personaje?');
+    if (isConfirmed) {
+      try {
+        await this.characterService.deleteOne(this.id as string);
+        this.router.navigate(['/characters']);
+      } catch (error) {
+        console.error(error);
+        this.error = error as Error;
+      }
+    }
   }
 
   navigate() {
