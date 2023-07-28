@@ -86,10 +86,19 @@ export class CharacterDetailComponent implements OnInit {
     }
   }
 
-  onChangedEditor(event: any): void {
-    if (event.html) {
-      this.htmlContent = event.html;
-    }
+  async loadCharacter() {
+    const response = await this.characterService.getOne(this.id as string);
+
+    //Cargar los valores en el formulario
+    this.form.controls['avatar'].setValue(response.result.avatar);
+    this.form.controls['name'].setValue(response.result.name);
+    this.form.controls['characterClass'].setValue(response.result.class);
+    this.form.controls['strength'].setValue(response.result.abilities.strength);
+    this.form.controls['dexterity'].setValue(response.result.abilities.dexterity);
+    this.form.controls['constitution'].setValue(response.result.abilities.constitution);
+    this.form.controls['intelligence'].setValue(response.result.abilities.intelligence);
+    this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
+    this.form.controls['charisma'].setValue(response.result.abilities.charisma);
   }
 
   async onSubmit() {
@@ -122,10 +131,10 @@ export class CharacterDetailComponent implements OnInit {
             }
           }
         );
+        this.router.navigate(['/characters/']);
       }
 
       if (this.mode === 'edit') {
-        console.log('entrando en edit');
         await this.characterService.save(
           {
             avatar: avatar,
@@ -142,28 +151,17 @@ export class CharacterDetailComponent implements OnInit {
           },
           this.id as string
         );
+        this.router.navigate(['/character/' + this.id]);
       }
-
-      this.router.navigate(['/character/' + this.id]);
     } catch (error) {
       console.error(error);
       this.error = error as Error;
     }
   }
 
-  async loadCharacter() {
-    const response = await this.characterService.getOne(this.id as string);
-
-    //Cargar los valores en el formulario
-    this.form.controls['avatar'].setValue(response.result.avatar);
-    this.form.controls['name'].setValue(response.result.name);
-    this.form.controls['characterClass'].setValue(response.result.class);
-    this.form.controls['strength'].setValue(response.result.abilities.strength);
-    this.form.controls['dexterity'].setValue(response.result.abilities.dexterity);
-    this.form.controls['constitution'].setValue(response.result.abilities.constitution);
-    this.form.controls['intelligence'].setValue(response.result.abilities.intelligence);
-    this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
-    this.form.controls['charisma'].setValue(response.result.abilities.charisma);
+  async deleteCharacter() {
+    await this.characterService.deleteOne(this.id as string);
+    this.router.navigate(['/characters']);
   }
 
   navigate() {
@@ -173,6 +171,12 @@ export class CharacterDetailComponent implements OnInit {
       }
     };
     this.router.navigate(['/character/' + this.id], navigationExtras);
+  }
+
+  onChangedEditor(event: any): void {
+    if (event.html) {
+      this.htmlContent = event.html;
+    }
   }
 
   get strengthControl(): FormControl {

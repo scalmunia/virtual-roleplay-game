@@ -8,6 +8,14 @@ import { fetcher } from '../config/fetch.config';
 export class CharacterService {
   private URL = 'api/character';
 
+  async getOne(id: string) {
+    const url = `${this.URL}/${id}`;
+    const response = await fetcher(url);
+    const result = await response.json();
+
+    return result;
+  }
+
   async save(data: Omit<ICharacter, '_id'>, id?: ICharacter['_id']) {
     const character = new Character();
     character.create(data);
@@ -19,6 +27,7 @@ export class CharacterService {
         method: 'PUT',
         body: JSON.stringify(data)
       });
+
       return;
     }
 
@@ -28,11 +37,12 @@ export class CharacterService {
     });
   }
 
-  async getOne(id: string) {
+  async deleteOne(id: string) {
     const url = `${this.URL}/${id}`;
-    const response = await fetcher(url);
-    const result = await response.json();
+    await fetcher(url, {
+      method: 'DELETE'
+    });
 
-    return result;
+    return;
   }
 }
