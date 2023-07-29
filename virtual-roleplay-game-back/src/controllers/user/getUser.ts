@@ -3,11 +3,8 @@ import { ObjectId } from "mongodb";
 import mongodb from "../../clients/mongodb";
 import jwt from "jsonwebtoken";
 
-export async function deleteCharacterController(req: Request, res: Response) {
+export async function getUserController(req: Request, res: Response) {
   try {
-    //Obtener id del parámetro de ruta
-    const _id = new ObjectId(req.params.id);
-
     //Obtener el token de la cabecera
     const authorization = req.header('Authorization') as string;
 
@@ -18,21 +15,19 @@ export async function deleteCharacterController(req: Request, res: Response) {
     const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
     const decodedToken = jwt.verify(token, JWT_SECRET_KEY) as { userId: string };
     const userId = decodedToken.userId;
+    const objectIdUserId = new ObjectId(userId);
 
     //Inicializar la conexión con mongodb
     const db = await mongodb();
 
     //Comprobar si el usuario tiene un idCharacter asociado
-    const userCharacter = await db.collection('user_character').findOne({ userId, characterId: req.params.id });
-    if (!userCharacter) {
-      res.send(403);
+    const result = await db.collection('users').findOne({ _id: objectIdUserId });
+    if (!result) {
+      res.send(204);
       return;
     }
 
-    await db.collection('user_character').deleteOne({ _id: userCharacter._id });
-    await db.collection('characters').deleteOne({ _id });
-
-    res.status(200).send({ message: `Usuario con id ${req.params.id} borrado` });
+    res.status(200).send({ result });
   } catch (error) {
     res.status(500).send(error);
   }

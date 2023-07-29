@@ -2,6 +2,7 @@ import { Application, Request, Response } from "express";
 
 import { loginController } from './user/login';
 import { registerController } from './user/register';
+import { getUserController } from './user/getUser';
 import { getCharactersController } from './characters/getCharacters';
 import { getCharacterController } from './character/getCharacter';
 import { createCharacterController } from './character/createCharacter';
@@ -16,6 +17,7 @@ export const loadApiEndpoints = (app: Application): void => {
 	app.get('/api', logger, (req: Request, res: Response) => { res.send({ message: 'node-mongo-api works!' }); });
 	app.post('/api/user/register', logger, registerController);
 	app.post('/api/user/login', logger, loginController);
+	app.get('/api/user', logger, authGuard, getUserController);
 
 	app.get('/api/characters', logger, authGuard, getCharactersController);
 

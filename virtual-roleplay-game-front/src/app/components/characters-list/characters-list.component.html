@@ -1,12 +1,16 @@
+<vrg-nav [segments]="[
+    { name: 'Mi personajes', url: '/characters' }]">
+</vrg-nav>
+
 <div class="root">
   <div class="container">
     <div class="title">Mis personajes</div>
     <div class="characterLinkContainer">
-      <vrg-character-link *ngFor="let character of characters" [src]="character.avatar"
+      <vrg-character-link class="characterLink" *ngFor="let character of characters" [src]="character.avatar"
         srcLeft="assets/images/character_link_left_side.svg" [name]="character.name" [characterClass]="character.class"
         srcRight="assets/images/character_link_right_side.svg"
         [routerLink]="'/character/' + character._id"></vrg-character-link>
-      <vrg-character-link srcLeft="assets/images/character_link_button_left_side.svg"
+      <vrg-character-link class="characterLink" srcLeft="assets/images/character_link_button_left_side.svg"
         srcRight="assets/images/character_link_button_right_side.svg" borderColor='newCharacterLink'
         routerLink="/create-character">
         Nuevo personaje

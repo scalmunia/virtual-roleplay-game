@@ -26,7 +26,7 @@ export async function updateCharacterController(req: Request, res: Response) {
     //Comprobar si el usuario tiene un idCharacter asociado
     const userCharacter = await db.collection('user_character').findOne({ userId, characterId: req.params.id });
     if (!userCharacter) {
-      res.send(204);
+      res.send(403);
       return;
     }
 

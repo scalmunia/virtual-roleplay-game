@@ -1,9 +1,6 @@
 .container {
   width: 100%;
   display: flex;
-  margin-bottom: 30px;
-  margin-right: 20px;
-  flex: 1 0 calc(33% - 20px);
 
   text-decoration: none;
 }
@@ -11,6 +8,7 @@
 .field {
   display: flex;
   align-items: center;
+  flex: 1 1;
 
   height: 80px;
   margin-left: -27px;

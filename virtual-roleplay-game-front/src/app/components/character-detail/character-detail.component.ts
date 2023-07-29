@@ -58,7 +58,6 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   loadMode() {
-    console.log('entrando en loadMode');
     this.id = this.route.snapshot.paramMap.get('id');
     const editModeQueryParam = this.route.snapshot.queryParamMap.has('edit');
 
@@ -76,8 +75,6 @@ export class CharacterDetailComponent implements OnInit {
       (isEdit && 'edit') ||
       (isView && 'view') ||
       null;
-
-    console.log('mode', this.mode);
 
     if (this.mode === 'view') {
       this.form.disable(); // Deshabilitar el formulario en modo 'view'

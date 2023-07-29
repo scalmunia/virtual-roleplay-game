@@ -32,7 +32,19 @@
 .characterLinkContainer {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
+  gap: 32px;
+}
+
+.characterLink {
+  flex: 1 1;
+
+  @media (min-width: 679px) {
+    max-width: calc(50% - 22px);
+  }
+
+  @media (min-width: 1019px) {
+    max-width: calc(33.33% - 22px);
+  }
 }
 
 .field {

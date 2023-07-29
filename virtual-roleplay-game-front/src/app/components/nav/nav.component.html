@@ -1,0 +1,15 @@
+<div class="root">
+  <div class="container">
+    <div class="path">
+      <ng-container *ngFor="let segment of segments; let isLast = last">
+        <a *ngIf="segment.url" class="segment" [routerLink]="segment.url">{{segment.name}}</a>
+        <p *ngIf="!segment.url" class="segment segment--active">{{segment.name}}</p>
+        <span *ngIf="!isLast" class="segment segment--separator">/</span>
+      </ng-container>
+    </div>
+    <div class="user">
+      <div class="name">{{ userName }}</div>
+      <div class="letter">{{ firstLetter }}</div>
+    </div>
+  </div>
+</div>
