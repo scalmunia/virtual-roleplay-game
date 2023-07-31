@@ -1,6 +1,6 @@
 <vrg-nav [segments]="[
     { name: 'Mi personajes', url: '/characters' },
-    { name: form.controls['name'].value }]">
+    { name: mode === 'create' ? 'Nuevo personaje' : form.controls['name'].value }]">
 </vrg-nav>
 
 <div class="root">
@@ -80,7 +80,7 @@
 
       <hr class="line">
 
-      <div class="skills-container">
+      <!-- <div class="skills-container">
         <p class="p-skill">HABILIDADES</p>
         <div class="cont-skill">
           <div class="skills">
@@ -221,7 +221,7 @@
           <quill-editor name="annotations" id="annotations" [modules]="modulesQuill"
             (onEditorChange)="onChangedEditor($event)"></quill-editor>
         </div>
-      </div>
+      </div> -->
 
       <hr class="line">
 
