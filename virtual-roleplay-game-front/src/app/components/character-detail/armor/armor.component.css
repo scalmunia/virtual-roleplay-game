@@ -1,5 +1,6 @@
 .score {
   position: relative;
+  height: 92px;
 }
 
 .armor {
@@ -30,6 +31,7 @@
 
 .pArmor {
   display: flex;
+  margin: 0;
   margin-top: 0;
 
   position: absolute;

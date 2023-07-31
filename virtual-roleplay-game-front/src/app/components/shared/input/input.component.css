@@ -38,6 +38,16 @@
   margin-right: -1.5px;
 }
 
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #1C1C22 inset !important;
+    -webkit-text-fill-color: white !important;
+    font-size: inherit !important;
+}
+
 input::placeholder {
   color: #646477;
 }

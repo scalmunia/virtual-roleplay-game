@@ -24,7 +24,8 @@
   top: 50%;
   transform: translateY(-50%);
 
-  width: 749px;
+  width: 100%;
+  max-width: 749px;
   height: 1024px;
   flex-shrink: 0;
   max-height: 100%;
@@ -71,11 +72,4 @@
   text-decoration-line: underline;
 
   margin-top: 20px;
-}
-
-/* Estilos para la versión móvil */
-@media (max-width: 720px) {
-  .container {
-    width: 100%;
-  }
 }

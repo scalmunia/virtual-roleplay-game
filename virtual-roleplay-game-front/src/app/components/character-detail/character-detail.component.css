@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 6px;
 }
 
 .input-name {
@@ -66,7 +67,7 @@
   align-items: center;
   height: 15px;
 
-  margin-top: 7px;
+  margin-top: 4px;
   padding-left: 5px;
 
   appearance: none;
@@ -78,7 +79,7 @@
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 100%;
 }
@@ -89,19 +90,28 @@
 
 .bonus {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   align-content: flex-start;
+  justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
 
-  margin-top: 20px;
-  width: 992px;
-  height: 130px;
+  margin-top: 40px;
+
+  /* mobile */
+  flex-direction: column-reverse;
+  align-items: flex-start;
+
+  /* desktop */
+  @media (min-width: 960px) {
+    align-items: center;
+    flex-direction: row;
+  }
 }
 
 .abilities {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .scores {
@@ -290,11 +300,4 @@ input[type="checkbox"]:checked+.labelCheck1:before {
 
 .error {
   color: red;
-}
-
-/* Estilos para la versión móvil */
-@media (max-width: 720px) {
-  .container {
-    width: 100%;
-  }
 }

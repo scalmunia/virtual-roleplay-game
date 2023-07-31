@@ -1,5 +1,6 @@
 .score {
   position: relative;
+  height: 85px;
 }
 
 .proficiency {
@@ -35,7 +36,7 @@
   margin-top: 0;
 
   position: absolute;
-  top: 55px;
+  top: 56px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
