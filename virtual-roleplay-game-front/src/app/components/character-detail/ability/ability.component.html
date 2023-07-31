@@ -4,5 +4,7 @@
     <img class="ability" src="assets/images/ability.svg" alt="Imagen">
   </div>
   <div class="modifier">{{ calcAbilityModifier(control.value) | addSignFilter }}</div>
-  <input class="inputAbilityScore" type="number" [formControl]="control">
+  <input class="inputAbilityScore" type="number" [formControl]="control" [ngClass]="{
+    'edit-mode': mode === 'create' || mode === 'edit',
+    'view-mode': mode === 'view'}">
 </div>

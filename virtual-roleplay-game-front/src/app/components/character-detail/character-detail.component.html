@@ -18,7 +18,7 @@
     </div>
     <br>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="header">
         <div class="avatar">
           <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
@@ -58,17 +58,17 @@
               (change)="form.setValue('strength', $event)"
             ></vrg-ability>
           -->
-          <vrg-ability ability="FUERZA" [form]="form" [control]="strengthControl">
+          <vrg-ability ability="FUERZA" [form]="form" [control]="strengthControl" [mode]="mode">
           </vrg-ability>
-          <vrg-ability ability="DESTREZA" [form]="form" [control]="dexterityControl">
+          <vrg-ability ability="DESTREZA" [form]="form" [control]="dexterityControl" [mode]="mode">
           </vrg-ability>
-          <vrg-ability ability="CONSTITUCION" [form]="form" [control]="constitutionControl">
+          <vrg-ability ability="CONSTITUCION" [form]="form" [control]="constitutionControl" [mode]="mode">
           </vrg-ability>
-          <vrg-ability ability="INTELECTO" [form]="form" [control]="intelligenceControl">
+          <vrg-ability ability="INTELECTO" [form]="form" [control]="intelligenceControl" [mode]="mode">
           </vrg-ability>
-          <vrg-ability ability="SABIDURIA" [form]="form" [control]="wisdomControl">
+          <vrg-ability ability="SABIDURIA" [form]="form" [control]="wisdomControl" [mode]="mode">
           </vrg-ability>
-          <vrg-ability ability="CARISMA" [form]="form" [control]="charismaControl">
+          <vrg-ability ability="CARISMA" [form]="form" [control]="charismaControl" [mode]="mode">
           </vrg-ability>
         </div>
         <div class="scores">
