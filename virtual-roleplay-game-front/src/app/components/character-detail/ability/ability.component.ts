@@ -12,7 +12,7 @@ export class AbilityComponent {
   @Input() ability: string = '';
   @Input() form!: FormGroup;
   @Input() control: FormControl = new FormControl();
-  @Input() mode: 'create' | 'edit' | 'view' | null = null;
+  @Input() disabled: boolean = false;
 
   calcAbilityModifier = calcAbilityModifier;
 }

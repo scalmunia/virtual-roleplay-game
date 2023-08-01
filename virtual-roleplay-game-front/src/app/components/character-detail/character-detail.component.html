@@ -54,17 +54,18 @@
               (change)="form.setValue('strength', $event)"
             ></vrg-ability>
           -->
-          <vrg-ability ability="FUERZA" [form]="form" [control]="strengthControl" [mode]="mode">
+          <vrg-ability ability="FUERZA" [form]="form" [control]="strengthControl" [disabled]="mode === 'view'">
           </vrg-ability>
-          <vrg-ability ability="DESTREZA" [form]="form" [control]="dexterityControl" [mode]="mode">
+          <vrg-ability ability="DESTREZA" [form]="form" [control]="dexterityControl" [disabled]="mode === 'view'">
           </vrg-ability>
-          <vrg-ability ability="CONSTITUCION" [form]="form" [control]="constitutionControl" [mode]="mode">
+          <vrg-ability ability="CONSTITUCION" [form]="form" [control]="constitutionControl"
+            [disabled]="mode === 'view'">
           </vrg-ability>
-          <vrg-ability ability="INTELECTO" [form]="form" [control]="intelligenceControl" [mode]="mode">
+          <vrg-ability ability="INTELECTO" [form]="form" [control]="intelligenceControl" [disabled]="mode === 'view'">
           </vrg-ability>
-          <vrg-ability ability="SABIDURIA" [form]="form" [control]="wisdomControl" [mode]="mode">
+          <vrg-ability ability="SABIDURIA" [form]="form" [control]="wisdomControl" [disabled]="mode === 'view'">
           </vrg-ability>
-          <vrg-ability ability="CARISMA" [form]="form" [control]="charismaControl" [mode]="mode">
+          <vrg-ability ability="CARISMA" [form]="form" [control]="charismaControl" [disabled]="mode === 'view'">
           </vrg-ability>
         </div>
         <div class="scores">

@@ -3,6 +3,5 @@
   <img src="assets/images/ability.svg" alt="Imagen">
   <div class="modifier">{{ calcAbilityModifier(control.value) | addSignFilter }}</div>
   <input class="input-ability-score" type="number" [formControl]="control" [ngClass]="{
-    'edit-mode': mode === 'create' || mode === 'edit',
-    'view-mode': mode === 'view'}">
+    'disabled': disabled}">
 </div>
