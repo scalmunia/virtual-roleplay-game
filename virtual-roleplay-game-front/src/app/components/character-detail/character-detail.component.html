@@ -20,30 +20,26 @@
 
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="header">
-        <div class="avatar">
-          <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
-            (change)="form.controls['avatar'].setValue($event)"></vrg-avatar>
-        </div>
+        <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
+          (change)="form.controls['avatar'].setValue($event)"></vrg-avatar>
         <div class=" character-info">
-          <div class="name"><input class="input-name" type="text" formControlName="name"
-              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}"></div>
-          <div class="character-class">
-            <select class="select-character-class" formControlName="characterClass"
-              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
-              <option value="barbarian">Bárbaro</option>
-              <option value="bard">Bardo</option>
-              <option value="warlock">Brujo</option>
-              <option value="cleric">Clérigo</option>
-              <option value="druid">Druida</option>
-              <option value="ranger">Explorador</option>
-              <option value="fighter">Guerrero</option>
-              <option value="sorcerer">Hechicero</option>
-              <option value="wizard">Mago</option>
-              <option value="monk">Monje</option>
-              <option value="paladin">Paladín</option>
-              <option value="rogue">Pícaro</option>
-            </select>
-          </div>
+          <input class="input-name" type="text" formControlName="name"
+            [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+          <select class="select-character-class" formControlName="characterClass"
+            [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+            <option value="barbarian">Bárbaro</option>
+            <option value="bard">Bardo</option>
+            <option value="warlock">Brujo</option>
+            <option value="cleric">Clérigo</option>
+            <option value="druid">Druida</option>
+            <option value="ranger">Explorador</option>
+            <option value="fighter">Guerrero</option>
+            <option value="sorcerer">Hechicero</option>
+            <option value="wizard">Mago</option>
+            <option value="monk">Monje</option>
+            <option value="paladin">Paladín</option>
+            <option value="rogue">Pícaro</option>
+          </select>
         </div>
       </div>
 
@@ -223,7 +219,7 @@
         </div>
       </div> -->
 
-      <div class="buttonContainer">
+      <div class="button-container">
         <!-- Modo Creación -->
         <vrg-button *ngIf="mode === 'create'" color="primary" type="submit">Crear</vrg-button>
 

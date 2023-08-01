@@ -7,6 +7,7 @@ import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
   templateUrl: './ability.component.html',
   styleUrls: ['./ability.component.css']
 })
+
 export class AbilityComponent {
   @Input() ability: string = '';
   @Input() form!: FormGroup;

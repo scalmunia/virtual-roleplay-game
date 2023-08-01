@@ -1,5 +1,5 @@
 <div class="container">
-  <img class="logoImg" src="assets/images/logo.png" alt="Imagen">
+  <img class="logo-img" src="assets/images/logo.png" alt="Imagen">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
@@ -9,10 +9,12 @@
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
         [control]="form.get('password')"></vrg-input>
     </div>
-    <div class="recoverpwdContainer">
-      <a class="recoverpwd">¿Has olvidado la contraseña?</a>
+    <div class="recover-pwd-container">
+      <a class="recover-pwd">¿Has olvidado la contraseña?</a>
     </div>
-    <vrg-button type="submit" color="primary">Iniciar sesión</vrg-button>
+    <div class="button-container">
+      <vrg-button type="submit" color="primary">Iniciar sesión</vrg-button>
+    </div>
   </form>
 
   <hr class="line">

@@ -7,6 +7,7 @@ import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
   templateUrl: './hit-points.component.html',
   styleUrls: ['./hit-points.component.css']
 })
+
 export class HitPointsComponent {
   @Input() form!: FormGroup;
   calcMaximunLife = calcMaximunLife;

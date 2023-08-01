@@ -1,6 +1,6 @@
 <div class="score">
-  <img class="hitPoints" src="assets/images/hit_points.svg" alt="Imagen">
-  <div class="inputHitPoints" *ngIf="form.controls['characterClass'].value && form.controls['constitution'].value">{{
+  <img src="assets/images/hit_points.svg" alt="Imagen">
+  <div class="input-hit-points" *ngIf="form.controls['characterClass'].value && form.controls['constitution'].value">{{
     calcMaximunLife(form.controls['characterClass'].value, form.controls['constitution'].value) }}</div>
-  <p class="pHitPoints">P. DE GOLPE</p>
+  <p class="p-hit-points">P. DE GOLPE</p>
 </div>

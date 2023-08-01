@@ -7,22 +7,22 @@
 
 .avatar {
   position: absolute;
-  top: 11px;
-  left: 8px;
+  top: 13%;
+  left: 10%;
   height: 64px;
   width: 64px;
 
   border-radius: 40px;
 }
 
-.noAvatar {
+.no-avatar {
   position: absolute;
-  top: 13px;
-  left: 8px;
+  top: 10%;
+  left: 10%;
   height: 64px;
   width: 64px;
 
-  background: none;
+  background: transparent;
   border: 0;
 
   display: flex;
@@ -33,10 +33,4 @@
   font-family: var(--primary-typography);
   font-size: 56px;
   padding-bottom: 16px;
-}
-
-.border {
-  position: absolute;
-  top: 0;
-  left: 0;
 }

@@ -1,5 +1,4 @@
 :host {
-  /* background-image: url("src/assets/images/background_login2.png"); */
   background-image: url("src/assets/images/background_login.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,8 +23,8 @@
   top: 50%;
   transform: translateY(-50%);
 
-  width: 100%;
   max-width: 749px;
+  width: 100%;
   height: 1024px;
   flex-shrink: 0;
   max-height: 100%;
@@ -34,19 +33,19 @@
   backdrop-filter: blur(18px);
 }
 
-.logoImg {
-  width: 247.935px;
-  height: 109.001px;
+.logo-img {
+  width: 250px;
+  height: 110px;
   flex-shrink: 0;
 
   margin-bottom: 40px;
 }
 
-.recoverpwdContainer {
+.recover-pwd-container {
   margin-top: 10px;
 }
 
-.recoverpwd {
+.recover-pwd {
   color: var(--primary-text-color);
   font-size: 14px;
   font-family: Montserrat;
@@ -54,12 +53,17 @@
   text-decoration-line: underline;
 }
 
-.line {
-  max-width: 1024px;
+.button-container {
   margin-top: 30px;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
   width: 120px;
-  border: none;
   height: 1px;
+  border: none;
+  margin-top: 25px;
 
   background: rgba(156, 156, 189, 0.33);
 }
@@ -71,5 +75,5 @@
   line-height: 100%;
   text-decoration-line: underline;
 
-  margin-top: 20px;
+  margin-top: 15px;
 }

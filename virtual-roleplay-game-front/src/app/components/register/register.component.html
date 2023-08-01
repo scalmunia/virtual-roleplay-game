@@ -1,5 +1,5 @@
 <div class="container">
-  <img class="logoImg" src="assets/images/logo.png" alt="Imagen">
+  <img class="logo-img" src="assets/images/logo.png" alt="Imagen">
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <vrg-input for="inputName" label="NOMBRE" type="text" id="inputName" placeholder="Nombre"
@@ -13,7 +13,9 @@
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
         [control]="form.get('password')"></vrg-input>
     </div>
-    <vrg-button type="submit" color="primary">Crear cuenta</vrg-button>
+    <div class="button-container">
+      <vrg-button type="submit" color="primary">Crear cuenta</vrg-button>
+    </div>
   </form>
 
   <hr class="line">
