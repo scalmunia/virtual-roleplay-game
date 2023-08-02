@@ -1,0 +1,15 @@
+<div class="container" [ngClass]="{
+  'item-grey': color === 'grey',
+  'item-blue': color === 'blue',
+  'item-yellow': color === 'yellow'
+}">
+  <img class="img" [src]="src">
+  <div class="name">{{ name }}</div>
+  <ul class="statistics">
+    <li *ngFor="let stat of statistics">
+      <span class="bonus">{{ stat.bonus }}</span>
+      <span>{{ stat.name }}</span>
+    </li>
+  </ul>
+  <div class="description">{{ description }}</div>
+</div>

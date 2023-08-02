@@ -23,12 +23,22 @@ export type Abilities = {
   charisma: number;
 };
 
+export type Equipment = {
+  img: string;
+  name: string;
+  statistics: {
+    bonus?: string, name: string
+  }[]
+  description: string;
+}
+
 export interface ICharacter {
   _id: string;
   avatar: string | null;
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
+  // equipment: Equipment[];
 }
 
 export class Character implements ICharacter {
@@ -37,12 +47,12 @@ export class Character implements ICharacter {
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
+  // equipment: Equipment[];
 
   constructor(character?: ICharacter) {
     this._id = character?._id || '';
     this.name = character?.name || null;
     this.avatar = character?.avatar || null;
-    // this.level = character?.level || 1
     this.class = character?.class || null;
     this.abilities = character?.abilities || {
       strength: 0,
@@ -50,8 +60,9 @@ export class Character implements ICharacter {
       constitution: 0,
       intelligence: 0,
       wisdom: 0,
-      charisma: 0,
+      charisma: 0
     };
+    // this.equipment = character?.equipment || []
   }
 
   create(character: Omit<ICharacter, '_id'>) {
@@ -71,6 +82,8 @@ export class Character implements ICharacter {
       wisdom: character.abilities.wisdom,
       charisma: character.abilities.charisma,
     };
+
+    //Meter el equipment 
 
     // Validaciones
     for (const ability in character.abilities) {

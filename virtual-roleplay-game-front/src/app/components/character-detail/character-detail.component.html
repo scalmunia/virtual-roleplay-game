@@ -220,6 +220,36 @@
         </div>
       </div> -->
 
+
+
+
+      <div class="equipment-container">
+        <vrg-equipment-item src="assets/images/helmet.png" color="grey" name="Yelmo de corrupción" [statistics]="[
+          { bonus: '+10', name: 'Puntos de golpe' },
+          { bonus: '+2', name: 'Armadura' },
+          { bonus: '+1', name: 'Intelecto' }
+        ]"
+          description="“Sólo los más osados se atreven a llevarlo. Parece que está corrompida por alguna magia antigua”">
+        </vrg-equipment-item>
+        <vrg-equipment-item src="assets/images/breastplate.png" color="blue" name="Peto de caballero" [statistics]="[
+          { bonus: '+18', name: 'Puntos de golpe' },
+          { bonus: '+3', name: 'Armadura' },
+          { bonus: '+1', name: 'Intelecto' }
+        ]"
+          description="“Una siniestra armadura con el nombre de un alma en cada escama. Al llevarla siempre se escucha un coro de gritos casi inaudibles”">
+        </vrg-equipment-item>
+        <vrg-equipment-item src="assets/images/dagger.png" color="yellow" name="Daga rápida" [statistics]="[
+          { bonus: '+3', name: 'Destreza' },
+          { bonus: '+2', name: 'Iniciativa' },
+          { name: 'Tienes una acción adicional' }
+        ]"
+          description="“Mohlon, la más grande y astuta de los Nangari, se dice que ha adquirido su inteligencia al consumir a la bruja Zala, quien alguna vez llamó hogar a las Piscinas de Adivinación”">
+        </vrg-equipment-item>
+      </div>
+      <span class="add-equipment"><a>Añadir equipo</a></span>
+
+
+
       <div class="button-container">
         <!-- Modo Creación -->
         <vrg-button *ngIf="mode === 'create'" color="primary" type="submit">Crear</vrg-button>
@@ -229,7 +259,6 @@
         <vrg-button *ngIf="mode === 'edit'" color="primary" type="submit">Guardar</vrg-button>
 
         <!-- Modo visualización -->
-        <!-- <vrg-button *ngIf="mode === 'view'" color="terciary" routerLink="/characters">Eliminar</vrg-button> -->
         <vrg-button *ngIf="mode === 'view'" color="terciary" (click)="deleteCharacter()">Eliminar</vrg-button>
         <vrg-button *ngIf="mode === 'view'" color="secondary" (click)="navigate()">Editar</vrg-button>
       </div>

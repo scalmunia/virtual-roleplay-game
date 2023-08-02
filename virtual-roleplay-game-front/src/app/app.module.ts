@@ -19,6 +19,7 @@ import { CharactersListComponent } from './components/characters-list/characters
 import { AddSignFilter } from 'src/app/filters/addSignFilter';
 import { CharacterLinkComponent } from './components/characters-list/character-link/character-link.component';
 import { NavComponent } from './components/nav/nav.component';
+import { EquipmentItemComponent } from './components/character-detail/equipment-item/equipment-item.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NavComponent } from './components/nav/nav.component';
     CharactersListComponent,
     AddSignFilter,
     CharacterLinkComponent,
-    NavComponent
+    NavComponent,
+    EquipmentItemComponent
   ],
   imports: [
     BrowserModule,
