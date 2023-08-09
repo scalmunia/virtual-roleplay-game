@@ -33,12 +33,21 @@
   backdrop-filter: blur(18px);
 }
 
+.form {
+  width: 100%;
+  max-width: 300px;
+}
+
 .logo-img {
   width: 250px;
   height: 110px;
   flex-shrink: 0;
 
   margin-bottom: 40px;
+}
+
+.input-container {
+  margin-top: 30px;
 }
 
 .recover-pwd-container {

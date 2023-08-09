@@ -11,7 +11,7 @@ import { ControlValueAccessor, AbstractControl, NG_VALUE_ACCESSOR } from '@angul
       useExisting: forwardRef(() => InputComponent),
       multi: true,
     },
-  ],
+  ]
 })
 
 export class InputComponent implements ControlValueAccessor {

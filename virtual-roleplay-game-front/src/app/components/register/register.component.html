@@ -1,15 +1,15 @@
 <div class="container">
   <img class="logo-img" src="assets/images/logo.png" alt="Imagen">
-  <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
+  <form class="form" autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-container">
       <vrg-input for="inputName" label="NOMBRE" type="text" id="inputName" placeholder="Nombre"
         [control]="form.get('name')"></vrg-input>
     </div>
-    <div>
+    <div class="input-container">
       <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
         [control]="form.get('email')"></vrg-input>
     </div>
-    <div>
+    <div class="input-container">
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
         [control]="form.get('password')"></vrg-input>
     </div>

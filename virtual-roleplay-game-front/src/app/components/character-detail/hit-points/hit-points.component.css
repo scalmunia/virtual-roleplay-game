@@ -23,8 +23,8 @@
 
   .p-hit-points {
     display: flex;
-    margin: 0;
-    width: 67px;
+    margin: 0px;
+    width: 70px;
 
     position: absolute;
     top: 64%;

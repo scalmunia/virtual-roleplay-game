@@ -42,7 +42,7 @@
     max-width: calc(50% - 22px);
   }
 
-  @media (min-width: 1019px) {
+  @media (min-width: 1000px) {
     max-width: calc(33.33% - 22px);
   }
 }

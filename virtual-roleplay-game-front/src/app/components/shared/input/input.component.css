@@ -1,23 +1,26 @@
 .label {
   display: block;
-  margin-top: 30px;
 
-  color: #FFF;
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
   font-size: 11px;
-  font-family: Montserrat;
   font-weight: 700;
   line-height: 100%;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .container {
   display: flex;
-  margin-top: 10px;
 }
 
 .input {
   height: 42px;
-  width: 300px;
+  flex: 1 0 0;
+  width: 0;
+  min-width: 32px;
+  /* max-width: 300px;
+  width: 100%; */
 
   background: #1C1C22;
   border-top: 2px solid #3C3C48;
