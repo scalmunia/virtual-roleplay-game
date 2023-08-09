@@ -3,7 +3,9 @@
   <button class="button" [type]="type" [ngClass]="{
       'button-primary': color === 'primary',
       'button-secondary': color === 'secondary',
-      'button-terciary': color === 'terciary'
+      'button-danger': color === 'danger',
+      'button-sghost': variant === 'sghost',
+      'button-dghost': variant === 'dghost'
     }">
     <ng-content></ng-content>
   </button>

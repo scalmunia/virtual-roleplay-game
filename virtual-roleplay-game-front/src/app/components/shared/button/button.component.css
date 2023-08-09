@@ -32,8 +32,26 @@
   background: #DDDDE8;
 }
 
-.button-terciary {
+.button-danger {
   background: #FF9A9A;
+}
+
+.button-sghost {
+  background: transparent;
+  color: #DDDDE8;
+  border-top: 2px solid #DDDDE8;
+  border-bottom: 2px solid #DDDDE8;
+  border-left: none;
+  border-right: none;
+}
+
+.button-dghost {
+  background: transparent;
+  color: #FF9A9A;
+  border-top: 2px solid #FF9A9A;
+  border-bottom: 2px solid #FF9A9A;
+  border-left: none;
+  border-right: none;
 }
 
 .right-side {

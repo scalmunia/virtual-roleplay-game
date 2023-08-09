@@ -8,7 +8,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 
 export class ButtonComponent implements OnChanges {
   @Input() type: string = 'button';
-  @Input() color: 'primary' | 'secondary' | 'terciary' = 'primary';
+  @Input() color: 'primary' | 'secondary' | 'danger' | null = null;
+  @Input() variant: 'sghost' | 'dghost' | null = null;
 
   sideImageSrc: string = '';
   backgroundColor: string = '';
@@ -18,7 +19,9 @@ export class ButtonComponent implements OnChanges {
     this.sideImageSrc =
       (this.color === 'primary' && 'assets/images/pbutton_side.svg') ||
       (this.color === 'secondary' && 'assets/images/sbutton_side.svg') ||
-      (this.color === 'terciary' && 'assets/images/tbutton_side.svg') ||
+      (this.color === 'danger' && 'assets/images/dbutton_side.svg') ||
+      (this.variant === 'sghost' && 'assets/images/sgbutton_side.svg') ||
+      (this.variant === 'dghost' && 'assets/images/dgbutton_side.svg') ||
       '';
 
     // const images = {
