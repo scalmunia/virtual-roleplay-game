@@ -32,9 +32,9 @@
 
     <div class="attributes-title">ATRIBUTOS</div>
     <div *ngFor="let attribute of attributes.controls" class="attributes-container" formArrayName="attributes">
-      <!-- <div class="attributes">
+      <div class="attributes">
         <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
-          { value: 'hitPoints', label: 'Puntos de golpe' }, 
+          { value: 'hitPoints', label: 'Puntos de golpe' },
           { value: 'armor', label: 'Armadura' },
           { value: 'proficiency', label: 'Competencia' },
           { value: 'strength', label: 'Fuerza' },
@@ -44,27 +44,23 @@
           { value: 'wisdom', label: 'Sabiduría' },
           { value: 'charisma', label: 'Carisma' },
           { value: 'customEffect', label: 'Efecto personalizado' }
-          ]" [control]="object.get('attribute')">
+          ]" [control]="attribute.get('attribute')">
         </vrg-select>
       </div>
 
       <div class="bonus-contaienr">
         <p class="bonus-plus">+</p>
-        <vrg-input class="inputBonus" for="inputBonus" type="text" id="inputBonus" placeholder="Bonus"
-          [control]="object.get('bonus')">
+        <vrg-input class="inputBonus" for="inputBonus" type="text" id="inputBonus" placeholder="Bonus" [control]="attribute.get('bonus')">
         </vrg-input>
       </div>
-      <!-- 
-      <div *ngIf="effect" class="effect-container">
-        <vrg-input class="inputEffect" type="text" placeholder="Efecto" formControlName="effect"></vrg-input>
-      </div> -->
+
+      <div class="effect-container">
+        <vrg-input class="inputEffect" type="text" placeholder="Efecto" [control]="attribute.get('effect')"></vrg-input>
+      </div>
 
       <div class="save-attribute-container">
-        <vrg-button variant="sghost" (click)="addAttribute()">Añadir</vrg-button>
-        <!-- <vrg-button variant="dghost" (click)="removeAttribute(i)">Eliminar</vrg-button> -->
-        <!-- <vrg-button *ngIf="mode === 'view'" color="terciary" (click)="deleteCharacter()">Eliminar</vrg-button> -->
-      </div> -->
-
+        <vrg-button color="secondary" variant="ghost" (click)="addAttribute()">Añadir</vrg-button>
+      </div>
     </div>
     <div class="button-container">
       <vrg-button mat-button mat-dialog-close color="secondary">Cancelar</vrg-button>

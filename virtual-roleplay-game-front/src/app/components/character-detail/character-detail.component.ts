@@ -11,7 +11,6 @@ import { EquipmentModalComponent } from './equipment-modal/equipment-modal.compo
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.css'],
 })
-
 export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
   id: string | null = null;
@@ -34,8 +33,8 @@ export class CharacterDetailComponent implements OnInit {
     private characterService: CharacterService,
     private route: ActivatedRoute,
     private router: Router,
-    public dialog: MatDialog) {
-
+    public dialog: MatDialog
+  ) {
     this.form = new FormGroup({
       avatar: new FormControl(''),
       name: new FormControl(''),
@@ -51,10 +50,7 @@ export class CharacterDetailComponent implements OnInit {
     //'combineLatest' combina varias fuentes de observables en una sola secuencia de emisiones
     //te permite suscribirte una única vez para escuchar tanto los cambios en los parámetros de ruta como en los parámetros de consulta
     //https://gist.github.com/PCreations/99765f48b1f60c9427c479c25f3e3bbd
-    combineLatest([
-      this.route.queryParams,
-      this.route.params
-    ]).subscribe(() => {
+    combineLatest([this.route.queryParams, this.route.params]).subscribe(() => {
       this.loadMode();
     });
   }
@@ -99,9 +95,15 @@ export class CharacterDetailComponent implements OnInit {
     this.form.controls['name'].setValue(response.result.name);
     this.form.controls['characterClass'].setValue(response.result.class);
     this.form.controls['strength'].setValue(response.result.abilities.strength);
-    this.form.controls['dexterity'].setValue(response.result.abilities.dexterity);
-    this.form.controls['constitution'].setValue(response.result.abilities.constitution);
-    this.form.controls['intelligence'].setValue(response.result.abilities.intelligence);
+    this.form.controls['dexterity'].setValue(
+      response.result.abilities.dexterity
+    );
+    this.form.controls['constitution'].setValue(
+      response.result.abilities.constitution
+    );
+    this.form.controls['intelligence'].setValue(
+      response.result.abilities.intelligence
+    );
     this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
     this.form.controls['charisma'].setValue(response.result.abilities.charisma);
   }
@@ -121,21 +123,19 @@ export class CharacterDetailComponent implements OnInit {
       } = this.form.value;
 
       if (this.mode === 'create') {
-        await this.characterService.save(
-          {
-            avatar: avatar,
-            name: name,
-            class: characterClass,
-            abilities: {
-              strength: strength,
-              dexterity: dexterity,
-              constitution: constitution,
-              intelligence: intelligence,
-              wisdom: wisdom,
-              charisma: charisma,
-            }
-          }
-        );
+        await this.characterService.save({
+          avatar: avatar,
+          name: name,
+          class: characterClass,
+          abilities: {
+            strength: strength,
+            dexterity: dexterity,
+            constitution: constitution,
+            intelligence: intelligence,
+            wisdom: wisdom,
+            charisma: charisma,
+          },
+        });
         this.router.navigate(['/characters/']);
       }
 
@@ -152,7 +152,7 @@ export class CharacterDetailComponent implements OnInit {
               intelligence: intelligence,
               wisdom: wisdom,
               charisma: charisma,
-            }
+            },
           },
           this.id as string
         );
@@ -165,7 +165,9 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   async deleteCharacter() {
-    const isConfirmed = window.confirm('¿Estás seguro de que quieres borrar el personaje?');
+    const isConfirmed = window.confirm(
+      '¿Estás seguro de que quieres borrar el personaje?'
+    );
     if (isConfirmed) {
       try {
         await this.characterService.deleteOne(this.id as string);
@@ -180,8 +182,8 @@ export class CharacterDetailComponent implements OnInit {
   navigate() {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        edit: 'true'
-      }
+        edit: 'true',
+      },
     };
     this.router.navigate(['/character/' + this.id], navigationExtras);
   }
@@ -195,12 +197,12 @@ export class CharacterDetailComponent implements OnInit {
   openDialog() {
     this.isModalOpen = true;
     const dialogRef = this.dialog.open(EquipmentModalComponent, {
-      maxWidth: "780px",
-      width: "100%"
+      maxWidth: '780px',
+      width: '100%',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result:`, result);
       this.isModalOpen = false;
     });
   }
