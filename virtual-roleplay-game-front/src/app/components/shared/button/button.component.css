@@ -1,6 +1,9 @@
 .container {
   display: flex;
   justify-content: center;
+  --button-grey: #DDDDE8;
+  --button-red: #FF9A9A;
+  --button-decoration-border: #1C1C22;
 }
 
 .button {
@@ -24,36 +27,73 @@
   margin-right: -1.5px;
 }
 
-.button-primary {
+.right-side {
+  transform: scaleX(-1);
+}
+
+/* primary */
+.button-primary > .button {
   background: var(--primary-text-color);
 }
 
-.button-secondary {
-  background: #DDDDE8;
+.button-primary > svg {
+  --button-decoration-background: var(--primary-text-color);
 }
 
-.button-danger {
-  background: #FF9A9A;
+.button-ghost.button-primary > svg {
+  --button-decoration-border: var(--primary-text-color);
 }
 
-.button-sghost {
+.button-ghost.button-primary > .button {
+  color: var(--primary-text-color);
+  border-color: var(--primary-text-color);
+}
+
+/* secondary */
+
+.button-secondary > .button {
+  background: var(--button-grey);
+}
+
+.button-secondary > svg {
+  --button-decoration-background: var(--button-grey);
+}
+
+.button-secondary.button-ghost > svg {
+  --button-decoration-border: var(--button-grey);
+}
+
+.button-secondary.button-ghost > .button {
+  color: var(--button-grey);
+  border-color: var(--button-grey);
+}
+
+/* danger */
+
+.button-danger > .button {
+  background: var(--button-red);
+}
+
+.button-danger > svg {
+  --button-decoration-background: var(--button-red);
+}
+
+.button-danger.button-ghost > svg {
+  --button-decoration-border: var(--button-red);
+}
+
+.button-danger.button-ghost > .button {
+  color: var(--button-red);
+  border-color: var(--button-red);
+}
+
+
+/* Generic ghost styles */
+
+.button-ghost > .button {
   background: transparent;
-  color: #DDDDE8;
-  border-top: 2px solid #DDDDE8;
-  border-bottom: 2px solid #DDDDE8;
-  border-left: none;
-  border-right: none;
 }
 
-.button-dghost {
-  background: transparent;
-  color: #FF9A9A;
-  border-top: 2px solid #FF9A9A;
-  border-bottom: 2px solid #FF9A9A;
-  border-left: none;
-  border-right: none;
-}
-
-.right-side {
-  transform: scaleX(-1);
+.button-ghost > svg {
+  --button-decoration-background: transparent;
 }
