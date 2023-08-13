@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { CharacterDetailComponent } from './components/character-detail/character-detail.component';
@@ -15,11 +16,12 @@ import { ProficiencyComponent } from './components/character-detail/proficiency/
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
-
-import { AddSignFilter } from 'src/app/filters/addSignFilter';
 import { CharacterLinkComponent } from './components/characters-list/character-link/character-link.component';
 import { NavComponent } from './components/nav/nav.component';
 import { EquipmentItemComponent } from './components/character-detail/equipment-item/equipment-item.component';
+import { EquipmentModalComponent } from './components/character-detail/equipment-modal/equipment-modal.component';
+
+import { AddSignFilter } from 'src/app/filters/addSignFilter';
 
 @NgModule({
   declarations: [
@@ -33,17 +35,19 @@ import { EquipmentItemComponent } from './components/character-detail/equipment-
     RegisterComponent,
     LoginComponent,
     CharactersListComponent,
-    AddSignFilter,
     CharacterLinkComponent,
     NavComponent,
-    EquipmentItemComponent
+    EquipmentItemComponent,
+    EquipmentModalComponent,
+    AddSignFilter
   ],
   imports: [
     BrowserModule,
     QuillModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

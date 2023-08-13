@@ -4,7 +4,7 @@
 </vrg-nav>
 
 <div class="root">
-  <div class="container">
+  <div class="container" [ngClass]="{ 'blur-background': isModalOpen }">
 
     <div class="error" *ngIf="error">
       <span *ngIf="error.message === 'nameRequired'">Nombre del personaje requerido</span>
@@ -246,9 +246,9 @@
           description="“Mohlon, la más grande y astuta de los Nangari, se dice que ha adquirido su inteligencia al consumir a la bruja Zala, quien alguna vez llamó hogar a las Piscinas de Adivinación”">
         </vrg-equipment-item>
       </div>
-      <span class="add-equipment"><a>Añadir equipo</a></span>
 
-
+      <!-- Modal equipo -->
+      <button class="add-equipment" mat-button (click)="openDialog()">Añadir equipo</button>
 
       <div class="button-container">
         <!-- Modo Creación -->
@@ -259,7 +259,7 @@
         <vrg-button *ngIf="mode === 'edit'" color="primary" type="submit">Guardar</vrg-button>
 
         <!-- Modo visualización -->
-        <vrg-button *ngIf="mode === 'view'" color="terciary" (click)="deleteCharacter()">Eliminar</vrg-button>
+        <vrg-button *ngIf="mode === 'view'" color="danger" (click)="deleteCharacter()">Eliminar</vrg-button>
         <vrg-button *ngIf="mode === 'view'" color="secondary" (click)="navigate()">Editar</vrg-button>
       </div>
     </form>

@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
 
 @Component({
   selector: 'vrg-character-detail',
@@ -26,8 +28,14 @@ export class CharacterDetailComponent implements OnInit {
       ['clean'],
     ],
   };
+  isModalOpen = false;
 
-  constructor(private characterService: CharacterService, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private characterService: CharacterService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog) {
+
     this.form = new FormGroup({
       avatar: new FormControl(''),
       name: new FormControl(''),
@@ -182,6 +190,19 @@ export class CharacterDetailComponent implements OnInit {
     if (event.html) {
       this.htmlContent = event.html;
     }
+  }
+
+  openDialog() {
+    this.isModalOpen = true;
+    const dialogRef = this.dialog.open(EquipmentModalComponent, {
+      maxWidth: "780px",
+      width: "100%"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.isModalOpen = false;
+    });
   }
 
   get strengthControl(): FormControl {

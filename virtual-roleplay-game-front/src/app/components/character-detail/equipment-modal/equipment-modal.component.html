@@ -1,0 +1,79 @@
+<!-- <h2 class="title" mat-dialog-title>NUEVO OBJETO</h2> -->
+<mat-dialog-content class="container" [ngClass]="{
+  'item-blue': form.controls['quality'].value === 'rare',
+  'item-yellow': form.controls['quality'].value === 'legendary'
+}">
+  <div class="title">NUEVO OBJETO</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="object-data-container">
+      <div class="object-data">
+        <vrg-input for="inputName" label="NOMBRE DEL OBJETO" type="text" id="inputName" placeholder="Nombre"
+          [control]="form.get('name')">
+        </vrg-input>
+
+        <div class="selectQuality">
+          <vrg-select for="selectQuality" label="CALIDAD" id="selectQuality" placeholder="Selecciona el tipo de objeto"
+            [options]="[
+              { value: 'common', label: 'Objeto común' },
+              { value: 'rare', label: 'Objeto raro' },
+              { value: 'legendary', label: 'Objeto legendario' }
+            ]" [control]="form.get('quality')">
+          </vrg-select>
+        </div>
+
+        <vrg-textarea for="selectDescription" label="DESCRIPCIÓN" id="selectDescription"
+          [control]="form.get('description')">
+        </vrg-textarea>
+      </div>
+      <div class="image"> Cargar Imagen
+        <img>
+      </div>
+    </div>
+
+    <div class="attributes-title">ATRIBUTOS</div>
+    <div *ngFor="let attribute of attributes.controls" class="attributes-container" formArrayName="attributes">
+      <!-- <div class="attributes">
+        <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
+          { value: 'hitPoints', label: 'Puntos de golpe' }, 
+          { value: 'armor', label: 'Armadura' },
+          { value: 'proficiency', label: 'Competencia' },
+          { value: 'strength', label: 'Fuerza' },
+          { value: 'dexterity', label: 'Destreza' },
+          { value: 'Constitution', label: 'Constitución' },
+          { value: 'intelligence', label: 'Intelecto' },
+          { value: 'wisdom', label: 'Sabiduría' },
+          { value: 'charisma', label: 'Carisma' },
+          { value: 'customEffect', label: 'Efecto personalizado' }
+          ]" [control]="object.get('attribute')">
+        </vrg-select>
+      </div>
+
+      <div class="bonus-contaienr">
+        <p class="bonus-plus">+</p>
+        <vrg-input class="inputBonus" for="inputBonus" type="text" id="inputBonus" placeholder="Bonus"
+          [control]="object.get('bonus')">
+        </vrg-input>
+      </div>
+      <!-- 
+      <div *ngIf="effect" class="effect-container">
+        <vrg-input class="inputEffect" type="text" placeholder="Efecto" formControlName="effect"></vrg-input>
+      </div> -->
+
+      <div class="save-attribute-container">
+        <vrg-button variant="sghost" (click)="addAttribute()">Añadir</vrg-button>
+        <!-- <vrg-button variant="dghost" (click)="removeAttribute(i)">Eliminar</vrg-button> -->
+        <!-- <vrg-button *ngIf="mode === 'view'" color="terciary" (click)="deleteCharacter()">Eliminar</vrg-button> -->
+      </div> -->
+
+    </div>
+    <div class="button-container">
+      <vrg-button mat-button mat-dialog-close color="secondary">Cancelar</vrg-button>
+      <vrg-button color="primary" type="submit">Guardar</vrg-button>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->
