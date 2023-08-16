@@ -30,7 +30,7 @@
 }
 
 .bottom-left-side {
-  transform: rotate(-90deg);
+  transform: scaleY(-1);
 }
 
 .textarea {

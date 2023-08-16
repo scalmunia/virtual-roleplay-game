@@ -66,6 +66,7 @@
 
 .attributes-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 32px;
   align-items: center;
 
@@ -73,7 +74,7 @@
 }
 
 .attributes {
-  flex: 0 0 280px
+  flex: 0 0 240px
 }
 
 .bonus-contaienr {
@@ -89,7 +90,11 @@
 }
 
 .inputBonus {
-  flex: 1;
+  flex: 1 1 0;
+}
+
+.effect-container {
+  flex: 1 1 0;
 }
 
 .save-attribute-container {

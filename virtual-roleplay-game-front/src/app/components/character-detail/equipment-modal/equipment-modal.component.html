@@ -1,4 +1,3 @@
-<!-- <h2 class="title" mat-dialog-title>NUEVO OBJETO</h2> -->
 <mat-dialog-content class="container" [ngClass]="{
   'item-blue': form.controls['quality'].value === 'rare',
   'item-yellow': form.controls['quality'].value === 'legendary'
@@ -31,7 +30,9 @@
     </div>
 
     <div class="attributes-title">ATRIBUTOS</div>
-    <div *ngFor="let attribute of attributes.controls" class="attributes-container" formArrayName="attributes">
+
+    <div *ngFor="let attribute of attributes.controls; let i = index" class="attributes-container">
+      <!-- <hr *ngIf="showSeparator" class="line"> -->
       <div class="attributes">
         <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
           { value: 'hitPoints', label: 'Puntos de golpe' },
@@ -48,28 +49,28 @@
         </vrg-select>
       </div>
 
-      <div class="bonus-contaienr">
+      <div class="bonus-contaienr" *ngIf="attribute.get('attribute')?.value !== 'customEffect'">
         <p class="bonus-plus">+</p>
-        <vrg-input class="inputBonus" for="inputBonus" type="text" id="inputBonus" placeholder="Bonus" [control]="attribute.get('bonus')">
+        <vrg-input *ngIf="attribute.get('attribute')?.value !== 'customEffect'" class="inputBonus" id="inputBonus"
+          placeholder="Bonus" [control]="attribute.get('bonus')">
         </vrg-input>
       </div>
 
-      <div class="effect-container">
+      <div class="effect-container" *ngIf="attribute.get('attribute')?.value === 'customEffect'">
         <vrg-input class="inputEffect" type="text" placeholder="Efecto" [control]="attribute.get('effect')"></vrg-input>
       </div>
 
       <div class="save-attribute-container">
-        <vrg-button color="secondary" variant="ghost" (click)="addAttribute()">Añadir</vrg-button>
+        <vrg-button *ngIf="!attribute.get('isAdded')?.value" color="secondary" variant="ghost"
+          (click)="addAttribute()">Añadir</vrg-button>
+        <vrg-button *ngIf="attribute.get('isAdded')?.value" color="danger" variant="ghost"
+          (click)="removeAttribute(i)">Eliminar</vrg-button>
       </div>
     </div>
+
     <div class="button-container">
       <vrg-button mat-button mat-dialog-close color="secondary">Cancelar</vrg-button>
       <vrg-button color="primary" type="submit">Guardar</vrg-button>
     </div>
   </form>
 </mat-dialog-content>
-
-<!-- <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions> -->
