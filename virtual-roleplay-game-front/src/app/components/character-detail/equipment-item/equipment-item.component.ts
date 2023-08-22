@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class EquipmentItemComponent {
   @Input() src: string = '';
   @Input() name: string = '';
-  @Input() statistics: { bonus?: string, name: string }[] | null = null;
+  @Input() statistics: { bonus?: string, name: string, effect?: string }[] | null = null;
   @Input() description: string = '';
   @Input() color: 'grey' | 'blue' | 'yellow' = 'grey';
 

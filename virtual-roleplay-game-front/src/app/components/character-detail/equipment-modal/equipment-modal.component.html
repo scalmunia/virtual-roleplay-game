@@ -1,6 +1,6 @@
 <mat-dialog-content class="container" [ngClass]="{
-  'item-blue': form.controls['quality'].value === 'rare',
-  'item-yellow': form.controls['quality'].value === 'legendary'
+  'item-blue': form.controls['quality'].value === 'blue',
+  'item-yellow': form.controls['quality'].value === 'yellow'
 }">
   <div class="title">NUEVO OBJETO</div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -32,7 +32,6 @@
     <div class="attributes-title">ATRIBUTOS</div>
 
     <div *ngFor="let attribute of attributes.controls; let i = index" class="attributes-container">
-      <!-- <hr *ngIf="showSeparator" class="line"> -->
       <div class="attributes">
         <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
           { value: 'hitPoints', label: 'Puntos de golpe' },
@@ -40,7 +39,7 @@
           { value: 'proficiency', label: 'Competencia' },
           { value: 'strength', label: 'Fuerza' },
           { value: 'dexterity', label: 'Destreza' },
-          { value: 'Constitution', label: 'Constitución' },
+          { value: 'constitution', label: 'Constitución' },
           { value: 'intelligence', label: 'Intelecto' },
           { value: 'wisdom', label: 'Sabiduría' },
           { value: 'charisma', label: 'Carisma' },

@@ -5,12 +5,31 @@ import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
+import { ABILITIES_TRANSLATION } from 'src/app/models/Character/character.constants';
+
+type Equipment = [
+  {
+    form: {
+      name: '',
+      quality: '',
+      description: ''
+    },
+    attributes: [
+      {
+        attribute: '',
+        bonus: '',
+        effect: ''
+      }
+    ]
+  }
+]
 
 @Component({
   selector: 'vrg-character-detail',
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.css'],
 })
+
 export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
   id: string | null = null;
@@ -28,6 +47,7 @@ export class CharacterDetailComponent implements OnInit {
     ],
   };
   isModalOpen = false;
+  equipment: any[] = [];
 
   constructor(
     private characterService: CharacterService,
@@ -202,9 +222,38 @@ export class CharacterDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result:`, result);
-      this.isModalOpen = false;
+      if (result) {
+        this.equipment.push(result);
+        console.log('equipment', this.equipment);
+
+        this.isModalOpen = false;
+      }
     });
+  }
+
+  convertQualityToColor(quality: string): 'grey' | 'blue' | 'yellow' {
+    switch (quality) {
+      case 'common':
+        return 'grey';
+      case 'rare':
+        return 'blue';
+      case 'legendary':
+        return 'yellow';
+      default:
+        return 'grey';
+    }
+  }
+
+  translateAttribute(attribute: string): string {
+    return ABILITIES_TRANSLATION[attribute] || attribute;
+  }
+
+  adaptAttributes(attributes: { attribute: string; bonus: string; effect: string }[]): { name: string; bonus: string; effect: string }[] {
+    return attributes.map(attr => ({
+      name: this.translateAttribute(attr.attribute),
+      bonus: attr.bonus,
+      effect: attr.effect
+    }));
   }
 
   get strengthControl(): FormControl {

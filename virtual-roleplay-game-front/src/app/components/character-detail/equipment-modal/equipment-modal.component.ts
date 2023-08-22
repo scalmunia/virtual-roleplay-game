@@ -36,7 +36,6 @@ export class EquipmentModalComponent implements OnInit {
         isAdded: new FormControl(false)
       })
     ]);
-    // this.attributes = new FormArray([] as any[]);
   }
 
   ngOnInit(): void { }

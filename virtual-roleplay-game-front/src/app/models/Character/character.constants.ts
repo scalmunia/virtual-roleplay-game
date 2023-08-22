@@ -71,3 +71,15 @@ export const CLASSES_TRANSLATION = {
   'paladin': 'paladín',
   'rogue': 'pícaro'
 }
+
+export const ABILITIES_TRANSLATION = {
+  'hitPoints': 'Puntos de golpe',
+  'armor': 'Armadura',
+  'proficiency': 'Competencia',
+  'strength': 'Fuerza',
+  'dexterity': 'Destreza',
+  'constitution': 'Constitución',
+  'intelligence': 'Intelecto',
+  'wisdom': 'Sabiduría',
+  'charisma': 'Carisma'
+}
