@@ -7,8 +7,7 @@
   <div class="name">{{ name }}</div>
   <ul class="statistics">
     <li *ngFor="let stat of statistics">
-      <span *ngIf="stat.bonus" class="plus">+</span>
-      <span *ngIf="stat.bonus" class="bonus">{{ stat.bonus }}</span>
+      <span *ngIf="stat.bonus" class="bonus">{{ stat.bonus | addSignFilter }}</span>
       <span *ngIf="stat.bonus">{{ stat.name }}</span>
       <span>{{ stat.effect }}</span>
     </li>

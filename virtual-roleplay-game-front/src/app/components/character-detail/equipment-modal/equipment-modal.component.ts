@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 interface Attribute {
   attribute: string;
-  bonus: string;
+  bonus: number;
   effect: string;
   isAdded: boolean;
 }

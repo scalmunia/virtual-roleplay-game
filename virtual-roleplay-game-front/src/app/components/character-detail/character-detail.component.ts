@@ -248,7 +248,7 @@ export class CharacterDetailComponent implements OnInit {
     return ABILITIES_TRANSLATION[attribute] || attribute;
   }
 
-  adaptAttributes(attributes: { attribute: string; bonus: string; effect: string }[]): { name: string; bonus: string; effect: string }[] {
+  adaptAttributes(attributes: { attribute: string; bonus: number; effect: string }[]): { name: string; bonus: number; effect: string }[] {
     return attributes.map(attr => ({
       name: this.translateAttribute(attr.attribute),
       bonus: attr.bonus,
