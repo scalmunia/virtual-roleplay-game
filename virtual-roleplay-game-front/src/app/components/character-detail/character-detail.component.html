@@ -223,15 +223,19 @@
 
 
 
-      <div class="equipment-container">
-        <ng-container *ngFor="let item of equipment">
-          <div *ngIf="item.form.name || item.form.quality || item.form.description || item.attributes.length">
-            <vrg-equipment-item src="assets/images/helmet.png" [color]="convertQualityToColor(item.form.quality)"
-              [name]="item.form.name" [statistics]="adaptAttributes(item.attributes)"
-              [description]="item.form.description">
-            </vrg-equipment-item>
-          </div>
-        </ng-container>
+      <div class="inventory-container">
+        <p class="p-title">INVENTARIO Y EQUIPO</p>
+        <div class="equipment-container">
+          <ng-container *ngFor="let item of equipment">
+            <div class="equipment"
+              *ngIf="item.form.name || item.form.quality || item.form.description || item.attributes.length">
+              <vrg-equipment-item src="assets/images/helmet.png" [color]="convertQualityToColor(item.form.quality)"
+                [name]="item.form.name" [statistics]="adaptAttributes(item.attributes)"
+                [description]="item.form.description">
+              </vrg-equipment-item>
+            </div>
+          </ng-container>
+        </div>
       </div>
 
       <!-- Modal equipo -->
