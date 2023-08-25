@@ -214,11 +214,14 @@ export class CharacterDetailComponent implements OnInit {
     }
   }
 
-  openDialog() {
+  openDialog(item?) {
+    console.log('item', item);
+
     this.isModalOpen = true;
     const dialogRef = this.dialog.open(EquipmentModalComponent, {
       maxWidth: '780px',
       width: '100%',
+      data: item || {}
     });
 
     dialogRef.afterClosed().subscribe((result) => {

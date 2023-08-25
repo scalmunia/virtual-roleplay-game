@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface Attribute {
   attribute: string;
@@ -20,12 +20,26 @@ export class EquipmentModalComponent implements OnInit {
   attributes: FormArray;
   error: Error | null = null;
 
-  constructor(private cd: ChangeDetectorRef, public dialogRef: MatDialogRef<EquipmentModalComponent>
+  constructor(
+    private cd: ChangeDetectorRef,
+    public dialogRef: MatDialogRef<EquipmentModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+
+    // this.form = new FormGroup({
+    //   name: new FormControl([data.form ? data.form.name : '', Validators.maxLength(40)]),
+    //   quality: new FormControl([data && data.form ? data.form.quality : '']),
+    //   description: new FormControl([data && data.form ? data.form.description : '', [Validators.maxLength(256)]])
+    // });
+
+    // if (data !== undefined) {
+    //   this.setProperties(data);
+    // }
+
     this.form = new FormGroup({
       name: new FormControl('', [Validators.maxLength(40)]),
       quality: new FormControl(''),
-      description: new FormControl('', [Validators.maxLength(256)]),
+      description: new FormControl('', [Validators.maxLength(256)])
     });
 
     this.attributes = new FormArray([
@@ -36,9 +50,21 @@ export class EquipmentModalComponent implements OnInit {
         isAdded: new FormControl(false)
       })
     ]);
+
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.setProperties(this.data);
+  }
+
+  setProperties(data: any) {
+    this.form.controls['name'].patchValue(this.data.name || '')
+    console.log('setProperties', this.form)
+
+
+    // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
+    setTimeout(() => this.cd.detectChanges());
+  }
 
   addAttribute() {
     const previousIndex = this.attributes.length - 1;
@@ -48,6 +74,7 @@ export class EquipmentModalComponent implements OnInit {
       const previousAttribute = this.attributes.at(previousIndex);
       previousAttribute.get('isAdded')?.setValue(true);
     }
+
 
     // Agregar una nueva fila de atributos
     this.attributes.push(
@@ -71,7 +98,7 @@ export class EquipmentModalComponent implements OnInit {
     const filteredAttributes = this.attributes.value.filter((attribute: Attribute) => attribute.isAdded);
 
     const result = {
-      form: this.form.value,
+      ...this.form.value,
       attributes: filteredAttributes
     };
 

@@ -19,7 +19,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = '';
-  @Input() control: AbstractControl | null = null;
+  @Input() control?: AbstractControl | null = null; // QUITAR CUANDO SE CAMBIAEN TODOS LOS CONTROL
   value: any = '';
 
   // ControlValueAccessor methods
@@ -27,6 +27,7 @@ export class InputComponent implements ControlValueAccessor {
   onTouched: any = () => { };
 
   writeValue(value: any): void {
+    console.log('writeValue', value)
     this.value = value;
   }
 
@@ -42,7 +43,8 @@ export class InputComponent implements ControlValueAccessor {
   onInputChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.value = value;
-    this.control!.setValue(value);
+    this.onTouched();
+    this.control?.setValue(value);// QUITAR CUANDO SE CAMBIAEN TODOS LOS CONTROL
     this.onChange(value); // Notificar el cambio al formulario reactivo
   }
 
