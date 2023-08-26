@@ -29,42 +29,6 @@
     </div>
 
     <div class="attributes-title">ATRIBUTOS</div>
-
-    <!-- <div *ngFor="let attribute of attributes.controls; let i = index" class="attributes-container">
-      <div class="attributes">
-        <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
-          { value: 'hitPoints', label: 'Puntos de golpe' },
-          { value: 'armor', label: 'Armadura' },
-          { value: 'proficiency', label: 'Competencia' },
-          { value: 'strength', label: 'Fuerza' },
-          { value: 'dexterity', label: 'Destreza' },
-          { value: 'constitution', label: 'Constitución' },
-          { value: 'intelligence', label: 'Intelecto' },
-          { value: 'wisdom', label: 'Sabiduría' },
-          { value: 'charisma', label: 'Carisma' },
-          { value: 'customEffect', label: 'Efecto personalizado' }
-          ]" [control]="attribute.get('attribute')">
-        </vrg-select>
-      </div>
-
-      <div class="bonus-contaienr" *ngIf="attribute.get('attribute')?.value !== 'customEffect'">
-        <vrg-input *ngIf="attribute.get('attribute')?.value !== 'customEffect'" class="inputBonus" id="inputBonus"
-          placeholder="Bonus" [control]="attribute.get('bonus')">
-        </vrg-input>
-      </div>
-
-      <div class="effect-container" *ngIf="attribute.get('attribute')?.value === 'customEffect'">
-        <vrg-input class="inputEffect" type="text" placeholder="Efecto" [control]="attribute.get('effect')"></vrg-input>
-      </div>
-
-      <div class="save-attribute-container">
-        <vrg-button *ngIf="!attribute.get('isAdded')?.value" color="secondary" variant="ghost"
-          (click)="addAttribute()">Añadir</vrg-button>
-        <vrg-button *ngIf="attribute.get('isAdded')?.value" color="danger" variant="ghost"
-          (click)="removeAttribute(i)">Eliminar</vrg-button>
-      </div>
-    </div> -->
-
     <ng-container formArraayName="attributes">
       <ng-container *ngFor="let attribute of attributes.controls; let i = index">
         <div class="attributes-container" [formGroup]="attribute">

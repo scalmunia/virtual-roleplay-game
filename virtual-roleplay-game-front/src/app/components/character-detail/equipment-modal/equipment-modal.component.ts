@@ -53,7 +53,25 @@ export class EquipmentModalComponent implements OnInit {
     this.form.controls['name'].patchValue(data.name || '');
     this.form.controls['quality'].patchValue(data.quality || '');
     this.form.controls['description'].patchValue(data.description || '');
+    // this.form.controls['attributes'].setValue(data.attributes || '');
+
+
+    if (data.attributes) {
+      const attributesFormArray = this.form.controls['attributes'] as FormArray;
+
+      while (attributesFormArray.length < data.attributes.length) {
+        this.addAttribute(); //Añadir un nuevo FormGroup si se necesita
+      }
+
+      attributesFormArray.patchValue(data.attributes);
+    }
+
+
+
+    console.log('data', data)
     console.log('setProperties', this.form)
+    console.log('atributes', this.form.controls['attributes'])
+    // console.log('atribute', this.form.controls['attributes'].value)
     // console.log('setProperties', this.attributes)
 
 

@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, AbstractControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'vrg-input',
@@ -19,7 +19,6 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = '';
-  @Input() control?: AbstractControl | null = null; // QUITAR CUANDO SE CAMBIAEN TODOS LOS CONTROL
   value: any = '';
 
   // ControlValueAccessor methods
@@ -43,7 +42,6 @@ export class InputComponent implements ControlValueAccessor {
     const value = (event.target as HTMLInputElement).value;
     this.value = value;
     this.onTouched();
-    this.control?.setValue(value);// QUITAR CUANDO SE CAMBIAEN TODOS LOS CONTROL
     this.onChange(value); // Notificar el cambio al formulario reactivo
   }
 }

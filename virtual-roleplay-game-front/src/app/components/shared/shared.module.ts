@@ -6,6 +6,7 @@ import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TextareaComponent } from './textarea/textarea.component';
     TextareaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     ButtonComponent,
