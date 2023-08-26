@@ -17,7 +17,8 @@ interface Attribute {
 
 export class EquipmentModalComponent implements OnInit {
   form: FormGroup;
-  attributes: FormArray;
+
+  // attributes: FormArray;
   error: Error | null = null;
 
   constructor(
@@ -25,32 +26,23 @@ export class EquipmentModalComponent implements OnInit {
     public dialogRef: MatDialogRef<EquipmentModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
-    // this.form = new FormGroup({
-    //   name: new FormControl([data.form ? data.form.name : '', Validators.maxLength(40)]),
-    //   quality: new FormControl([data && data.form ? data.form.quality : '']),
-    //   description: new FormControl([data && data.form ? data.form.description : '', [Validators.maxLength(256)]])
-    // });
-
-    // if (data !== undefined) {
-    //   this.setProperties(data);
-    // }
-
     this.form = new FormGroup({
       name: new FormControl('', [Validators.maxLength(40)]),
       quality: new FormControl(''),
-      description: new FormControl('', [Validators.maxLength(256)])
-    });
+      description: new FormControl('', [Validators.maxLength(256)]),
+      attributes: new FormArray([
+        new FormGroup({
+          attribute: new FormControl(''),
+          bonus: new FormControl(''),
+          effect: new FormControl(''),
+          isAdded: new FormControl(false)
+        })
+      ])
+    })
+  }
 
-    this.attributes = new FormArray([
-      new FormGroup({
-        attribute: new FormControl(''),
-        bonus: new FormControl(''),
-        effect: new FormControl(''),
-        isAdded: new FormControl(false)
-      })
-    ]);
-
+  get attributes() {
+    return this.form.controls["attributes"] as FormArray<FormGroup>;
   }
 
   ngOnInit(): void {
@@ -58,8 +50,11 @@ export class EquipmentModalComponent implements OnInit {
   }
 
   setProperties(data: any) {
-    this.form.controls['name'].patchValue(this.data.name || '')
+    this.form.controls['name'].patchValue(data.name || '');
+    this.form.controls['quality'].patchValue(data.quality || '');
+    this.form.controls['description'].patchValue(data.description || '');
     console.log('setProperties', this.form)
+    // console.log('setProperties', this.attributes)
 
 
     // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas

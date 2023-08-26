@@ -16,12 +16,11 @@
               { value: 'common', label: 'Objeto común' },
               { value: 'rare', label: 'Objeto raro' },
               { value: 'legendary', label: 'Objeto legendario' }
-            ]" [control]="form.get('quality')">
+            ]" formControlName="quality">
           </vrg-select>
         </div>
 
-        <vrg-textarea for="selectDescription" label="DESCRIPCIÓN" id="selectDescription"
-          [control]="form.get('description')">
+        <vrg-textarea for="selectDescription" label="DESCRIPCIÓN" id="selectDescription" formControlName="description">
         </vrg-textarea>
       </div>
       <div class="image"> Cargar Imagen
@@ -31,7 +30,7 @@
 
     <div class="attributes-title">ATRIBUTOS</div>
 
-    <div *ngFor="let attribute of attributes.controls; let i = index" class="attributes-container">
+    <!-- <div *ngFor="let attribute of attributes.controls; let i = index" class="attributes-container">
       <div class="attributes">
         <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
           { value: 'hitPoints', label: 'Puntos de golpe' },
@@ -64,7 +63,46 @@
         <vrg-button *ngIf="attribute.get('isAdded')?.value" color="danger" variant="ghost"
           (click)="removeAttribute(i)">Eliminar</vrg-button>
       </div>
-    </div>
+    </div> -->
+
+    <ng-container formArraayName="attributes">
+      <ng-container *ngFor="let attribute of attributes.controls; let i = index">
+        <div class="attributes-container" [formGroup]="attribute">
+          <div class="attributes">
+            <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
+              { value: 'hitPoints', label: 'Puntos de golpe' },
+              { value: 'armor', label: 'Armadura' },
+              { value: 'proficiency', label: 'Competencia' },
+              { value: 'strength', label: 'Fuerza' },
+              { value: 'dexterity', label: 'Destreza' },
+              { value: 'constitution', label: 'Constitución' },
+              { value: 'intelligence', label: 'Intelecto' },
+              { value: 'wisdom', label: 'Sabiduría' },
+              { value: 'charisma', label: 'Carisma' },
+              { value: 'customEffect', label: 'Efecto personalizado' }
+              ]" formControlName="attribute">
+            </vrg-select>
+          </div>
+
+          <div class="bonus-contaienr" *ngIf="attribute.get('attribute')?.value !== 'customEffect'">
+            <vrg-input *ngIf="attribute.get('attribute')?.value !== 'customEffect'" class="inputBonus" id="inputBonus"
+              placeholder="Bonus" formControlName="bonus">
+            </vrg-input>
+          </div>
+
+          <div class="effect-container" *ngIf="attribute.get('attribute')?.value === 'customEffect'">
+            <vrg-input class="inputEffect" type="text" placeholder="Efecto" formControlName="effect"></vrg-input>
+          </div>
+
+          <div class="save-attribute-container">
+            <vrg-button *ngIf="!attribute.get('isAdded')?.value" color="secondary" variant="ghost"
+              (click)="addAttribute()">Añadir</vrg-button>
+            <vrg-button *ngIf="attribute.get('isAdded')?.value" color="danger" variant="ghost"
+              (click)="removeAttribute(i)">Eliminar</vrg-button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
 
     <div class="button-container">
       <vrg-button mat-button mat-dialog-close color="secondary">Cancelar</vrg-button>

@@ -27,7 +27,6 @@ export class InputComponent implements ControlValueAccessor {
   onTouched: any = () => { };
 
   writeValue(value: any): void {
-    console.log('writeValue', value)
     this.value = value;
   }
 
@@ -46,9 +45,5 @@ export class InputComponent implements ControlValueAccessor {
     this.onTouched();
     this.control?.setValue(value);// QUITAR CUANDO SE CAMBIAEN TODOS LOS CONTROL
     this.onChange(value); // Notificar el cambio al formulario reactivo
-  }
-
-  getValue(): any {
-    return this.value;
   }
 }

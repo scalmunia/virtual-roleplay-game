@@ -1,5 +1,5 @@
 import { Component, Input, forwardRef, ViewChild, ElementRef } from '@angular/core';
-import { ControlValueAccessor, AbstractControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'vrg-textarea',
@@ -19,7 +19,6 @@ export class TextareaComponent implements ControlValueAccessor {
 
   @Input() label: string = '';
   @Input() id: string = '';
-  @Input() control: AbstractControl | null = null;
   value: any = '';
 
   // ControlValueAccessor methods
@@ -46,17 +45,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
     const value = (event.target as HTMLInputElement).value;
     this.value = value;
-    this.control!.setValue(value);
+    this.onTouched();
     this.onChange(value); // Notificar el cambio al formulario reactivo
   }
-
-  getValue(): any {
-    return this.value;
-  }
-
-  // resizeTextarea() {
-  //   const textarea = this.textarea?.nativeElement;
-  //   textarea.style.height = 'auto';
-  //   textarea.style.height = (textarea.scrollHeight) + 'px';
-  // }
 }

@@ -3,11 +3,11 @@
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="input-container">
       <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
-        [control]="form.get('email')"></vrg-input>
+        formControlName="email"></vrg-input>
     </div>
     <div class="input-container">
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
-        [control]="form.get('password')"></vrg-input>
+        formControlName="password"></vrg-input>
     </div>
     <div class="recover-pwd-container">
       <a class="recover-pwd">¿Has olvidado la contraseña?</a>

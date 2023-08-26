@@ -42,11 +42,8 @@ export class SelectComponent implements ControlValueAccessor {
   onOptionChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.value = value;
-    this.control!.setValue(value);
+    this.onTouched();
+    this.control?.setValue(value);
     this.onChange(value); // Notificar el cambio al formulario reactivo
-  }
-
-  getValue(): any {
-    return this.value;
   }
 }

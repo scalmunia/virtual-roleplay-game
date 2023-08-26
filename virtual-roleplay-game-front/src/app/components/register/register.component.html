@@ -3,15 +3,15 @@
   <form class="form" autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="input-container">
       <vrg-input for="inputName" label="NOMBRE" type="text" id="inputName" placeholder="Nombre"
-        [control]="form.get('name')"></vrg-input>
+        formControlName="name"></vrg-input>
     </div>
     <div class="input-container">
       <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
-        [control]="form.get('email')"></vrg-input>
+        formControlName="email"></vrg-input>
     </div>
     <div class="input-container">
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
-        [control]="form.get('password')"></vrg-input>
+        formControlName="password"></vrg-input>
     </div>
     <div class="button-container">
       <vrg-button type="submit" color="primary">Crear cuenta</vrg-button>
