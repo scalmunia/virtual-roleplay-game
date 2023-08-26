@@ -227,8 +227,7 @@
         <p class="p-title">INVENTARIO Y EQUIPO</p>
         <div class="equipment-container">
           <ng-container *ngFor="let item of equipment">
-            <div class="equipment" *ngIf="item.name || item.quality || item.description || item.attributes.length"
-              (click)="openDialog(item)">
+            <div class="equipment" *ngIf="item.name || item.quality || item.description" (click)="openDialog(item)">
               <vrg-equipment-item src="assets/images/helmet.png" [color]="convertQualityToColor(item.quality)"
                 [name]="item.name" [statistics]="adaptAttributes(item.attributes)" [description]="item.description">
               </vrg-equipment-item>
@@ -239,6 +238,8 @@
 
       <!-- Modal equipo -->
       <button *ngIf="mode === 'edit'" class="add-equipment" mat-button (click)="openDialog()">Añadir equipo</button>
+      <!-- <button *ngIf="mode === 'edit' || mode === 'create'" class="add-equipment" mat-button
+        (click)="openDialog()">Añadir equipo</button> -->
 
       <div class="button-container">
         <!-- Modo Creación -->

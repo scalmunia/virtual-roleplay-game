@@ -114,4 +114,8 @@ export class EquipmentModalComponent implements OnInit {
       this.dialogRef.close({ delete: true, item: this.data });
     }
   }
+
+  closeModal() {
+    this.dialogRef.close({ cancel: true });
+  }
 }
