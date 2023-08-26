@@ -26,7 +26,6 @@ export class SelectComponent implements ControlValueAccessor {
   onTouched: any = () => { };
 
   writeValue(value: any): void {
-    console.log('writeValue', value)
     this.value = value;
   }
 
@@ -41,7 +40,6 @@ export class SelectComponent implements ControlValueAccessor {
   // Emitir el evento valueChange cuando cambia el valor del option
   onOptionChange(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
-    console.log('onOptionChange', value)
     this.value = value;
     this.onTouched();
     this.onChange(value); // Notificar el cambio al formulario reactivo

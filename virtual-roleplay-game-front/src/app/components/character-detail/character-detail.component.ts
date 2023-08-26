@@ -215,8 +215,6 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   openDialog(item?) {
-    console.log('item', item);
-
     this.isModalOpen = true;
     const dialogRef = this.dialog.open(EquipmentModalComponent, {
       maxWidth: '780px',
@@ -226,9 +224,26 @@ export class CharacterDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.equipment.push(result);
-        console.log('equipment', this.equipment);
+        //Eliminar quipo existente
+        if (result.delete) {
+          const index = this.equipment.indexOf(result.item);
+          if (index !== -1) {
+            this.equipment.splice(index, 1);
+          }
+        }
 
+        //Crear nuevo equipo
+        if (!item) {
+          this.equipment.push(result);
+        }
+
+        //Actualizar equipo existente
+        const index = this.equipment.indexOf(item);
+        if (index !== -1) {
+          this.equipment[index] = result;
+        }
+
+        console.log('equipment', this.equipment);
         this.isModalOpen = false;
       }
     });

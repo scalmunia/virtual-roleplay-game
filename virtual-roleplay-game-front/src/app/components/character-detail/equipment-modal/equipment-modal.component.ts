@@ -17,8 +17,6 @@ interface Attribute {
 
 export class EquipmentModalComponent implements OnInit {
   form: FormGroup;
-
-  // attributes: FormArray;
   error: Error | null = null;
 
   constructor(
@@ -53,8 +51,6 @@ export class EquipmentModalComponent implements OnInit {
     this.form.controls['name'].patchValue(data.name || '');
     this.form.controls['quality'].patchValue(data.quality || '');
     this.form.controls['description'].patchValue(data.description || '');
-    // this.form.controls['attributes'].setValue(data.attributes || '');
-
 
     if (data.attributes) {
       const attributesFormArray = this.form.controls['attributes'] as FormArray;
@@ -65,15 +61,6 @@ export class EquipmentModalComponent implements OnInit {
 
       attributesFormArray.patchValue(data.attributes);
     }
-
-
-
-    console.log('data', data)
-    console.log('setProperties', this.form)
-    console.log('atributes', this.form.controls['attributes'])
-    // console.log('atribute', this.form.controls['attributes'].value)
-    // console.log('setProperties', this.attributes)
-
 
     // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
     setTimeout(() => this.cd.detectChanges());
@@ -116,5 +103,15 @@ export class EquipmentModalComponent implements OnInit {
     };
 
     this.dialogRef.close(result);
+  }
+
+  deleteItem() {
+    const isConfirmed = window.confirm(
+      '¿Estás seguro de que quieres borrar esta pieza del equipo?'
+    );
+
+    if (isConfirmed) {
+      this.dialogRef.close({ delete: true, item: this.data });
+    }
   }
 }
