@@ -69,9 +69,13 @@
     </ng-container>
 
     <div class="button-container">
-      <vrg-button color="danger" (click)="deleteItem()">Eliminar</vrg-button>
-      <vrg-button color="secondary" (click)="closeModal()">Cancelar</vrg-button>
-      <vrg-button color="primary" type="submit">Guardar</vrg-button>
+      <div>
+        <vrg-button color="danger" (click)="deleteItem()">Eliminar</vrg-button>
+      </div>
+      <div class="buttons-cancel-save">
+        <vrg-button color="secondary" (click)="closeModal()">Cancelar</vrg-button>
+        <vrg-button color="primary" type="submit">Guardar</vrg-button>
+      </div>
     </div>
   </form>
 </mat-dialog-content>

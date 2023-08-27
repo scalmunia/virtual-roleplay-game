@@ -46,8 +46,6 @@
 .image {
   flex: 0 0 250px;
   margin-top: 20px;
-  /* width: 250px; */
-  /* max-width: 100%; */
 
   border: 1px dashed rgba(112, 112, 112, 0.30);
   border-radius: 8px;
@@ -96,11 +94,14 @@
   margin-left: auto;
 }
 
-
 .button-container {
   display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+  justify-content: space-between;
 
   margin-top: 30px;
+}
+
+.buttons-cancel-save {
+  display: flex;
+  gap: 15px;
 }
