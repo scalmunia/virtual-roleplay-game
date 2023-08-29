@@ -7,22 +7,22 @@ import { MatDialog } from '@angular/material/dialog';
 import { EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
 import { ABILITIES_TRANSLATION } from 'src/app/models/Character/character.constants';
 
-type Equipment = [
-  {
-    form: {
-      name: '',
-      quality: '',
-      description: ''
-    },
-    attributes: [
-      {
-        attribute: '',
-        bonus: '',
-        effect: ''
-      }
-    ]
-  }
-]
+// type Equipment = [
+//   {
+//     form: {
+//       name: '',
+//       quality: '',
+//       description: ''
+//     },
+//     attributes: [
+//       {
+//         attribute: '',
+//         bonus: '',
+//         effect: ''
+//       }
+//     ]
+//   }
+// ]
 
 @Component({
   selector: 'vrg-character-detail',
@@ -126,6 +126,8 @@ export class CharacterDetailComponent implements OnInit {
     );
     this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
     this.form.controls['charisma'].setValue(response.result.abilities.charisma);
+
+    this.equipment = response.result.equipment;
   }
 
   async onSubmit() {
@@ -153,8 +155,9 @@ export class CharacterDetailComponent implements OnInit {
             constitution: constitution,
             intelligence: intelligence,
             wisdom: wisdom,
-            charisma: charisma,
+            charisma: charisma
           },
+          equipment: this.equipment
         });
         this.router.navigate(['/characters/']);
       }
@@ -171,11 +174,13 @@ export class CharacterDetailComponent implements OnInit {
               constitution: constitution,
               intelligence: intelligence,
               wisdom: wisdom,
-              charisma: charisma,
+              charisma: charisma
             },
+            equipment: this.equipment
           },
           this.id as string
         );
+
         this.router.navigate(['/character/' + this.id]);
       }
     } catch (error) {

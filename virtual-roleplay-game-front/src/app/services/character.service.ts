@@ -21,7 +21,6 @@ export class CharacterService {
     character.create(data);
 
     if (id) {
-      console.log('entrando en servicio');
       const url = `${this.URL}/${id}`;
       await fetcher(url, {
         method: 'PUT',

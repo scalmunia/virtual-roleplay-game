@@ -26,10 +26,13 @@ export type Abilities = {
 export type Equipment = {
   img: string;
   name: string;
-  statistics: {
-    bonus?: string, name: string
-  }[]
+  quality: string;
   description: string;
+  statistics: {
+    bonus: number,
+    name: string,
+    effect: string
+  }[]
 }
 
 export interface ICharacter {
@@ -38,7 +41,7 @@ export interface ICharacter {
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
-  // equipment: Equipment[];
+  equipment: Equipment[];
 }
 
 export class Character implements ICharacter {
@@ -47,7 +50,7 @@ export class Character implements ICharacter {
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
-  // equipment: Equipment[];
+  equipment: Equipment[];
 
   constructor(character?: ICharacter) {
     this._id = character?._id || '';
@@ -62,7 +65,19 @@ export class Character implements ICharacter {
       wisdom: 0,
       charisma: 0
     };
-    // this.equipment = character?.equipment || []
+    this.equipment = character?.equipment || [
+      {
+        img: '',
+        name: '',
+        quality: '',
+        description: '',
+        statistics: [{
+          bonus: 0,
+          name: '',
+          effect: ''
+        }]
+      }
+    ]
   }
 
   create(character: Omit<ICharacter, '_id'>) {
@@ -71,7 +86,7 @@ export class Character implements ICharacter {
 
     // Seteos
     this.name = character.name;
-    this.name = character.avatar;
+    this.avatar = character.avatar;
     this.class = character.class;
 
     this.abilities = {
@@ -83,7 +98,20 @@ export class Character implements ICharacter {
       charisma: character.abilities.charisma,
     };
 
-    //Meter el equipment 
+    this.equipment = character.equipment?.map(equipmentItem => ({
+      img: equipmentItem.img,
+      name: equipmentItem.name,
+      quality: equipmentItem.quality,
+      description: equipmentItem.description,
+      statistics: equipmentItem.statistics?.map(stat => ({
+        bonus: stat.bonus,
+        name: stat.name,
+        effect: stat.effect
+      }))
+
+    }));
+    console.log('equipment de Character', this.equipment);
+
 
     // Validaciones
     for (const ability in character.abilities) {
