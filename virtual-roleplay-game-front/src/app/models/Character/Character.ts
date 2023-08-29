@@ -24,15 +24,16 @@ export type Abilities = {
 };
 
 export type Equipment = {
+  id: string;
   img: string;
   name: string;
   quality: string;
   description: string;
-  statistics: {
-    bonus: number,
+  attributes: Array<{
     name: string,
+    bonus: number,
     effect: string
-  }[]
+  }>
 }
 
 export interface ICharacter {
@@ -65,19 +66,7 @@ export class Character implements ICharacter {
       wisdom: 0,
       charisma: 0
     };
-    this.equipment = character?.equipment || [
-      {
-        img: '',
-        name: '',
-        quality: '',
-        description: '',
-        statistics: [{
-          bonus: 0,
-          name: '',
-          effect: ''
-        }]
-      }
-    ]
+    this.equipment = character?.equipment || [];
   }
 
   create(character: Omit<ICharacter, '_id'>) {
@@ -99,14 +88,15 @@ export class Character implements ICharacter {
     };
 
     this.equipment = character.equipment?.map(equipmentItem => ({
+      id: equipmentItem.id,
       img: equipmentItem.img,
       name: equipmentItem.name,
       quality: equipmentItem.quality,
       description: equipmentItem.description,
-      statistics: equipmentItem.statistics?.map(stat => ({
-        bonus: stat.bonus,
-        name: stat.name,
-        effect: stat.effect
+      attributes: equipmentItem.attributes?.map(attribute => ({
+        name: attribute.name,
+        bonus: attribute.bonus,
+        effect: attribute.effect
       }))
 
     }));

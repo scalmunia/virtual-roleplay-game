@@ -6,10 +6,10 @@
   <img class="img" [src]="src">
   <div class="name">{{ name }}</div>
   <ul class="statistics">
-    <li *ngFor="let stat of statistics">
-      <span *ngIf="stat.bonus" class="bonus">{{ stat.bonus | addSignFilter }}</span>
-      <span *ngIf="stat.bonus">{{ stat.name }}</span>
-      <span>{{ stat.effect }}</span>
+    <li *ngFor="let attribute of attributes">
+      <span *ngIf="attribute.bonus" class="bonus">{{ attribute.bonus | addSignFilter }}</span>
+      <span *ngIf="attribute.bonus">{{ translateAttribute(attribute.name) }}</span>
+      <span>{{ attribute.effect }}</span>
     </li>
   </ul>
   <div class="description">{{ description }}</div>

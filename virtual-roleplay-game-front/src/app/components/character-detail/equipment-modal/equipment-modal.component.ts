@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Equipment } from 'src/app/models/Character/Character';
+import { v4 as uuid } from 'uuid';
 
 interface Attribute {
-  attribute: string;
+  name: string;
   bonus: number;
   effect: string;
   isAdded: boolean;
@@ -22,15 +24,16 @@ export class EquipmentModalComponent implements OnInit {
   constructor(
     private cd: ChangeDetectorRef,
     public dialogRef: MatDialogRef<EquipmentModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data?: Equipment
   ) {
     this.form = new FormGroup({
+      id: new FormControl(uuid(), [Validators.required]),
       name: new FormControl('', [Validators.maxLength(40)]),
       quality: new FormControl(''),
       description: new FormControl('', [Validators.maxLength(256)]),
       attributes: new FormArray([
         new FormGroup({
-          attribute: new FormControl(''),
+          name: new FormControl(''),
           bonus: new FormControl(''),
           effect: new FormControl(''),
           isAdded: new FormControl(false)
@@ -44,13 +47,16 @@ export class EquipmentModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setProperties(this.data);
+    if (this.data) {
+      this.setProperties(this.data);
+    }
   }
 
-  setProperties(data: any) {
-    this.form.controls['name'].patchValue(data.name || '');
-    this.form.controls['quality'].patchValue(data.quality || '');
-    this.form.controls['description'].patchValue(data.description || '');
+  setProperties(data: Equipment) {
+    this.form.controls['id'].patchValue(data.id);
+    this.form.controls['name'].patchValue(data.name);
+    this.form.controls['quality'].patchValue(data.quality);
+    this.form.controls['description'].patchValue(data.description);
 
     if (data.attributes) {
       const attributesFormArray = this.form.controls['attributes'] as FormArray;
@@ -79,7 +85,7 @@ export class EquipmentModalComponent implements OnInit {
     // Agregar una nueva fila de atributos
     this.attributes.push(
       new FormGroup({
-        attribute: new FormControl(''),
+        name: new FormControl(''),
         bonus: new FormControl(''),
         effect: new FormControl(''),
         isAdded: new FormControl(false)
@@ -97,12 +103,14 @@ export class EquipmentModalComponent implements OnInit {
   onSubmit() {
     const filteredAttributes = this.attributes.value.filter((attribute: Attribute) => attribute.isAdded);
 
+    const id = this.data?.id;
+
     const result = {
       ...this.form.value,
       attributes: filteredAttributes
     };
 
-    this.dialogRef.close(result);
+    this.dialogRef.close({ operation: 'save', item: result });
   }
 
   deleteItem() {
@@ -111,11 +119,16 @@ export class EquipmentModalComponent implements OnInit {
     );
 
     if (isConfirmed) {
-      this.dialogRef.close({ delete: true, item: this.data });
+      this.dialogRef.close({ operation: 'delete', item: this.data });
     }
   }
 
   closeModal() {
-    this.dialogRef.close({ cancel: true });
+    this.dialogRef.close({ operation: 'cancel' });
   }
+}
+
+export interface EquipmentDialogResult {
+  operation: 'save' | 'delete' | 'cancel';
+  item?: Equipment;
 }

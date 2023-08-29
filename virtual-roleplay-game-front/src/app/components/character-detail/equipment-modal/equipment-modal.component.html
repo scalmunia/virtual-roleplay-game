@@ -44,7 +44,7 @@
               { value: 'wisdom', label: 'Sabiduría' },
               { value: 'charisma', label: 'Carisma' },
               { value: 'customEffect', label: 'Efecto personalizado' }
-              ]" formControlName="attribute">
+              ]" formControlName="name">
             </vrg-select>
           </div>
 
@@ -73,7 +73,8 @@
         <vrg-button color="danger" (click)="deleteItem()">Eliminar</vrg-button>
       </div>
       <div class="buttons-cancel-save">
-        <vrg-button color="secondary" (click)="closeModal()">Cancelar</vrg-button>
+        <!-- <vrg-button color="secondary" type="button" mat-button [mat-dialog-close]="true">Cancelar</vrg-button> -->
+        <vrg-button color="secondary" type="button" (click)="closeModal()">Cancelar</vrg-button>
         <vrg-button color="primary" type="submit">Guardar</vrg-button>
       </div>
     </div>

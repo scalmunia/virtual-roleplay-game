@@ -4,25 +4,8 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
-import { ABILITIES_TRANSLATION } from 'src/app/models/Character/character.constants';
-
-// type Equipment = [
-//   {
-//     form: {
-//       name: '',
-//       quality: '',
-//       description: ''
-//     },
-//     attributes: [
-//       {
-//         attribute: '',
-//         bonus: '',
-//         effect: ''
-//       }
-//     ]
-//   }
-// ]
+import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
+import { Equipment } from 'src/app/models/Character/Character';
 
 @Component({
   selector: 'vrg-character-detail',
@@ -47,7 +30,7 @@ export class CharacterDetailComponent implements OnInit {
     ],
   };
   isModalOpen = false;
-  equipment: any[] = [];
+  equipment: Equipment[] = [];
 
   constructor(
     private characterService: CharacterService,
@@ -219,37 +202,43 @@ export class CharacterDetailComponent implements OnInit {
     }
   }
 
-  openDialog(item?) {
+  openDialog(item?: Equipment) {
+    if (this.mode === 'view') return;
+
     this.isModalOpen = true;
+
     const dialogRef = this.dialog.open(EquipmentModalComponent, {
       maxWidth: '780px',
       width: '100%',
-      data: item || {}
+      data: item
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        //Eliminar quipo existente
-        if (result.delete) {
-          const index = this.equipment.indexOf(result.item);
-          if (index !== -1) {
-            this.equipment.splice(index, 1);
-          }
-        }
+    dialogRef.afterClosed().subscribe((result: EquipmentDialogResult) => {
+      this.isModalOpen = false;
 
-        //Crear nuevo equipo
-        if (!item) {
-          this.equipment.push(result);
-        }
+      if (result.operation === 'cancel') return;
 
-        //Actualizar equipo existente
-        const index = this.equipment.indexOf(item);
-        if (index !== -1) {
-          this.equipment[index] = result;
-        }
+      const alreadyExists = this.equipment.some(item => item.id === result.item?.id);
 
-        console.log('equipment', this.equipment);
-        this.isModalOpen = false;
+      if (result.operation === 'delete') {
+        this.equipment = this.equipment.filter(item => item.id !== result.item?.id);
+
+        return;
+      }
+
+      if (result.operation === 'save' && alreadyExists) {
+        this.equipment = this.equipment.map(item => {
+          if (item.id === result.item?.id) return result.item;
+          return item;
+        });
+
+        return;
+      }
+
+      if (result.operation === 'save' && !alreadyExists && result.item) {
+        this.equipment.push(result.item);
+
+        return;
       }
     });
   }
@@ -265,18 +254,6 @@ export class CharacterDetailComponent implements OnInit {
       default:
         return 'grey';
     }
-  }
-
-  translateAttribute(attribute: string): string {
-    return ABILITIES_TRANSLATION[attribute] || attribute;
-  }
-
-  adaptAttributes(attributes: { attribute: string; bonus: number; effect: string }[]): { name: string; bonus: number; effect: string }[] {
-    return attributes.map(attr => ({
-      name: this.translateAttribute(attr.attribute),
-      bonus: attr.bonus,
-      effect: attr.effect
-    }));
   }
 
   get strengthControl(): FormControl {

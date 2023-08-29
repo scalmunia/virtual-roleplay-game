@@ -4,18 +4,18 @@
   flex-shrink: 0;
 
   border-radius: 8px;
-  background: #12121B;
-  border: 2px solid #2E2E34;
+  background: #12121b;
+  border: 2px solid #2e2e34;
 }
 
 .item-blue {
-  background: rgba(0, 133, 255, 0.07);
-  border: 2px solid rgba(0, 133, 255, 0.30);
+  background: #0a1425;
+  border: 2px solid #073666;
 }
 
 .item-yellow {
-  background: rgba(255, 199, 0, 0.07);
-  border: 2px solid rgba(255, 199, 0, 0.30);
+  background: #1c1814;
+  border: 2px solid #604c0e;
 }
 
 .title {
