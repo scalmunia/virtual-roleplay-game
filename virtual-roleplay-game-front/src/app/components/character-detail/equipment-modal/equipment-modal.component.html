@@ -48,13 +48,13 @@
             </vrg-select>
           </div>
 
-          <div class="bonus-contaienr" *ngIf="attribute.get('attribute')?.value !== 'customEffect'">
-            <vrg-input *ngIf="attribute.get('attribute')?.value !== 'customEffect'" class="inputBonus" id="inputBonus"
+          <div class="bonus-contaienr" *ngIf="attribute.get('name')?.value !== 'customEffect'">
+            <vrg-input *ngIf="attribute.get('name')?.value !== 'customEffect'" class="inputBonus" id="inputBonus"
               placeholder="Bonus" formControlName="bonus">
             </vrg-input>
           </div>
 
-          <div class="effect-container" *ngIf="attribute.get('attribute')?.value === 'customEffect'">
+          <div class="effect-container" *ngIf="attribute.get('name')?.value === 'customEffect'">
             <vrg-input class="inputEffect" type="text" placeholder="Efecto" formControlName="effect"></vrg-input>
           </div>
 

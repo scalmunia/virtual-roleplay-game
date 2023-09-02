@@ -16,7 +16,6 @@ export class EquipmentItemComponent {
   @Input() color: 'grey' | 'blue' | 'yellow' = 'grey';
 
   translateAttribute(attribute: string): string {
-    console.log('attribute', attribute)
     return ABILITIES_TRANSLATION[attribute] || attribute;
   }
 }
