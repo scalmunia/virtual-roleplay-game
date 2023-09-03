@@ -1,13 +1,18 @@
-const defaultHeaders = () => {
+const defaultHeaders = (headers: HeadersInit) => {
   const token = localStorage.getItem('token');
 
-  return {
+  const finalHeaders = {
     'Content-Type': 'application/json',
-    ...(token ? { Authorization: 'Bearer ' + localStorage.getItem('token') } : {})
+    ...(token ? { Authorization: 'Bearer ' + localStorage.getItem('token') } : {}),
+    ...headers
   }
+
+  const result = Object.entries(finalHeaders).filter(([key, value]) => value !== null)
+
+  return Object.fromEntries(result);
 };
 
-// Ejemplo abstracción del fetch
+// Abstracción del fetch
 export async function fetcher(
   path: string,
   init?: RequestInit | undefined
@@ -18,7 +23,7 @@ export async function fetcher(
 
     const response = await fetch(url, {
       ...(init ? init : {}),
-      headers: defaultHeaders(),
+      headers: defaultHeaders(init?.headers ? init?.headers : {})
     });
 
     if (response.status >= 400) throw response;

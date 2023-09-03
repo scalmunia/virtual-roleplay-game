@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { AssetsService } from 'src/app/services/assets.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Equipment } from 'src/app/models/Character/Character';
 import { v4 as uuid } from 'uuid';
@@ -22,6 +23,7 @@ export class EquipmentModalComponent implements OnInit {
   error: Error | null = null;
 
   constructor(
+    private assetsService: AssetsService,
     private cd: ChangeDetectorRef,
     public dialogRef: MatDialogRef<EquipmentModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data?: Equipment
@@ -125,6 +127,15 @@ export class EquipmentModalComponent implements OnInit {
 
   closeModal() {
     this.dialogRef.close({ operation: 'cancel' });
+  }
+
+  async uploadFiles(e: any) {
+    try {
+      const response = await this.assetsService.uploadFiles(e.target.files[0]);
+      console.log('response', response);
+    } catch (error) {
+      this.error = error as Error;
+    }
   }
 }
 

@@ -19,7 +19,6 @@ export class NavService {
     const url = `api/character/${id}`;
     const response = await fetcher(url);
     const result = await response.json();
-    console.log('result', result);
 
     return result;
   }

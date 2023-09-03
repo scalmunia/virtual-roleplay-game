@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-// Connection URL
+// Conexión URL
 const url: any = process.env.CONNECTION_MONGODB;
 
 if (!url) {
@@ -11,13 +11,13 @@ const client = new MongoClient(url);
 
 console.log(process.env.CONNECTION_MONGODB);
 
-// Database Name
+// Nombre de Database 
 const dbName = 'RoleplayDB';
 
 export default async function mongodb() {
-  // Use connect method to connect to the server
+  // Establecer la conexión al servidor
   await client.connect();
   const db = client.db(dbName);
-  
+
   return db;
 }
