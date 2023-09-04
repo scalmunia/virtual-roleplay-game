@@ -10,9 +10,6 @@ export class AssetsService {
   private URL = 'api/assets/uploads';
 
   async uploadFiles(img: File) {
-    console.log('ENTRANDO EN SERVICIO uploadFiles');
-    console.log('img', img);
-
     const body = new FormData();
     body.set('file', img);
 
@@ -25,7 +22,6 @@ export class AssetsService {
     });
 
     const result = await response.json();
-    console.log('result', result);
 
     return result;
   }
