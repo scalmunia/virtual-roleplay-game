@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { getStorage, ref } from "firebase/storage";
+import firebase from "../../clients/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export async function uploadsFilesController(req: Request, res: Response) {
   try {
@@ -23,26 +24,20 @@ export async function uploadsFilesController(req: Request, res: Response) {
       res.status(401);
     }
 
+
+    // ALMACENAMIENTO DE IMAGENES EN FIREBASE
+    // Obtener una referencia al servicio de almacenamiento
+    const storage = firebase;
+
+    // Crear la referencia para la imágenes
     const imageName = req.file?.originalname;
-    console.log('imageName', imageName);
-
-    // // ALMACENAMIENTO DE IMAGENES EN FIREBASE
-    // // Obtener una referencia al servicio de almacenamiento
-    // const storage = getStorage();
-    // console.log('storage', storage);
-
-    // // Crear la referencia para la imágenes
-    // const imagesRef = ref(storage, 'images/imagesRef');
-    // console.log('imagesRef', imagesRef);
-
-    // // Crear una referencia de almacenamiento desde el servicio de almacenamiento
-    // const fileName = 'space.jpg';
-    // const spaceRef = ref(imagesRef, fileName); // Apunta a 'images/space.jpg'
-    // // const spaceRef = ref(storage, 'images/space.jpg');
-    // console.log('fileName', fileName);
-    // console.log('spaceRef', spaceRef);
+    const imagesRef = ref(storage, `images/${imageName}`);
 
 
+
+
+    // Crear una referencia de almacenamiento desde el servicio de almacenamiento
+    // const spaceRef = ref(imagesRef, imageName); // Apunta a 'images/space.jpg' 
 
     // // File path is 'images/space.jpg'
     // const path = spaceRef.fullPath;
@@ -52,9 +47,21 @@ export async function uploadsFilesController(req: Request, res: Response) {
     // const name = spaceRef.name;
     // console.log('name', name);
 
-    // // Points to 'images'
-    // const imagesRefAgain = spaceRef.parent;
-    // console.log('imagesRefAgain', imagesRefAgain);
+
+
+    // Subir la imagen a Firebase
+    const image = req.file;
+    console.log('image', image);
+    if (!image) return;
+
+    //buffer permite acceder a los datos binarios del archivo de imagen y proporcionarlos directamente a Firebase Storage para cargarlos
+    uploadBytes(imagesRef, image.buffer).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+    });
+
+    // getDownloadURL(uploadBytes.snapshot.ref).then((downloadURL) => {
+    //   console.log('File available at', downloadURL);
+    // });
 
 
 
