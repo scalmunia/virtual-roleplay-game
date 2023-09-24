@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 
 interface Attribute {
   name: string;
-  bonus: number;
+  bonus: any;
   effect: string;
   isAdded: boolean;
 }
@@ -21,6 +21,7 @@ interface Attribute {
 export class EquipmentModalComponent implements OnInit {
   form: FormGroup;
   error: Error | null = null;
+  img: string = '';
 
   constructor(
     private assetsService: AssetsService,
@@ -33,6 +34,7 @@ export class EquipmentModalComponent implements OnInit {
       name: new FormControl('', [Validators.maxLength(40)]),
       quality: new FormControl(''),
       description: new FormControl('', [Validators.maxLength(256)]),
+      img: new FormControl(''),
       attributes: new FormArray([
         new FormGroup({
           name: new FormControl(''),
@@ -51,6 +53,7 @@ export class EquipmentModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data) {
       this.setProperties(this.data);
+      console.log('data modal', this.data)
     }
   }
 
@@ -59,9 +62,11 @@ export class EquipmentModalComponent implements OnInit {
     this.form.controls['name'].patchValue(data.name);
     this.form.controls['quality'].patchValue(data.quality);
     this.form.controls['description'].patchValue(data.description);
+    this.form.controls['img'].patchValue(data.img);
 
     if (data.attributes) {
       const attributesFormArray = this.form.controls['attributes'] as FormArray;
+      console.log('modal attributesFormArray', attributesFormArray)
 
       while (attributesFormArray.length < data.attributes.length) {
         this.addAttribute(); //Añadir un nuevo FormGroup si se necesita
@@ -76,6 +81,7 @@ export class EquipmentModalComponent implements OnInit {
 
   addAttribute() {
     const previousIndex = this.attributes.length - 1;
+    console.log('attribute antes añadir', this.attributes)
 
     // Actualizar el estado isAdded para la fila anterior
     if (previousIndex >= 0) {
@@ -94,6 +100,8 @@ export class EquipmentModalComponent implements OnInit {
       })
     );
 
+    console.log('attributs despues push', this.attributes)
+
     // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
     setTimeout(() => this.cd.detectChanges());
   }
@@ -103,14 +111,17 @@ export class EquipmentModalComponent implements OnInit {
   }
 
   onSubmit() {
-    const filteredAttributes = this.attributes.value.filter((attribute: Attribute) => attribute.isAdded);
 
-    const id = this.data?.id;
+    console.log('modal attributes', this.attributes.value)
+    const filteredAttributes = this.attributes.value.filter((attribute: Attribute) => attribute.isAdded);
+    console.log('modal filteredAttributes', filteredAttributes)
 
     const result = {
       ...this.form.value,
       attributes: filteredAttributes
     };
+
+    console.log('modal result', result)
 
     this.dialogRef.close({ operation: 'save', item: result });
   }
@@ -132,7 +143,8 @@ export class EquipmentModalComponent implements OnInit {
   async uploadFiles(e: any) {
     try {
       const response = await this.assetsService.uploadFiles(e.target.files[0]);
-      console.log('response', response);
+      this.img = response.result;
+      console.log('imagen', this.img);
     } catch (error) {
       this.error = error as Error;
     }

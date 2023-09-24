@@ -1,7 +1,7 @@
-<div class="ability">
-  <p>{{ ability }}</p>
+<div *ngIf="ability" class="ability">
+  <p>{{ text(ability) }}</p>
   <img src="assets/images/ability.svg" alt="Imagen">
-  <div class="modifier">{{ calcAbilityModifier(control.value) | addSignFilter }}</div>
+  <div *ngIf="character" class="modifier">{{ modifier | addSignFilter }}</div>
   <input class="input-ability-score" type="number" [formControl]="control" [ngClass]="{
     'disabled': disabled}">
 </div>

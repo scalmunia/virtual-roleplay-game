@@ -19,7 +19,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = '';
-  value: any = '';
+  value: any;
 
   // ControlValueAccessor methods
   onChange: any = () => { };

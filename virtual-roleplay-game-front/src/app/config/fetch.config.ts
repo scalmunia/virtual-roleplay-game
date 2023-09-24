@@ -18,7 +18,7 @@ export async function fetcher(
   init?: RequestInit | undefined
 ): Promise<Response> {
   try {
-    const baseUrl = 'http://localhost:3000/';
+    const baseUrl = 'http://localhost:8080/';
     const url = baseUrl + path;
 
     const response = await fetch(url, {

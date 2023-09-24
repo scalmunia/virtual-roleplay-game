@@ -9,7 +9,8 @@ export function calcMaximunLife(characterClass: Classes, constitution: number) {
   // const hitDice = HIT_DICE_ACCORDING_TO_CLASSES as any[typeof characterClass];
 
   //calcular el modificador de constitucion 
-  const constitutionModifier = calcAbilityModifier(constitution);
+  const constitutionModifier = 2;
+  // const constitutionModifier = calcAbilityModifier(constitution);
 
   //sumar a hitDice el modif de constitución
   const maximunLife = hitDice + constitutionModifier;

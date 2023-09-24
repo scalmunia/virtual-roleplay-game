@@ -43,12 +43,18 @@
   margin-top: 30px;
 }
 
-.image {
+.image-container {
   flex: 0 0 250px;
   margin-top: 20px;
 
   border: 1px dashed rgba(112, 112, 112, 0.30);
   border-radius: 8px;
+}
+
+.image {
+  max-width: 100%;
+  width: auto;
+  height: auto;
 }
 
 .attributes-title {

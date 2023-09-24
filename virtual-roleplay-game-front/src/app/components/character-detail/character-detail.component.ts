@@ -5,7 +5,7 @@ import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
-import { Equipment } from 'src/app/models/Character/Character';
+import { Equipment, ICharacter } from 'src/app/models/Character/Character';
 
 @Component({
   selector: 'vrg-character-detail',
@@ -31,6 +31,13 @@ export class CharacterDetailComponent implements OnInit {
   };
   isModalOpen = false;
   equipment: Equipment[] = [];
+
+  get character(): ICharacter {
+    return {
+      ...this.form.value,
+      equipment: this.equipment
+    }
+  }
 
   constructor(
     private characterService: CharacterService,
@@ -92,6 +99,7 @@ export class CharacterDetailComponent implements OnInit {
 
   async loadCharacter() {
     const response = await this.characterService.getOne(this.id as string);
+    console.log('response', response);
 
     //Cargar los valores en el formulario
     this.form.controls['avatar'].setValue(response.result.avatar);
@@ -126,6 +134,9 @@ export class CharacterDetailComponent implements OnInit {
         wisdom,
         charisma,
       } = this.form.value;
+
+      console.log('--------------------------------');
+      console.log('this.equipment', this.equipment);
 
       if (this.mode === 'create') {
         await this.characterService.save({
@@ -216,6 +227,8 @@ export class CharacterDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: EquipmentDialogResult) => {
       this.isModalOpen = false;
 
+      console.log('------result', result)
+
       if (result.operation === 'cancel') return;
 
       const alreadyExists = this.equipment.some(item => item.id === result.item?.id);
@@ -229,6 +242,7 @@ export class CharacterDetailComponent implements OnInit {
       if (result.operation === 'save' && alreadyExists) {
         this.equipment = this.equipment.map(item => {
           if (item.id === result.item?.id) return result.item;
+
           return item;
         });
 
