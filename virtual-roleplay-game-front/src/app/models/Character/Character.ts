@@ -31,7 +31,7 @@ export type Equipment = {
   description: string;
   attributes: Array<{
     name: string,
-    bonus: any,
+    bonus: number,
     effect: string
   }>
 }
@@ -100,8 +100,6 @@ export class Character implements ICharacter {
       }))
 
     }));
-    // console.log('equipment de Character', this.equipment);
-
 
     // Validaciones
     for (const ability in character.abilities) {

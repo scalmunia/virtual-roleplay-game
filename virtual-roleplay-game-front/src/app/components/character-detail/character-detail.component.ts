@@ -99,7 +99,6 @@ export class CharacterDetailComponent implements OnInit {
 
   async loadCharacter() {
     const response = await this.characterService.getOne(this.id as string);
-    console.log('response', response);
 
     //Cargar los valores en el formulario
     this.form.controls['avatar'].setValue(response.result.avatar);
@@ -134,9 +133,6 @@ export class CharacterDetailComponent implements OnInit {
         wisdom,
         charisma,
       } = this.form.value;
-
-      console.log('--------------------------------');
-      console.log('this.equipment', this.equipment);
 
       if (this.mode === 'create') {
         await this.characterService.save({
@@ -226,8 +222,6 @@ export class CharacterDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: EquipmentDialogResult) => {
       this.isModalOpen = false;
-
-      console.log('------result', result)
 
       if (result.operation === 'cancel') return;
 

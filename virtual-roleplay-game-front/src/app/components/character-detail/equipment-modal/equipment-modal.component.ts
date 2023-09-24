@@ -2,12 +2,12 @@ import { ChangeDetectorRef, Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { AssetsService } from 'src/app/services/assets.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Equipment } from 'src/app/models/Character/Character';
+import { Equipment, ICharacter } from 'src/app/models/Character/Character';
 import { v4 as uuid } from 'uuid';
 
 interface Attribute {
   name: string;
-  bonus: any;
+  bonus: number;
   effect: string;
   isAdded: boolean;
 }
@@ -53,7 +53,6 @@ export class EquipmentModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data) {
       this.setProperties(this.data);
-      console.log('data modal', this.data)
     }
   }
 
@@ -66,7 +65,6 @@ export class EquipmentModalComponent implements OnInit {
 
     if (data.attributes) {
       const attributesFormArray = this.form.controls['attributes'] as FormArray;
-      console.log('modal attributesFormArray', attributesFormArray)
 
       while (attributesFormArray.length < data.attributes.length) {
         this.addAttribute(); //Añadir un nuevo FormGroup si se necesita
@@ -81,7 +79,6 @@ export class EquipmentModalComponent implements OnInit {
 
   addAttribute() {
     const previousIndex = this.attributes.length - 1;
-    console.log('attribute antes añadir', this.attributes)
 
     // Actualizar el estado isAdded para la fila anterior
     if (previousIndex >= 0) {
@@ -100,8 +97,6 @@ export class EquipmentModalComponent implements OnInit {
       })
     );
 
-    console.log('attributs despues push', this.attributes)
-
     // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
     setTimeout(() => this.cd.detectChanges());
   }
@@ -111,17 +106,15 @@ export class EquipmentModalComponent implements OnInit {
   }
 
   onSubmit() {
+    const filteredAttributes: Attribute[] = this.attributes.value
+      .map(data => ({ ...data, bonus: isNaN(parseInt(data.bonus)) ? 0 : parseInt(data.bonus) }))
+      .filter((attribute: Attribute) => attribute.isAdded)
 
-    console.log('modal attributes', this.attributes.value)
-    const filteredAttributes = this.attributes.value.filter((attribute: Attribute) => attribute.isAdded);
-    console.log('modal filteredAttributes', filteredAttributes)
-
-    const result = {
+    const result: Equipment = {
       ...this.form.value,
       attributes: filteredAttributes
     };
 
-    console.log('modal result', result)
 
     this.dialogRef.close({ operation: 'save', item: result });
   }
@@ -144,7 +137,6 @@ export class EquipmentModalComponent implements OnInit {
     try {
       const response = await this.assetsService.uploadFiles(e.target.files[0]);
       this.img = response.result;
-      console.log('imagen', this.img);
     } catch (error) {
       this.error = error as Error;
     }
@@ -155,3 +147,16 @@ export interface EquipmentDialogResult {
   operation: 'save' | 'delete' | 'cancel';
   item?: Equipment;
 }
+
+
+
+
+interface Equipo {
+  bonus: number;
+}
+
+const form: { bonus: any } = {
+  bonus: '1'
+};
+
+const equipment: Equipo = form;

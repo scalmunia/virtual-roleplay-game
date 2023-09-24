@@ -18,8 +18,6 @@ export class CharacterService {
 
   async save(data: Omit<ICharacter, '_id'>, id?: ICharacter['_id']) {
     const character = new Character();
-    // console.log('------------------------------------------')
-    // console.log('------------------data', data)
     character.create(data);
 
     if (id) {

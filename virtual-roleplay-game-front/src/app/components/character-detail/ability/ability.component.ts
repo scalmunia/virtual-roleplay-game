@@ -16,24 +16,16 @@ export class AbilityComponent implements OnChanges {
   @Input() disabled: boolean = false;
   @Input() character: ICharacter | null = null;;
 
-  // calcAbilityModifier = calcAbilityModifier;
-
   // Almacena el modificador calculado
   modifier: number = 0;
 
   ngOnChanges() {
-    // Depuración: verifica que this.character y this.ability estén configurados correctamente
-    // console.log('Character----:', this.character);
-    // console.log('Ability-----:', this.ability);
-
-    // Calcular el modificador una vez y almacenarlo en la variable modifier
     if (this.character && this.ability) {
       this.modifier = calcAbilityModifier(this.character, this.ability);
     }
   }
 
   text(ability: keyof Abilities) {
-    // console.log('Character----222222222:', this.character);
     const texts = {
       strength: 'FUERZA',
       dexterity: 'DESTREZA',
