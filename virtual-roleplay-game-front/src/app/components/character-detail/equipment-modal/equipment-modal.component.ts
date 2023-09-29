@@ -152,7 +152,12 @@ export class EquipmentModalComponent implements OnInit {
       this.loadingImage = false;
     }
   }
+
+  handleError() {
+    this.form.controls['img'].setValue('');
+  }
 }
+
 
 export interface EquipmentDialogResult {
   operation: 'save' | 'delete' | 'cancel';

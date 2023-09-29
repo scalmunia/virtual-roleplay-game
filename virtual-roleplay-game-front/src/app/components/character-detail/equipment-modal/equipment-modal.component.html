@@ -24,9 +24,11 @@
         </vrg-textarea>
       </div>
       <div class="image-container">
-        <p *ngIf="!form.value.img" class="image-upload-text">Subir imagen</p>
+        <p *ngIf="!form.value.img && !loadingImage" class="image-upload-text">Subir imagen
+        </p>
         <input class="image-input" type="file" (change)="updateImageUrl($event)" />
-        <img class="image" [ngClass]="{'image-loading': loadingImage}" [src]="form.value.img">
+        <img *ngIf="form.value.img" class="image" [ngClass]="{ 'image-loading': loadingImage }" [src]="form.value.img"
+          (error)="handleError()">
         <div *ngIf="loadingImage">loading...</div>
       </div>
     </div>
