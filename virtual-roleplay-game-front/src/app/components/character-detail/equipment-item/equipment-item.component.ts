@@ -18,4 +18,8 @@ export class EquipmentItemComponent {
   translateAttribute(attribute: string): string {
     return ABILITIES_TRANSLATION[attribute] || attribute;
   }
+
+  handleError() {
+    this.src = '';
+  }
 }

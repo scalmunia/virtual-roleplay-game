@@ -21,7 +21,7 @@ interface Attribute {
 export class EquipmentModalComponent implements OnInit {
   form: FormGroup;
   error: Error | null = null;
-  img: string = '';
+  loadingImage = false;
 
   constructor(
     private assetsService: AssetsService,
@@ -34,7 +34,7 @@ export class EquipmentModalComponent implements OnInit {
       name: new FormControl('', [Validators.maxLength(40)]),
       quality: new FormControl(''),
       description: new FormControl('', [Validators.maxLength(256)]),
-      img: new FormControl(''),
+      img: new FormControl(''), // url
       attributes: new FormArray([
         new FormGroup({
           name: new FormControl(''),
@@ -133,12 +133,23 @@ export class EquipmentModalComponent implements OnInit {
     this.dialogRef.close({ operation: 'cancel' });
   }
 
-  async uploadFiles(e: any) {
+  async updateImageUrl(e: any) {
+    this.loadingImage = true;
     try {
-      const response = await this.assetsService.uploadFiles(e.target.files[0]);
-      this.img = response.result;
+      const rawFile: File = e.target.files[0];
+
+      const blob = rawFile.slice(0, rawFile.size, rawFile.type);
+      const timestamp = new Date().getTime();
+      const file = new File([blob], `${rawFile.name}-${timestamp}`, { type: rawFile.type });
+
+      const response = await this.assetsService.uploadFiles(file);
+      const url = response.result;
+
+      this.form.controls['img'].setValue(url);
     } catch (error) {
       this.error = error as Error;
+    } finally {
+      this.loadingImage = false;
     }
   }
 }
@@ -147,16 +158,3 @@ export interface EquipmentDialogResult {
   operation: 'save' | 'delete' | 'cancel';
   item?: Equipment;
 }
-
-
-
-
-interface Equipo {
-  bonus: number;
-}
-
-const form: { bonus: any } = {
-  bonus: '1'
-};
-
-const equipment: Equipo = form;

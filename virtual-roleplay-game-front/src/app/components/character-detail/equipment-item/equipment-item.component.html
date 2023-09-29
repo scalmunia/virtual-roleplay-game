@@ -3,7 +3,8 @@
   'item-blue': color === 'blue',
   'item-yellow': color === 'yellow'
 }">
-  <img class="img" [src]="src">
+  <img [ngClass]="{ 'img-placeholder': !src, 'img': true }" [src]="src || 'assets/images/equipment-placeholder.png'"
+    (error)="handleError()" />
   <div class="name">{{ name }}</div>
   <ul class="statistics">
     <li *ngFor="let attribute of attributes">

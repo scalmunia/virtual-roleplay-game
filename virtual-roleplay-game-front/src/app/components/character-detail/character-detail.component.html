@@ -223,8 +223,8 @@
         <div class="equipment-container">
           <ng-container *ngFor="let item of equipment">
             <div class="equipment" *ngIf="item.name || item.quality || item.description" (click)="openDialog(item)">
-              <vrg-equipment-item src="assets/images/helmet.png" [color]="convertQualityToColor(item.quality)"
-                [name]="item.name" [attributes]="item.attributes" [description]="item.description">
+              <vrg-equipment-item [src]="item.img" [color]="convertQualityToColor(item.quality)" [name]="item.name"
+                [attributes]="item.attributes" [description]="item.description">
               </vrg-equipment-item>
             </div>
           </ng-container>

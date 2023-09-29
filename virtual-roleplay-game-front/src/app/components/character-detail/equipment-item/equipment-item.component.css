@@ -34,6 +34,10 @@
   flex-shrink: 0;
 }
 
+.img-placeholder {
+  filter: brightness(0) contrast(0.7) sepia(1) hue-rotate(156deg) saturate(0.5);
+}
+
 .name {
   margin-top: 16px;
   margin-left: 16px;

@@ -44,17 +44,41 @@
 }
 
 .image-container {
+  position: relative;
   flex: 0 0 250px;
   margin-top: 20px;
 
   border: 1px dashed rgba(112, 112, 112, 0.30);
   border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-input {
+  position: absolute;
+  background: red;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.image-upload-text {
+  position: absolute;
+  color: white;
 }
 
 .image {
   max-width: 100%;
   width: auto;
   height: auto;
+  transition: filter 0.5s linear;
+}
+
+.image-loading {
+  filter: opacity(0.75) grayscale(1) blur(3px);
 }
 
 .attributes-title {
