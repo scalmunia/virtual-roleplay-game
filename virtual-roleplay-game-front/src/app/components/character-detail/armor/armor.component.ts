@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ICharacter } from 'src/app/models/Character/Character';
+import { calcArmor } from 'src/app/models/Character/calcArmor';
 
 @Component({
   selector: 'vrg-armor',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./armor.component.css']
 })
 export class ArmorComponent {
+  @Input() character: ICharacter | null = null;
 
+  calcArmor = calcArmor;
 }

@@ -1,5 +1,5 @@
 <div class="score">
   <img class="armor" src="assets/images/armor.svg" alt="Imagen">
-  <input class="inputArmor" type="text" value="10">
+  <input *ngIf="character" class="inputArmor" type="text" value={{calcArmor(character)}}>
   <p class="pArmor">ARMADURA</p>
 </div>
