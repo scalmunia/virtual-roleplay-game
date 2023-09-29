@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { ICharacter } from 'src/app/models/Character/Character';
 import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 
 @Component({
@@ -9,6 +9,7 @@ import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 })
 
 export class HitPointsComponent {
-  @Input() form!: FormGroup;
+  @Input() character: ICharacter | null = null;
+
   calcMaximunLife = calcMaximunLife;
 }

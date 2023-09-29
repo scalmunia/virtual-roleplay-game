@@ -14,7 +14,7 @@ export class AbilityComponent implements OnChanges {
   @Input() form!: FormGroup;
   @Input() control: FormControl = new FormControl();
   @Input() disabled: boolean = false;
-  @Input() character: ICharacter | null = null;;
+  @Input() character: ICharacter | null = null;
 
   // Almacena el modificador calculado
   modifier: number = 0;

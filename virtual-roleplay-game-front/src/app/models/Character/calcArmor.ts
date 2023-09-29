@@ -1,6 +1,7 @@
 import { ICharacter } from "./Character";
 
 export function calcArmor(character: ICharacter) {
+  // console.log('character', character);
   const minimumArmorValue: number = 10;
 
   let armorValue = minimumArmorValue

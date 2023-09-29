@@ -1,19 +1,25 @@
-import { HIT_DICE_ACCORDING_TO_CLASSES } from "./character.constants";
-import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
+import { ABILITY_SCORES_AND_MODIFIERS, HIT_DICE_ACCORDING_TO_CLASSES } from "./character.constants";
 
-type Classes = 'barbarian' | 'bard' | 'warlock' | 'cleric' | 'druid' | 'ranegr' | 'fighter' | 'sorcerer' | 'wizard' | 'monk' | 'paladin' | 'rogue';
+export function calcMaximunLife(character) {
+  // Calcular el dado de golpe
+  const hitDice = HIT_DICE_ACCORDING_TO_CLASSES[character.characterClass as keyof typeof HIT_DICE_ACCORDING_TO_CLASSES];
 
-export function calcMaximunLife(characterClass: Classes, constitution: number) {
-  //sacar el dado de golpe
-  const hitDice = HIT_DICE_ACCORDING_TO_CLASSES[characterClass as keyof typeof HIT_DICE_ACCORDING_TO_CLASSES];
-  // const hitDice = HIT_DICE_ACCORDING_TO_CLASSES as any[typeof characterClass];
+  // Calcular el modificador de constitucion 
+  const constitution = character.constitution;
+  const modifier = ABILITY_SCORES_AND_MODIFIERS[constitution];
 
-  //calcular el modificador de constitucion 
-  const constitutionModifier = 2;
-  // const constitutionModifier = calcAbilityModifier(constitution);
+  // Calcular la vida máxima
+  const maximunLife = hitDice + modifier;
 
-  //sumar a hitDice el modif de constitución
-  const maximunLife = hitDice + constitutionModifier;
+  // Recorrer el equipo y aplicar modificadores adicionales si se encuentra hitPoint en attributes
+  let hitPointValue = maximunLife;
+  character.equipment.forEach((equipment) => {
+    equipment.attributes.forEach((attribute) => {
+      if (attribute.name === 'hitPoints') {
+        hitPointValue += attribute.bonus;
+      }
+    });
+  });
 
-  return maximunLife;
+  return hitPointValue;
 }

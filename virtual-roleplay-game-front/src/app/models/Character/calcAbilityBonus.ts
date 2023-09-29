@@ -6,7 +6,7 @@ export function calcAbilityModifier(character: ICharacter, ability: keyof Abilit
     const abilityValue = character[ability];
     const modifier = ABILITY_SCORES_AND_MODIFIERS[abilityValue as keyof typeof ABILITY_SCORES_AND_MODIFIERS];
 
-    //Calcular el modificador final añadiendo el equipo
+    // Calcular el modificador final añadiendo el equipo
     let finalModifier = modifier;
 
     // Recorrer el equipo y aplicar modificadores adicionales si se encuentra el ability en attributes
