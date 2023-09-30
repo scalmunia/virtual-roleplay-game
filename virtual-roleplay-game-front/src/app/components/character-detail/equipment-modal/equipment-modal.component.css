@@ -78,20 +78,6 @@
   transition: filter 0.5s linear;
 }
 
-.img {
-  position: absolute;
-  top: -10%;
-  right: -3%;
-
-  width: 83px;
-  height: 124px;
-  flex-shrink: 0;
-}
-
-.img-placeholder {
-  filter: brightness(0) contrast(0.7) sepia(1) hue-rotate(156deg) saturate(0.5);
-}
-
 .image-loading {
   filter: opacity(0.75) grayscale(1) blur(3px);
 }

@@ -7,13 +7,15 @@ import { InputComponent } from './input/input.component';
 import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     InputComponent,
     SelectComponent,
-    TextareaComponent
+    TextareaComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     InputComponent,
     SelectComponent,
     TextareaComponent,
+    SpinnerComponent,
     MatDialogModule
   ]
 })
