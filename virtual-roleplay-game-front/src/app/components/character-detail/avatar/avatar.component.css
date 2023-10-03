@@ -15,6 +15,26 @@
   border-radius: 40px;
 }
 
+.image-loading {
+  filter: opacity(0.75) grayscale(1) blur(3px);
+
+  top: 10%;
+  left: 10%;
+  height: 64px;
+  width: 64px;
+}
+
+.image-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+  top: 10%;
+  left: 10%;
+  height: 64px;
+  width: 64px;
+}
+
 .no-avatar {
   position: absolute;
   top: 10%;

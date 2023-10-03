@@ -21,7 +21,8 @@
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="header">
         <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
-          (change)="form.controls['avatar'].setValue($event)"></vrg-avatar>
+          (avatar)="updateImage($event)">
+        </vrg-avatar>
         <div class=" character-info">
           <input class="input-name" type="text" formControlName="name"
             [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">

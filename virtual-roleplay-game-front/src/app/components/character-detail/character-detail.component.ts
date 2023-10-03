@@ -264,6 +264,11 @@ export class CharacterDetailComponent implements OnInit {
     }
   }
 
+  updateImage(url: any) {
+    console.log('updateImage', url)
+    this.form.controls['avatar'].setValue(url)
+  }
+
   get strengthControl(): FormControl {
     return this.form.get('strength') as FormControl;
   }

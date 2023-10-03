@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { AssetsService } from 'src/app/services/assets.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Equipment, ICharacter } from 'src/app/models/Character/Character';
+import { Equipment } from 'src/app/models/Character/Character';
 import { v4 as uuid } from 'uuid';
 
 interface Attribute {
