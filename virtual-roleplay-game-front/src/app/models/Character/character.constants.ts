@@ -57,6 +57,99 @@ export const HIT_DICE_ACCORDING_TO_CLASSES = {
   'rogue': 8
 };
 
+export const SKILLS_LIST = [
+  {
+    name: 'Acrobacias',
+    ability: 'dexterity',
+    bonus: 0
+  },
+  {
+    name: 'Arcanos',
+    ability: 'intelligence',
+    bonus: -1
+  },
+  {
+    name: 'Atletismo',
+    ability: 'strength',
+    bonus: 2
+  },
+  {
+    name: 'Engaño',
+    ability: 'charisma',
+    bonus: 1
+  },
+  {
+    name: 'Historia',
+    ability: 'intelligence',
+    bonus: -1
+  },
+  {
+    name: 'Interpretación',
+    ability: 'charisma',
+    bonus: 1
+  },
+  {
+    name: 'Intimidación',
+    ability: 'charisma',
+    bonus: 1
+  },
+  {
+    name: 'Investigación',
+    ability: 'intelligence',
+    bonus: -1
+  },
+  {
+    name: 'Juego de manos',
+    ability: 'dexterity',
+    bonus: 0
+  },
+  {
+    name: 'Medicina',
+    ability: 'wisdom',
+    bonus: 1
+  },
+  {
+    name: 'Naturaleza',
+    ability: 'intelligence',
+    bonus: -1
+  },
+  {
+    name: 'Percepción',
+    ability: 'wisdom',
+    bonus: 1
+  },
+  {
+    name: 'Perspicacia',
+    ability: 'wisdom',
+    bonus: 1
+  },
+  {
+    name: 'Persuasión',
+    ability: 'charisma',
+    bonus: 1
+  },
+  {
+    name: 'Religión',
+    ability: 'intelligence',
+    bonus: 1
+  },
+  {
+    name: 'Sigilo',
+    ability: 'dexterity',
+    bonus: 0
+  },
+  {
+    name: 'Supervivencia',
+    ability: 'dexterity',
+    bonus: 1
+  },
+  {
+    name: 'Trato con animales',
+    ability: 'wisdom',
+    bonus: 1
+  }
+]
+
 export const CLASSES_TRANSLATION = {
   'barbarian': 'bárbaro',
   'bard': 'bardo',

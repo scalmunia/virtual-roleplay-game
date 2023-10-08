@@ -6,6 +6,7 @@ import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
 import { Equipment, ICharacter } from 'src/app/models/Character/Character';
+import { SKILLS_LIST } from 'src/app/models/Character/character.constants';
 
 @Component({
   selector: 'vrg-character-detail',
@@ -17,7 +18,7 @@ export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
   id: string | null = null;
   mode: 'create' | 'edit' | 'view' | null = null;
-  error: null | Error = null;
+  skillsList = SKILLS_LIST;
   htmlContent: any;
   modulesQuill = {
     toolbar: [
@@ -31,6 +32,7 @@ export class CharacterDetailComponent implements OnInit {
   };
   isModalOpen = false;
   equipment: Equipment[] = [];
+  error: null | Error = null;
 
   get character(): ICharacter {
     return {

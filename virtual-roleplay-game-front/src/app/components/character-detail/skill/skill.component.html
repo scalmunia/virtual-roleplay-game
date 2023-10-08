@@ -1,0 +1,6 @@
+<div class="skill-container">
+  <input class="check" [(ngModel)]="checked" type="checkbox" [id]="'check' + index">
+  <label class="ability" [for]="'check' + index">{{ convertSkill(ability) }}</label>
+  <label class="name" [for]="'check' + index">{{ name }}</label>
+  <input class="bonus" type="text" [value]="checked ? (bonus + 2  | addSignFilter) : bonus | addSignFilter">
+</div>
