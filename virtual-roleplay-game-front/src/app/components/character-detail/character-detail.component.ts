@@ -55,6 +55,7 @@ export class CharacterDetailComponent implements OnInit {
       intelligence: new FormControl(''),
       wisdom: new FormControl(''),
       charisma: new FormControl(''),
+      description: new FormControl('')
     });
 
     //'combineLatest' combina varias fuentes de observables en una sola secuencia de emisiones
@@ -116,6 +117,7 @@ export class CharacterDetailComponent implements OnInit {
     );
     this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
     this.form.controls['charisma'].setValue(response.result.abilities.charisma);
+    this.form.controls['description'].setValue(response.result.description);
 
     this.equipment = response.result.equipment;
   }
@@ -132,7 +134,9 @@ export class CharacterDetailComponent implements OnInit {
         intelligence,
         wisdom,
         charisma,
+        description
       } = this.form.value;
+      console.log('description', description);
 
       if (this.mode === 'create') {
         await this.characterService.save({
@@ -147,6 +151,7 @@ export class CharacterDetailComponent implements OnInit {
             wisdom: wisdom,
             charisma: charisma
           },
+          description: description,
           equipment: this.equipment
         });
         this.router.navigate(['/characters/']);
@@ -166,6 +171,7 @@ export class CharacterDetailComponent implements OnInit {
               wisdom: wisdom,
               charisma: charisma
             },
+            description: description,
             equipment: this.equipment
           },
           this.id as string
@@ -206,6 +212,8 @@ export class CharacterDetailComponent implements OnInit {
   onChangedEditor(event: any): void {
     if (event.html) {
       this.htmlContent = event.html;
+      this.form.controls['description'].setValue(this.htmlContent);
+      console.log('description', this.form.controls['description']);
     }
   }
 

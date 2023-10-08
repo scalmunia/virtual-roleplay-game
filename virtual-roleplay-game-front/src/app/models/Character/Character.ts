@@ -42,6 +42,7 @@ export interface ICharacter {
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
+  description: string | null;
   equipment: Equipment[];
 }
 
@@ -51,6 +52,7 @@ export class Character implements ICharacter {
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
+  description: string | null;
   equipment: Equipment[];
 
   constructor(character?: ICharacter) {
@@ -66,6 +68,7 @@ export class Character implements ICharacter {
       wisdom: 0,
       charisma: 0
     };
+    this.description = character?.description || null;
     this.equipment = character?.equipment || [];
   }
 
@@ -87,6 +90,7 @@ export class Character implements ICharacter {
       charisma: character.abilities.charisma,
     };
 
+    this.description = character.description;
     this.equipment = character.equipment?.map(equipmentItem => ({
       id: equipmentItem.id,
       img: equipmentItem.img,

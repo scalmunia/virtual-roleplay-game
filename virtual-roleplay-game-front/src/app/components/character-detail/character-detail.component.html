@@ -198,7 +198,7 @@
 
         </div>
 
-      </div>
+      </div> -->
 
       <div class="additionalInformation">
         <div class="attacksAndSpells">
@@ -211,13 +211,10 @@
         </div>
         <div class="annotations">
           <p>ANOTACIONES</p>
-          <quill-editor name="annotations" id="annotations" [modules]="modulesQuill"
+          <quill-editor name="annotations" id="annotations" [modules]="modulesQuill" formControlName="description"
             (onEditorChange)="onChangedEditor($event)"></quill-editor>
         </div>
-      </div> -->
-
-
-
+      </div>
 
       <div class="inventory-container">
         <p class="p-title">INVENTARIO Y EQUIPO</p>
