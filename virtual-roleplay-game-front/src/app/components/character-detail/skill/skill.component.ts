@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ABILITIES_TRANSLATION } from 'src/app/models/Character/character.constants';
 
 @Component({
@@ -12,7 +13,7 @@ export class SkillComponent {
   @Input() ability: string = '';
   @Input() name: string = '';
   @Input() bonus: number = 0;
-  checked: any = null;
+  checkboxControl: FormControl = new FormControl(false);
 
   convertSkill(ability: string): string {
     const translationSkill = ABILITIES_TRANSLATION[ability] || ability;

@@ -73,14 +73,10 @@
 
       <hr class="line">
 
+      <p class="p-skill">HABILIDADES</p>
       <div class="skills-container">
-        <p class="p-skill">HABILIDADES</p>
-        <div class="skill-flex">
-          <div class="cont-skill" *ngFor="let skill of skillsList; let i = index">
-            <div class="skills">
-              <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
-            </div>
-          </div>
+        <div class="skills" *ngFor="let skill of skillsList; let i = index">
+          <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
         </div>
       </div>
 

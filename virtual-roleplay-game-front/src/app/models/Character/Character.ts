@@ -36,12 +36,17 @@ export type Equipment = {
   }>
 }
 
+export type Skill = {
+  id: string
+}
+
 export interface ICharacter {
   _id: string;
   avatar: string | null;
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
+  skills: boolean[];
   description: string | null;
   equipment: Equipment[];
 }
@@ -52,6 +57,7 @@ export class Character implements ICharacter {
   name: string | null;
   class: Classes | null;
   abilities: Abilities;
+  skills: boolean[];
   description: string | null;
   equipment: Equipment[];
 
@@ -68,6 +74,7 @@ export class Character implements ICharacter {
       wisdom: 0,
       charisma: 0
     };
+    this.skills = character?.skills || [];
     this.description = character?.description || null;
     this.equipment = character?.equipment || [];
   }

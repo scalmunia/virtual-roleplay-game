@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
@@ -57,7 +57,12 @@ export class CharacterDetailComponent implements OnInit {
       intelligence: new FormControl(''),
       wisdom: new FormControl(''),
       charisma: new FormControl(''),
-      description: new FormControl('')
+      description: new FormControl(''),
+      skills: new FormArray([
+        new FormGroup({
+          // id: new FormControl('')
+        })
+      ])
     });
 
     //'combineLatest' combina varias fuentes de observables en una sola secuencia de emisiones
@@ -122,6 +127,21 @@ export class CharacterDetailComponent implements OnInit {
     this.form.controls['description'].setValue(response.result.description);
 
     this.equipment = response.result.equipment;
+
+    // Carga los valores de los checkboxes desde la base de datos
+    const skillsArray = this.skillsList.map((skill, index) => {
+      const control = new FormControl(false);
+      const checked = response.result.skills.includes(index);
+      if (checked) {
+        control.setValue(true);
+      }
+      return control;
+    });
+
+    const skillsFormArray = new FormArray(skillsArray);
+    this.form.setControl('skills', skillsFormArray);
+
+    console.log('form', this.form)
   }
 
   async onSubmit() {
@@ -138,7 +158,16 @@ export class CharacterDetailComponent implements OnInit {
         charisma,
         description
       } = this.form.value;
-      console.log('description', description);
+
+      // const skills = this.form.get('skills')?.value
+      //   .map((checked, index) => (checked ? index : -1))
+      //   .filter((index) => index !== -1);
+
+      const skills = this.form.get('skills')?.value as boolean[];
+
+      const selectedSkills = skills
+        .map((checked, index) => (checked ? index : -1))
+        .filter((index) => index !== -1);
 
       if (this.mode === 'create') {
         await this.characterService.save({
@@ -153,6 +182,7 @@ export class CharacterDetailComponent implements OnInit {
             wisdom: wisdom,
             charisma: charisma
           },
+          skills: skills,
           description: description,
           equipment: this.equipment
         });
@@ -173,6 +203,7 @@ export class CharacterDetailComponent implements OnInit {
               wisdom: wisdom,
               charisma: charisma
             },
+            skills: skills,
             description: description,
             equipment: this.equipment
           },
