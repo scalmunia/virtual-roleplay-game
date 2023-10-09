@@ -19,10 +19,5 @@ export class SkillComponent {
     const abreviateSkill = translationSkill.slice(0, 3);
     return abreviateSkill;
   }
-
-
-  // format(value: string): number {
-  //   return parseInt(value);
-  // }
 }
 

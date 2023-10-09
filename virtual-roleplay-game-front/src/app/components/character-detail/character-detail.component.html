@@ -73,38 +73,6 @@
 
       <hr class="line">
 
-      <!-- <div class="skills-container">
-        <p class="p-skill">HABILIDADES</p>
-        <div class="cont-skill">
-          <div class="skills" *ngFor="let skill of skillsList; let i = index">
-            <ng-container *ngIf="i < 5">
-              <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
-            </ng-container>
-          </div>
-        </div>
-        <div class="cont-skill">
-          <div class="skills" *ngFor="let skill of skillsList; let i = index">
-            <ng-container *ngIf="i >= 5 && i < 10">
-              <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
-            </ng-container>
-          </div>
-        </div>
-        <div class="cont-skill">
-          <div class="skills" *ngFor="let skill of skillsList; let i = index">
-            <ng-container *ngIf="i >= 10 && i < 15">
-              <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
-            </ng-container>
-          </div>
-        </div>
-        <div class="cont-skill">
-          <div class="skills" *ngFor="let skill of skillsList; let i = index">
-            <ng-container *ngIf="i >= 15">
-              <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
-            </ng-container>
-          </div>
-        </div>
-      </div> -->
-
       <div class="skills-container">
         <p class="p-skill">HABILIDADES</p>
         <div class="skill-flex">
@@ -112,13 +80,9 @@
             <div class="skills">
               <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
             </div>
-            <!-- <div *ngIf="(i + 1) % 4 === 0" class="clearfix"></div> -->
           </div>
         </div>
       </div>
-
-
-
 
       <div class="additionalInformation">
         <div class="attacksAndSpells">
