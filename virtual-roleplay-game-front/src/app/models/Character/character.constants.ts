@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export const POINT_COST_OF_ABILITY_SCORES = {
   8: 0,
   9: 1,
@@ -59,94 +61,76 @@ export const HIT_DICE_ACCORDING_TO_CLASSES = {
 
 export const SKILLS_LIST = [
   {
-    name: 'Acrobacias',
-    ability: 'dexterity',
-    bonus: 0
+    id: 'Acrobacias',
+    ability: 'dexterity'
   },
   {
-    name: 'Arcanos',
+    id: 'Arcanos',
     ability: 'intelligence',
-    bonus: -1
   },
   {
-    name: 'Atletismo',
-    ability: 'strength',
-    bonus: 2
+    id: 'Atletismo',
+    ability: 'strength'
   },
   {
-    name: 'Engaño',
-    ability: 'charisma',
-    bonus: 1
+    id: 'Engaño',
+    ability: 'charisma'
   },
   {
-    name: 'Historia',
+    id: 'Historia',
     ability: 'intelligence',
-    bonus: -1
   },
   {
-    name: 'Interpretación',
-    ability: 'charisma',
-    bonus: 1
+    id: 'Interpretación',
+    ability: 'charisma'
   },
   {
-    name: 'Intimidación',
-    ability: 'charisma',
-    bonus: 1
+    id: 'Intimidación',
+    ability: 'charisma'
   },
   {
-    name: 'Investigación',
+    id: 'Investigación',
     ability: 'intelligence',
-    bonus: -1
   },
   {
-    name: 'Juego de manos',
-    ability: 'dexterity',
-    bonus: 0
+    id: 'Juego de manos',
+    ability: 'dexterity'
   },
   {
-    name: 'Medicina',
-    ability: 'wisdom',
-    bonus: 1
+    id: 'Medicina',
+    ability: 'wisdom'
   },
   {
-    name: 'Naturaleza',
+    id: 'Naturaleza',
     ability: 'intelligence',
-    bonus: -1
   },
   {
-    name: 'Percepción',
-    ability: 'wisdom',
-    bonus: 1
+    id: 'Percepción',
+    ability: 'wisdom'
   },
   {
-    name: 'Perspicacia',
-    ability: 'wisdom',
-    bonus: 1
+    id: 'Perspicacia',
+    ability: 'wisdom'
   },
   {
-    name: 'Persuasión',
-    ability: 'charisma',
-    bonus: 1
+    id: 'Persuasión',
+    ability: 'charisma'
   },
   {
-    name: 'Religión',
-    ability: 'intelligence',
-    bonus: 1
+    id: 'Religión',
+    ability: 'intelligence'
   },
   {
-    name: 'Sigilo',
-    ability: 'dexterity',
-    bonus: 0
+    id: 'Sigilo',
+    ability: 'dexterity'
   },
   {
-    name: 'Supervivencia',
-    ability: 'dexterity',
-    bonus: 1
+    id: 'Supervivencia',
+    ability: 'dexterity'
   },
   {
-    name: 'Trato con animales',
-    ability: 'wisdom',
-    bonus: 1
+    id: 'Trato con animales',
+    ability: 'wisdom'
   }
 ]
 

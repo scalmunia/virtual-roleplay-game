@@ -3,6 +3,12 @@
     { name: mode === 'create' ? 'Nuevo personaje' : form.controls['name'].value }]">
 </vrg-nav>
 
+<!-- <pre style="background: white">
+  <code>
+    {{form.value | json}}
+  </code>
+</pre> -->
+
 <div class="root">
   <div class="container" [ngClass]="{ 'blur-background': isModalOpen }">
 
@@ -26,6 +32,10 @@
         <div class=" character-info">
           <input class="input-name" type="text" formControlName="name"
             [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+          <!-- <div>
+            <label for="level">Nivel</label>
+            <input type="number" id="level" name="level">
+          </div> -->
           <select class="select-character-class" formControlName="characterClass"
             [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
             <option value="barbarian">Bárbaro</option>
@@ -75,8 +85,8 @@
 
       <p class="p-skill">HABILIDADES</p>
       <div class="skills-container">
-        <div class="skills" *ngFor="let skill of skillsList; let i = index">
-          <vrg-skill [index]="i" [ability]="skill.ability" [name]="skill.name" [bonus]="skill.bonus"></vrg-skill>
+        <div class="skills" *ngFor="let skill of skillsControls; let i = index">
+          <vrg-skill [skillId]="skill.skillId" [control]="skill.control"></vrg-skill>
         </div>
       </div>
 

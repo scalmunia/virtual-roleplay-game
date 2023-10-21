@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, merge } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
 import { Equipment, ICharacter } from 'src/app/models/Character/Character';
 import { SKILLS_LIST } from 'src/app/models/Character/character.constants';
+
+const skillsEntries = SKILLS_LIST.map((skill) => ([skill.id, new FormControl(false)]));
+const skillControls = Object.fromEntries(skillsEntries);
 
 @Component({
   selector: 'vrg-character-detail',
@@ -14,11 +17,11 @@ import { SKILLS_LIST } from 'src/app/models/Character/character.constants';
   styleUrls: ['./character-detail.component.css'],
 })
 
+
 export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
   id: string | null = null;
   mode: 'create' | 'edit' | 'view' | null = null;
-  skillsList = SKILLS_LIST;
   htmlContent: any;
   modulesQuill = {
     toolbar: [
@@ -58,11 +61,7 @@ export class CharacterDetailComponent implements OnInit {
       wisdom: new FormControl(''),
       charisma: new FormControl(''),
       description: new FormControl(''),
-      skills: new FormArray([
-        new FormGroup({
-          // id: new FormControl('')
-        })
-      ])
+      skills: new FormGroup(skillControls)
     });
 
     //'combineLatest' combina varias fuentes de observables en una sola secuencia de emisiones
@@ -71,7 +70,24 @@ export class CharacterDetailComponent implements OnInit {
     combineLatest([this.route.queryParams, this.route.params]).subscribe(() => {
       this.loadMode();
     });
+
+    // this.addSkillCheckboxes();
   }
+
+  get skillsControls() {
+    const entries = Object.entries((this.form.get('skills') as FormGroup).controls) as Array<[string, FormControl<boolean>]>;
+    const obj = entries.map(([skillId, control]) => ({ skillId, control }))
+    return obj;
+  }
+
+  // private addSkillCheckboxes() {
+  //   this.skillsList.forEach((skill) => {
+  //     const control = new FormControl(false);
+
+  //     // (this.form.controls['skills'] as FormGroup).addControl(skill.id, control)
+  //     // this.form.controls['']
+  //   });
+  // }
 
   ngOnInit(): void {
     if (this.mode === 'create') return;
@@ -128,20 +144,8 @@ export class CharacterDetailComponent implements OnInit {
 
     this.equipment = response.result.equipment;
 
-    // Carga los valores de los checkboxes desde la base de datos
-    const skillsArray = this.skillsList.map((skill, index) => {
-      const control = new FormControl(false);
-      const checked = response.result.skills.includes(index);
-      if (checked) {
-        control.setValue(true);
-      }
-      return control;
-    });
-
-    const skillsFormArray = new FormArray(skillsArray);
-    this.form.setControl('skills', skillsFormArray);
-
-    console.log('form', this.form)
+    // Setear el valor de cada skill que viene en la resonse en el this.form.controls['skills']
+    console.log(response, this.form.value)
   }
 
   async onSubmit() {
@@ -159,59 +163,31 @@ export class CharacterDetailComponent implements OnInit {
         description
       } = this.form.value;
 
-      // const skills = this.form.get('skills')?.value
-      //   .map((checked, index) => (checked ? index : -1))
-      //   .filter((index) => index !== -1);
-
-      const skills = this.form.get('skills')?.value as boolean[];
-
-      const selectedSkills = skills
-        .map((checked, index) => (checked ? index : -1))
-        .filter((index) => index !== -1);
+      await this.characterService.save({
+        avatar: avatar,
+        name: name,
+        class: characterClass,
+        abilities: {
+          strength: strength,
+          dexterity: dexterity,
+          constitution: constitution,
+          intelligence: intelligence,
+          wisdom: wisdom,
+          charisma: charisma
+        },
+        skills: this.form.value.skills,
+        description: description,
+        equipment: this.equipment
+      }, this.id as string | undefined);
 
       if (this.mode === 'create') {
-        await this.characterService.save({
-          avatar: avatar,
-          name: name,
-          class: characterClass,
-          abilities: {
-            strength: strength,
-            dexterity: dexterity,
-            constitution: constitution,
-            intelligence: intelligence,
-            wisdom: wisdom,
-            charisma: charisma
-          },
-          skills: skills,
-          description: description,
-          equipment: this.equipment
-        });
         this.router.navigate(['/characters/']);
       }
 
       if (this.mode === 'edit') {
-        await this.characterService.save(
-          {
-            avatar: avatar,
-            name: name,
-            class: characterClass,
-            abilities: {
-              strength: strength,
-              dexterity: dexterity,
-              constitution: constitution,
-              intelligence: intelligence,
-              wisdom: wisdom,
-              charisma: charisma
-            },
-            skills: skills,
-            description: description,
-            equipment: this.equipment
-          },
-          this.id as string
-        );
-
         this.router.navigate(['/character/' + this.id]);
       }
+
     } catch (error) {
       console.error(error);
       this.error = error as Error;
@@ -306,7 +282,6 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   updateImage(url: any) {
-    console.log('updateImage', url)
     this.form.controls['avatar'].setValue(url)
   }
 

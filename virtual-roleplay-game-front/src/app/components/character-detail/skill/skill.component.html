@@ -1,7 +1,8 @@
-<div class="skill-container">
-  <input class="check" [formControl]="checkboxControl" type="checkbox" [id]="index">
-  <label class="ability" [for]="index">{{ convertSkill(ability) }}</label>
-  <label class="name" [for]="index">{{ name }}</label>
-  <input class="bonus" type="text"
-    [value]="checkboxControl.value ? (bonus + 2  | addSignFilter) : bonus | addSignFilter">
+<div *ngIf="control" class="skill-container">
+  <input class="check" [formControl]="control" [value]="control.value" type="checkbox" [id]="skillId">
+  <label class="ability" [for]="skillId">{{ convertSkill(ability) }}</label>
+  <label class="name" [for]="skillId">{{ skillId }}</label>
+
+  <!-- <input class="bonus" type="text" [value]="control.value ? (bonus + 2  | addSignFilter) : bonus | addSignFilter"> -->
+  <!-- <span class="bonus">{{ability}}</span> -->
 </div>

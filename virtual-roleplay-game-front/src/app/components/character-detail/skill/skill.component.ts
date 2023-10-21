@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ABILITIES_TRANSLATION } from 'src/app/models/Character/character.constants';
+import { ABILITIES_TRANSLATION, SKILLS_LIST } from 'src/app/models/Character/character.constants';
 
 @Component({
   selector: 'vrg-skill',
@@ -9,16 +9,19 @@ import { ABILITIES_TRANSLATION } from 'src/app/models/Character/character.consta
 })
 
 export class SkillComponent {
-  @Input() index: number = 0;
-  @Input() ability: string = '';
-  @Input() name: string = '';
-  @Input() bonus: number = 0;
-  checkboxControl: FormControl = new FormControl(false);
+  @Input() skillId: string = '';
+  @Input() control?: FormControl<boolean>;
 
-  convertSkill(ability: string): string {
+  convertSkill(ability?: string): string {
+    if (!ability) return '';
     const translationSkill = ABILITIES_TRANSLATION[ability] || ability;
     const abreviateSkill = translationSkill.slice(0, 3);
     return abreviateSkill;
+  }
+
+  get ability() {
+    const skill = SKILLS_LIST.find(skill => skill.id === this.skillId);
+    return skill?.ability;
   }
 }
 
