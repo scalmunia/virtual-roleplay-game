@@ -8,7 +8,6 @@ import { PROFICIENCY_BONUS_ACORDING_TO_LEVEL } from 'src/app/models/Character/ch
 })
 export class ProficiencyComponent {
   @Input() character: any | null = null;
-
   modifier: number = 2;
 
   ngOnChanges() {
