@@ -70,30 +70,24 @@ export class CharacterDetailComponent implements OnInit {
     combineLatest([this.route.queryParams, this.route.params]).subscribe(() => {
       this.loadMode();
     });
-
-    // this.addSkillCheckboxes();
   }
-
-  get skillsControls() {
-    const entries = Object.entries((this.form.get('skills') as FormGroup).controls) as Array<[string, FormControl<boolean>]>;
-    const obj = entries.map(([skillId, control]) => ({ skillId, control }))
-    return obj;
-  }
-
-  // private addSkillCheckboxes() {
-  //   this.skillsList.forEach((skill) => {
-  //     const control = new FormControl(false);
-
-  //     // (this.form.controls['skills'] as FormGroup).addControl(skill.id, control)
-  //     // this.form.controls['']
-  //   });
-  // }
 
   ngOnInit(): void {
+    this.resetSkills();
+
     if (this.mode === 'create') return;
 
     this.loadCharacter();
   }
+
+  private resetSkills() {
+    const skillsFormGroup = this.form.get('skills') as FormGroup;
+    Object.keys(skillsFormGroup.controls).forEach((skillId) => {
+      const control = skillsFormGroup.get(skillId) as FormControl;
+      control.setValue(false);
+    });
+  }
+
 
   loadMode() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -140,12 +134,11 @@ export class CharacterDetailComponent implements OnInit {
     );
     this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
     this.form.controls['charisma'].setValue(response.result.abilities.charisma);
+    this.form.controls['skills'].setValue(response.result.skills);
     this.form.controls['description'].setValue(response.result.description);
 
     this.equipment = response.result.equipment;
 
-    // Setear el valor de cada skill que viene en la resonse en el this.form.controls['skills']
-    console.log(response, this.form.value)
   }
 
   async onSubmit() {
@@ -160,6 +153,7 @@ export class CharacterDetailComponent implements OnInit {
         intelligence,
         wisdom,
         charisma,
+        skills,
         description
       } = this.form.value;
 
@@ -175,7 +169,7 @@ export class CharacterDetailComponent implements OnInit {
           wisdom: wisdom,
           charisma: charisma
         },
-        skills: this.form.value.skills,
+        skills: skills,
         description: description,
         equipment: this.equipment
       }, this.id as string | undefined);
@@ -302,5 +296,11 @@ export class CharacterDetailComponent implements OnInit {
   }
   get charismaControl(): FormControl {
     return this.form.get('charisma') as FormControl;
+  }
+
+  get skillsControls() {
+    const entries = Object.entries((this.form.get('skills') as FormGroup).controls) as Array<[string, FormControl<boolean>]>;
+    const obj = entries.map(([skillId, control]) => ({ skillId, control }))
+    return obj;
   }
 }
