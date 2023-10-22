@@ -40,6 +40,7 @@ export interface ICharacter {
   _id: string;
   avatar: string | null;
   name: string | null;
+  level: number | 1;
   class: Classes | null;
   abilities: Abilities;
   skills: {
@@ -53,6 +54,7 @@ export class Character implements ICharacter {
   _id: string;
   avatar: string | null
   name: string | null;
+  level: number | 1;
   class: Classes | null;
   abilities: Abilities;
   skills: ICharacter['skills'];
@@ -61,8 +63,9 @@ export class Character implements ICharacter {
 
   constructor(character?: ICharacter) {
     this._id = character?._id || '';
-    this.name = character?.name || null;
     this.avatar = character?.avatar || null;
+    this.name = character?.name || null;
+    this.level = character?.level || 1;
     this.class = character?.class || null;
     this.abilities = character?.abilities || {
       strength: 0,
@@ -82,8 +85,9 @@ export class Character implements ICharacter {
     let availableAbilityPoints = totalAbilityPoints;
 
     // Seteos
-    this.name = character.name;
     this.avatar = character.avatar;
+    this.name = character.name;
+    this.level = character.level;
     this.class = character.class;
 
     this.abilities = {

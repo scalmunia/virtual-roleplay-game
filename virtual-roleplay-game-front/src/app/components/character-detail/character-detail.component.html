@@ -3,12 +3,6 @@
     { name: mode === 'create' ? 'Nuevo personaje' : form.controls['name'].value }]">
 </vrg-nav>
 
-<!-- <pre style="background: white">
-  <code>
-    {{form.value | json}}
-  </code>
-</pre> -->
-
 <div class="root">
   <div class="container" [ngClass]="{ 'blur-background': isModalOpen }">
 
@@ -32,25 +26,30 @@
         <div class=" character-info">
           <input class="input-name" type="text" formControlName="name"
             [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
-          <!-- <div>
-            <label for="level">Nivel</label>
-            <input type="number" id="level" name="level">
-          </div> -->
-          <select class="select-character-class" formControlName="characterClass"
-            [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
-            <option value="barbarian">Bárbaro</option>
-            <option value="bard">Bardo</option>
-            <option value="warlock">Brujo</option>
-            <option value="cleric">Clérigo</option>
-            <option value="druid">Druida</option>
-            <option value="ranger">Explorador</option>
-            <option value="fighter">Guerrero</option>
-            <option value="sorcerer">Hechicero</option>
-            <option value="wizard">Mago</option>
-            <option value="monk">Monje</option>
-            <option value="paladin">Paladín</option>
-            <option value="rogue">Pícaro</option>
-          </select>
+          <div class="character-details">
+            <div class="level">
+              <label for="level">Nivel</label>
+              <select class="select-level" formControlName="level"
+                [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+                <option *ngFor="let level of levelOptions" [value]="level">{{ level }}</option>
+              </select>
+            </div>
+            <select class="select-character-class" formControlName="characterClass"
+              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+              <option value="barbarian">Bárbaro</option>
+              <option value="bard">Bardo</option>
+              <option value="warlock">Brujo</option>
+              <option value="cleric">Clérigo</option>
+              <option value="druid">Druida</option>
+              <option value="ranger">Explorador</option>
+              <option value="fighter">Guerrero</option>
+              <option value="sorcerer">Hechicero</option>
+              <option value="wizard">Mago</option>
+              <option value="monk">Monje</option>
+              <option value="paladin">Paladín</option>
+              <option value="rogue">Pícaro</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -77,7 +76,7 @@
         <div class="scores">
           <vrg-hit-points [character]="character"></vrg-hit-points>
           <vrg-armor [character]="character"></vrg-armor>
-          <vrg-proficiency></vrg-proficiency>
+          <vrg-proficiency [character]="character"></vrg-proficiency>
         </div>
       </div>
 

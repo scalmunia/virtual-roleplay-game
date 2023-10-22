@@ -10,7 +10,6 @@ import { calcMaximunLife } from 'src/app/models/Character/calcMaximunLife';
 export class HitPointsComponent {
   @Input() character: any | null = null;
 
-  // Almacena el modificador calculado
   modifier: number | string = '';
 
   ngOnChanges() {

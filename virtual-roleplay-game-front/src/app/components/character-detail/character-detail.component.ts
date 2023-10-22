@@ -22,6 +22,7 @@ export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
   id: string | null = null;
   mode: 'create' | 'edit' | 'view' | null = null;
+  levelOptions: number[] = Array.from({ length: 20 }, (_, i) => i + 1);
   htmlContent: any;
   modulesQuill = {
     toolbar: [
@@ -53,6 +54,7 @@ export class CharacterDetailComponent implements OnInit {
     this.form = new FormGroup({
       avatar: new FormControl(''),
       name: new FormControl(''),
+      level: new FormControl(''),
       characterClass: new FormControl(''),
       strength: new FormControl(''),
       dexterity: new FormControl(''),
@@ -121,6 +123,7 @@ export class CharacterDetailComponent implements OnInit {
     //Cargar los valores en el formulario
     this.form.controls['avatar'].setValue(response.result.avatar);
     this.form.controls['name'].setValue(response.result.name);
+    this.form.controls['level'].setValue(response.result.level);
     this.form.controls['characterClass'].setValue(response.result.class);
     this.form.controls['strength'].setValue(response.result.abilities.strength);
     this.form.controls['dexterity'].setValue(
@@ -146,6 +149,7 @@ export class CharacterDetailComponent implements OnInit {
       const {
         avatar,
         name,
+        level,
         characterClass,
         strength,
         dexterity,
@@ -160,6 +164,7 @@ export class CharacterDetailComponent implements OnInit {
       await this.characterService.save({
         avatar: avatar,
         name: name,
+        level: level,
         class: characterClass,
         abilities: {
           strength: strength,
