@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
 import { ABILITIES_TRANSLATION, ABILITY_SCORES_AND_MODIFIERS, PROFICIENCY_BONUS_ACORDING_TO_LEVEL, SKILLS_LIST } from 'src/app/models/Character/character.constants';
 
 @Component({
@@ -28,8 +27,19 @@ export class SkillComponent {
     if (!characterLevel) return 0;
     const abilityValue = this.character ? this.character[ability] : 0;
     const abilityModifier = ABILITY_SCORES_AND_MODIFIERS[abilityValue as keyof typeof ABILITY_SCORES_AND_MODIFIERS];
+
+    let finalModifier = abilityModifier;
+    this.character.equipment.forEach((equipment) => {
+      equipment.attributes.forEach((attribute) => {
+        if (attribute.name === ability) {
+          finalModifier += attribute.bonus;
+        }
+      });
+    });
+    this.character[ability] = abilityValue + finalModifier;
+
     const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[characterLevel] || 0;
-    const bonus = abilityModifier + proficiencyBonus
+    const bonus = finalModifier + proficiencyBonus
     return bonus;
   }
 
