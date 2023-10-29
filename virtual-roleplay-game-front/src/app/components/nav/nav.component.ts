@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavService } from 'src/app/services/nav.service';
+import { Router } from '@angular/router';
 
 interface Segment {
   name: string;
@@ -19,10 +20,21 @@ export class NavComponent implements OnInit {
   firstLetter: string = '';
   error: Error | null = null;
 
-  constructor(private navService: NavService) { }
+  constructor(private navService: NavService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUser();
+  }
+
+  signOff() {
+    console.log('haciendo click');
+    localStorage.removeItem('token');
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
   }
 
   async getUser() {

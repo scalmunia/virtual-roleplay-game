@@ -31,6 +31,10 @@
   text-decoration: none;
 }
 
+a.segment:hover {
+  text-decoration: underline;
+}
+
 .segment--active {
   color: var(--primary-text-color);
 }
@@ -39,8 +43,41 @@
   margin: 0 6px;
 }
 
+.right-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .user {
   display: flex;
+}
+
+.logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  border-radius: 6px;
+  transition: background-color .15s linear;
+}
+
+.logout svg {
+  width: 24px;
+  height: 24px;
+}
+
+.logout:hover {
+  background: #ffffff22;
 }
 
 .name {
