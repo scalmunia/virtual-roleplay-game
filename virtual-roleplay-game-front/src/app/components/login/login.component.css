@@ -86,3 +86,36 @@
 
   margin-top: 15px;
 }
+
+.error {
+  margin: 16px 0 32px;
+  color: #ff6f6f;
+  font-family: var(--secondary-typography);
+  font-size: 14px;
+  font-weight: 700;
+  -webkit-animation: error-animation 0.25s linear;
+  animation: error-animation 0.25s linear;
+  /* Aplica la animación a la clase error */
+}
+
+@keyframes error-animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(5px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

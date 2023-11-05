@@ -9,9 +9,10 @@
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
         formControlName="password"></vrg-input>
     </div>
-    <div class="recover-pwd-container">
+    <!-- <div class="recover-pwd-container">
       <a class="recover-pwd">¿Has olvidado la contraseña?</a>
-    </div>
+    </div> -->
+    <p class="error" *ngIf="error">{{error}}</p>
     <div class="button-container">
       <vrg-button type="submit" color="primary">Iniciar sesión</vrg-button>
     </div>
@@ -20,6 +21,4 @@
   <hr class="line">
 
   <a class="register" routerLink="/register">Regístrate</a>
-
-  <p class="error" *ngIf="error">{{error.message}}</p>
 </div>

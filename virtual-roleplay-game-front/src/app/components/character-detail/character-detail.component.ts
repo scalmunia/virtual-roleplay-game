@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { combineLatest, merge } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
@@ -90,7 +90,6 @@ export class CharacterDetailComponent implements OnInit {
     });
   }
 
-
   loadMode() {
     this.id = this.route.snapshot.paramMap.get('id');
     const editModeQueryParam = this.route.snapshot.queryParamMap.has('edit');
@@ -99,10 +98,6 @@ export class CharacterDetailComponent implements OnInit {
     const isCreate = !this.id; //Si no hay id
     const isView = this.id && !editModeQueryParam; //Si sí que hay id
     const isEdit = this.id && editModeQueryParam; //Si hay id y el query param 'edit'
-
-    // if (isCreate) this.mode = 'create';
-    // if (isView) this.mode = 'view';
-    // if (isEdit) this.mode = 'edit';
 
     this.mode =
       (isCreate && 'create') ||
