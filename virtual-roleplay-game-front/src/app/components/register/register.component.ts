@@ -45,8 +45,21 @@ export class RegisterComponent implements OnInit {
     try {
       await this.registerService.registerUser(user);
       this.router.navigate(['/login']);
-    } catch (error) {
+    } catch (error: any) {
       this.error = error as Error;
+
+      const errorMessage = await error.json();
+      if (error.status === 400) {
+        this.error = errorMessage.error
+
+        // Elimina y vuelve a agregar la clase error para reiniciar la animación
+        const errorElement = document.querySelector('.error') as any;
+        if (errorElement) {
+          errorElement.classList.remove('error');
+          void errorElement.offsetWidth; // Forzar un nuevo layout para reiniciar la animación
+          errorElement.classList.add('error');
+        }
+      }
     }
   }
 }

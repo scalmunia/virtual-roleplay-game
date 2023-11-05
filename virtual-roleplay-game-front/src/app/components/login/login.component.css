@@ -93,9 +93,10 @@
   font-family: var(--secondary-typography);
   font-size: 14px;
   font-weight: 700;
+
+  /* Aplica la animación a la clase error */
   -webkit-animation: error-animation 0.25s linear;
   animation: error-animation 0.25s linear;
-  /* Aplica la animación a la clase error */
 }
 
 @keyframes error-animation {

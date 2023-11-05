@@ -13,6 +13,7 @@
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
         formControlName="password"></vrg-input>
     </div>
+    <p class="error" *ngIf="error">{{error}}</p>
     <div class="button-container">
       <vrg-button type="submit" color="primary">Crear cuenta</vrg-button>
     </div>
@@ -20,5 +21,4 @@
 
   <hr class="line">
 
-  <p class="error" *ngIf="error">{{error.message}}</p>
 </div>
