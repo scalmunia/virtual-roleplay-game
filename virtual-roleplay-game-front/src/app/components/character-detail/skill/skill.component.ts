@@ -22,13 +22,15 @@ export class SkillComponent {
     return abreviateSkill;
   }
 
-  calculateBonus(ability?: string, characterLevel?: number): string | number {
-    if (!ability) return '';
+  calculateBonus(ability?: string, characterLevel?: number): number {
+    if (!ability) return 0;
     if (!characterLevel) return 0;
+
     const abilityValue = this.character ? this.character[ability] : 0;
     const abilityModifier = ABILITY_SCORES_AND_MODIFIERS[abilityValue as keyof typeof ABILITY_SCORES_AND_MODIFIERS];
 
     let finalModifier = abilityModifier;
+
     this.character.equipment.forEach((equipment) => {
       equipment.attributes.forEach((attribute) => {
         if (attribute.name === ability) {
@@ -36,11 +38,18 @@ export class SkillComponent {
         }
       });
     });
+
     this.character[ability] = abilityValue + finalModifier;
 
-    const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[characterLevel] || 0;
-    const bonus = finalModifier + proficiencyBonus
-    return bonus;
+    if (this.control && this.control.value) {
+
+      const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[characterLevel] || 0;
+      const bonus = finalModifier + proficiencyBonus;
+
+      return bonus;
+    } else {
+      return finalModifier;
+    }
   }
 
   get ability() {
