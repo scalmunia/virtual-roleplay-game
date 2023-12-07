@@ -17,7 +17,7 @@
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
   width: 100%;
 
@@ -152,7 +152,7 @@
 }
 
 .line {
-  max-width: 1024px;
+  max-width: 100%;
   width: 100%;
   margin-top: 20px;
   border: none;
@@ -207,6 +207,7 @@
 }
 
 .attacksAndSpells {
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
 
@@ -235,6 +236,10 @@
   line-height: 160%;
 } */
 
+.annotations {
+  flex: 1 1 50%;
+}
+
 .annotations p {
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
@@ -245,6 +250,7 @@
 }
 
 .text-editor {
+  width: 100%;
   margin-top: 8px;
 }
 

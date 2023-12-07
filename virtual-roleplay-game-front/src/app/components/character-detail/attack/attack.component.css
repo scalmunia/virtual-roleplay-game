@@ -4,34 +4,31 @@ input {
 
 .container {
   width: 100%;
-  /* gap: 8px; */
-
-  /* max-height: 200px; */
-  border-radius: 8px;
-  background: rgba(28, 28, 34, 0.60);
+  margin-top: 8px;
 }
 
-/* .attacks {
-  margin-top: 10px;
-} */
+.table {
+  width: 100%;
+}
 
 .attack-header {
-  /* display: flex;
-  gap: 16px; */
-
   margin-top: 18px;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   line-height: 100%;
   text-align: left;
 }
 
+th {
+  padding-bottom: 4px;
+}
+
 th,
 td {
-  padding: 2px 8px;
+  padding: 4px 12px 4px 0;
 }
 
 .proficiency {
@@ -48,47 +45,43 @@ td {
   border: 1.5px solid var(--primary-text-color);
 }
 
-.name {
-  background-color: transparent;
-  border: none;
+input[type="text"],
+input[type="number"],
+select {
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
-  font-size: 12px;
-  line-height: 120%;
-}
-
-.select-ability {
-  width: 30px;
-
-  background-color: transparent;
+  font-size: 14px;
   border: none;
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 140%;
-  text-transform: uppercase;
+  background-color: transparent;
 
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   opacity: 1;
+
+  width: 100%;
+  padding: 6px 8px;
 }
 
-.select-ability option {
-  background-color: rgb(69, 69, 73);
+select {
+  font-size: 12px;
+}
+
+input[type="text"]:not(:disabled),
+input[type="number"]:not(:disabled),
+select:not(:disabled) {
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .damage {
-  width: 20px;
+  max-width: 50px;
+}
 
-  background-color: transparent;
-  border: none;
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 140%;
+
+select option {
+  background-color: rgb(69, 69, 73);
+  font-size: 12px;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -98,16 +91,43 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .bonus {
-  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  appearance: none;
+  padding: 4px 8px;
+  transition: all .3s linear;
+  cursor: pointer;
 
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 140%;
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 16px;
 }
 
-.addAttackBtn {
-  display: block;
-  margin-top: 8px;
+
+.bonus:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.actionBtn {
+  background: none;
+  appearance: none;
+  border: 0;
+  margin: 0 auto;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0px 8px;
+  border-radius: 6px;
+  transition: all .3s linear;
+
+  width: 28px;
+  height: 28px;
+}
+
+.actionBtn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
 }

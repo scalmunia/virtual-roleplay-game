@@ -1,19 +1,18 @@
 <div class="container">
   <form [formGroup]="form">
-    <table formArrayName="attacks">
+    <table class="table" formArrayName="attacks">
       <thead class="attack-header">
         <tr>
           <th></th>
           <th>NOMBRE</th>
-          <th>CARACTERÍSTICA</th>
+          <th>CAR.</th>
           <th>DAÑO</th>
           <th>BONUS</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let attack of attacks.controls; let i = index; let first = first; let last = last;"
-          [formGroupName]="i">
+        <tr *ngFor="let attack of attacks.controls; let i = index; let last = last;" [formGroupName]="i">
           <td>
             <input type="checkbox" class="proficiency" aria-label="Competencia" formControlName="proficiency">
           </td>
@@ -37,10 +36,15 @@
           <td>
             <!-- <div *ngIf="selectedAbility" class="bonus" formControlName="bonus">{{ calculateBonus(character.level) |
               addSignFilter }}</div> -->
+            <button class="bonus">+3</button>
           </td>
           <td>
-            <button *ngIf="first" type="button" class="addAttackBtn" (click)="removeAttack(attack.value)">-</button>
-            <button *ngIf="last" type="button" class="addAttackBtn" (click)="addNewAttack()">+</button>
+            <button *ngIf="!last" type="button" class="actionBtn" (click)="removeAttack(attack.value)">
+              <img src="assets/icons/trash.svg" alt="Imagen">
+            </button>
+            <button *ngIf="last" type="button" class="actionBtn" (click)="addNewAttack()">
+              <img src="assets/icons/plus.svg" alt="Imagen">
+            </button>
           </td>
         </tr>
       </tbody>
