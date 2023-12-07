@@ -1,3 +1,4 @@
+import { calcAbilitiesBonus } from './calcAbilityBonus';
 import { POINT_COST_OF_ABILITY_SCORES } from './character.constants';
 
 type Classes =
@@ -22,6 +23,8 @@ export type Abilities = {
   wisdom: number;
   charisma: number;
 };
+
+export type Bonus = Abilities;
 
 export type Attack = {
   proficiency: boolean;

@@ -1,4 +1,4 @@
-import { Abilities, ICharacter } from "./Character";
+import { Abilities, Bonus, ICharacter } from "./Character";
 import { ABILITY_SCORES_AND_MODIFIERS } from "./character.constants";
 
 export function calcAbilityModifier(character: ICharacter, ability: keyof Abilities) {
@@ -18,11 +18,19 @@ export function calcAbilityModifier(character: ICharacter, ability: keyof Abilit
       });
     });
 
-    // Actualizar la propiedad del personaje con el modificador final
-    character[ability] = abilityValue + finalModifier;
-
     return finalModifier;
   }
 
   return 0;
+}
+
+export function calcAbilitiesBonus(character: ICharacter): Bonus {
+  return {
+    charisma: calcAbilityModifier(character, 'charisma'),
+    constitution: calcAbilityModifier(character, 'constitution'),
+    dexterity: calcAbilityModifier(character, 'dexterity'),
+    intelligence: calcAbilityModifier(character, 'intelligence'),
+    strength: calcAbilityModifier(character, 'strength'),
+    wisdom: calcAbilityModifier(character, 'wisdom'),
+  }
 }

@@ -2,5 +2,5 @@
   <input class="check" [formControl]="control" [value]="control.value" type="checkbox" [id]="skillId">
   <label class="ability" [for]="skillId">{{ convertSkill(ability) }}</label>
   <label class="name" [for]="skillId">{{ skillId }}</label>
-  <div *ngIf="character" class="bonus">{{ calculateBonus(ability, character.level) | addSignFilter }}</div>
+  <div *ngIf="character" class="bonus">{{ calcAbilityModifier(ability) | addSignFilter }}</div>
 </div>

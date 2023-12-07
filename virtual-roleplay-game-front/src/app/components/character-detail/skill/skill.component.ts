@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Abilities } from 'src/app/models/Character/Character';
+import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
 import { ABILITIES_TRANSLATION, ABILITY_SCORES_AND_MODIFIERS, PROFICIENCY_BONUS_ACORDING_TO_LEVEL, SKILLS_LIST } from 'src/app/models/Character/character.constants';
 
 @Component({
@@ -22,32 +24,37 @@ export class SkillComponent {
     return abreviateSkill;
   }
 
-  calculateBonus(ability?: string, characterLevel?: number): number {
+  calcAbilityModifier(ability?: string): number {
     if (!ability) return 0;
-    if (!characterLevel) return 0;
+    return calcAbilityModifier(this.character, ability as keyof Abilities);
+  };
 
-    const abilityValue = this.character ? this.character[ability] : 0;
-    const abilityModifier = ABILITY_SCORES_AND_MODIFIERS[abilityValue as keyof typeof ABILITY_SCORES_AND_MODIFIERS];
+  // calculateBonus(ability?: string, characterLevel?: number): number {
+  //   if (!ability) return 0;
+  //   if (!characterLevel) return 0;
 
-    let finalModifier = abilityModifier;
+  //   const abilityValue = this.character ? this.character[ability] : 0;
+  //   const abilityModifier = ABILITY_SCORES_AND_MODIFIERS[abilityValue as keyof typeof ABILITY_SCORES_AND_MODIFIERS];
 
-    this.character.equipment.forEach((equipment) => {
-      equipment.attributes.forEach((attribute) => {
-        if (attribute.name === ability) {
-          finalModifier += attribute.bonus;
-        }
-      });
-    });
+  //   let finalModifier = abilityModifier;
 
-    if (this.control && this.control.value) {
-      const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[characterLevel] || 0;
-      const bonus = finalModifier + proficiencyBonus;
+  //   this.character.equipment.forEach((equipment) => {
+  //     equipment.attributes.forEach((attribute) => {
+  //       if (attribute.name === ability) {
+  //         finalModifier += attribute.bonus;
+  //       }
+  //     });
+  //   });
 
-      return bonus;
-    } else {
-      return finalModifier;
-    }
-  }
+  //   if (this.control && this.control.value) {
+  //     const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[characterLevel] || 0;
+  //     const bonus = finalModifier + proficiencyBonus;
+
+  //     return bonus;
+  //   } else {
+  //     return finalModifier;
+  //   }
+  // }
 
   get ability() {
     const skill = SKILLS_LIST.find(skill => skill.id === this.skillId);
