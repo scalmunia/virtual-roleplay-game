@@ -24,7 +24,6 @@ html {
 
 .ql-editor {
   height: 190px;
-  width: 550px;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);

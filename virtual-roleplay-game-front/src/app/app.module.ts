@@ -23,6 +23,7 @@ import { EquipmentModalComponent } from './components/character-detail/equipment
 
 import { AddSignFilter } from 'src/app/filters/addSignFilter';
 import { SkillComponent } from './components/character-detail/skill/skill.component';
+import { AttackComponent } from './components/character-detail/attack/attack.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SkillComponent } from './components/character-detail/skill/skill.compon
     EquipmentModalComponent,
     AddSignFilter,
     SkillComponent,
+    AttackComponent,
   ],
   imports: [
     FormsModule,

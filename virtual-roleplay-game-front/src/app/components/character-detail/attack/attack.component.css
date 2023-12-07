@@ -1,0 +1,113 @@
+input {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.container {
+  width: 100%;
+  /* gap: 8px; */
+
+  /* max-height: 200px; */
+  border-radius: 8px;
+  background: rgba(28, 28, 34, 0.60);
+}
+
+/* .attacks {
+  margin-top: 10px;
+} */
+
+.attack-header {
+  /* display: flex;
+  gap: 16px; */
+
+  margin-top: 18px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 100%;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 2px 8px;
+}
+
+.proficiency {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+}
+
+.proficiency:checked {
+  background-color: var(--primary-text-color);
+  border: 1.5px solid var(--primary-text-color);
+}
+
+.name {
+  background-color: transparent;
+  border: none;
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.select-ability {
+  width: 30px;
+
+  background-color: transparent;
+  border: none;
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 140%;
+  text-transform: uppercase;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  opacity: 1;
+}
+
+.select-ability option {
+  background-color: rgb(69, 69, 73);
+}
+
+.damage {
+  width: 20px;
+
+  background-color: transparent;
+  border: none;
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 140%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bonus {
+  align-items: center;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 140%;
+}
+
+.addAttackBtn {
+  display: block;
+  margin-top: 8px;
+}

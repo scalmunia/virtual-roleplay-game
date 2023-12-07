@@ -5,7 +5,7 @@ import { combineLatest } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
-import { Equipment, ICharacter } from 'src/app/models/Character/Character';
+import { Attack, Equipment, ICharacter } from 'src/app/models/Character/Character';
 import { SKILLS_LIST } from 'src/app/models/Character/character.constants';
 
 const skillsEntries = SKILLS_LIST.map((skill) => ([skill.id, new FormControl(false)]));
@@ -35,12 +35,14 @@ export class CharacterDetailComponent implements OnInit {
     ],
   };
   isModalOpen = false;
+  attacks: Attack[] = [];
   equipment: Equipment[] = [];
   error: null | Error = null;
 
   get character(): ICharacter {
     return {
       ...this.form.value,
+      attacks: this.attacks,
       equipment: this.equipment
     }
   }
@@ -135,6 +137,7 @@ export class CharacterDetailComponent implements OnInit {
     this.form.controls['skills'].setValue(response.result.skills);
     this.form.controls['description'].setValue(response.result.description);
 
+    this.attacks = response.result.attacks;
     this.equipment = response.result.equipment;
 
   }
@@ -170,6 +173,7 @@ export class CharacterDetailComponent implements OnInit {
           charisma: charisma
         },
         skills: skills,
+        attacks: this.attacks,
         description: description,
         equipment: this.equipment
       }, this.id as string | undefined);
@@ -277,6 +281,11 @@ export class CharacterDetailComponent implements OnInit {
 
   updateImage(url: any) {
     this.form.controls['avatar'].setValue(url)
+  }
+
+  updateAttacks(attacks: Attack[]) {
+    this.attacks = attacks;
+    console.log({ character: this.character, attacks })
   }
 
   get strengthControl(): FormControl {

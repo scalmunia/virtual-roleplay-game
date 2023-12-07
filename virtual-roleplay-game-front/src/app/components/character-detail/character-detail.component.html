@@ -92,16 +92,12 @@
       <div class="additionalInformation">
         <div class="attacksAndSpells">
           <p>ATAQUES Y CONJUROS</p>
-          <input class="inputAttacks" type="text">
-          <input class="inputAttacks" type="text">
-          <input class="inputAttacks" type="text">
-          <input class="inputAttacks" type="text">
-          <input class="inputAttacks" type="text">
+          <vrg-attack [character]="character" (onAttacksChange)="updateAttacks($event)"></vrg-attack>
         </div>
         <div class="annotations">
           <p>ANOTACIONES</p>
-          <quill-editor name="annotations" id="annotations" [modules]="modulesQuill" formControlName="description"
-            (onEditorChange)="onChangedEditor($event)"></quill-editor>
+          <quill-editor class="text-editor" name="annotations" id="annotations" [modules]="modulesQuill"
+            formControlName="description" (onEditorChange)="onChangedEditor($event)"></quill-editor>
         </div>
       </div>
 

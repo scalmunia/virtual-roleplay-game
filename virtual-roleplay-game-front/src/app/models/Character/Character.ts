@@ -23,6 +23,13 @@ export type Abilities = {
   charisma: number;
 };
 
+export type Attack = {
+  proficiency: boolean;
+  name: string;
+  ability: string;
+  damage: number;
+};
+
 export type Equipment = {
   id: string;
   img: string;
@@ -34,7 +41,7 @@ export type Equipment = {
     bonus: number,
     effect: string
   }>
-}
+};
 
 export interface ICharacter {
   _id: string;
@@ -46,6 +53,7 @@ export interface ICharacter {
   skills: {
     [key: string]: boolean;
   };
+  attacks: Attack[];
   description: string | null;
   equipment: Equipment[];
 }
@@ -58,6 +66,7 @@ export class Character implements ICharacter {
   class: Classes | null;
   abilities: Abilities;
   skills: ICharacter['skills'];
+  attacks: Attack[];
   description: string | null;
   equipment: Equipment[];
 
@@ -76,6 +85,7 @@ export class Character implements ICharacter {
       charisma: 0
     };
     this.skills = character?.skills || {};
+    this.attacks = character?.attacks || [];
     this.description = character?.description || null;
     this.equipment = character?.equipment || [];
   }
@@ -99,6 +109,7 @@ export class Character implements ICharacter {
       charisma: character.abilities.charisma,
     };
 
+    this.attacks = character.attacks;
     this.description = character.description;
     this.equipment = character.equipment?.map(equipmentItem => ({
       id: equipmentItem.id,

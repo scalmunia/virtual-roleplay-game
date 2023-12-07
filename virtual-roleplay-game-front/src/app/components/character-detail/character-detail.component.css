@@ -201,7 +201,6 @@
 
 .additionalInformation {
   display: flex;
-  justify-content: space-between;
 
   margin-top: 40px;
   margin-bottom: 40px;
@@ -221,7 +220,7 @@
   text-transform: uppercase;
 }
 
-.inputAttacks {
+/* .inputAttacks {
   width: 395px;
   height: 32px;
   margin-bottom: 10px;
@@ -234,7 +233,7 @@
   font-family: var(--secondary-typography);
   font-size: 13px;
   line-height: 160%;
-}
+} */
 
 .annotations p {
   color: var(--secondary-text-color);
@@ -243,6 +242,10 @@
   font-weight: 800;
   line-height: 100%;
   text-transform: uppercase;
+}
+
+.text-editor {
+  margin-top: 8px;
 }
 
 .inventory-container {

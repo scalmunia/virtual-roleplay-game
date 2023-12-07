@@ -39,10 +39,7 @@ export class SkillComponent {
       });
     });
 
-    this.character[ability] = abilityValue + finalModifier;
-
     if (this.control && this.control.value) {
-
       const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[characterLevel] || 0;
       const bonus = finalModifier + proficiencyBonus;
 
