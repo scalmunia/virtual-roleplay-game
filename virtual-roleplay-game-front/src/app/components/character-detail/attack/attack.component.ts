@@ -2,14 +2,15 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Attack, ICharacter } from 'src/app/models/Character/Character';
 import { ABILITY_SCORES_AND_MODIFIERS, PROFICIENCY_BONUS_ACORDING_TO_LEVEL, SKILLS_LIST } from 'src/app/models/Character/character.constants';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'vrg-attack',
   templateUrl: './attack.component.html',
   styleUrls: ['./attack.component.css']
 })
-export class AttackComponent implements OnInit, OnChanges {
-  @Input() character: ICharacter | null = null;
+export class AttackComponent implements OnInit {
+  character: ICharacter | null = null;
   @Output() onAttacksChange: EventEmitter<Attack[]> = new EventEmitter()
 
   form = new FormGroup({
@@ -20,28 +21,34 @@ export class AttackComponent implements OnInit, OnChanges {
     return this.form.get('attacks') as FormArray;
   }
 
+  constructor(private characterService: CharacterService) { }
+
   ngOnInit() {
-    // Modo edición o creación
-    // this.addAttack()
+    this.loadFormWhenCharagerloadedSubscription();
+    this.updateCharacterWhenAttackFormChangesSubscription();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const currentCharacter: ICharacter = changes['character'].currentValue;
-    const prevCharacter: ICharacter = changes['character'].previousValue;
-    const hasAttacks = currentCharacter.attacks.length > 0;
-    const attacksChanged = JSON.stringify(prevCharacter?.attacks) !== JSON.stringify(currentCharacter?.attacks);
-
-    if (hasAttacks && attacksChanged) {
-      this.loadAttacks()
-    }
+  loadFormWhenCharagerloadedSubscription() {
+    this.characterService.character$.subscribe((character) => {
+      if (!character) return;
+      this.loadForm(character?.attacks);
+      this.character = character;
+    })
   }
 
-  loadAttacks() {
-    if (!this.character) return;
-    // this.form.setValue({ attacks: this.character.attacks })
+  updateCharacterWhenAttackFormChangesSubscription() {
+    this.form.valueChanges.subscribe(form => {
+      const attacks = form.attacks?.filter(attack => attack.name)
+      console.log({ attacks })
+      this.onAttacksChange.emit(attacks);
+    })
+  }
+
+  loadForm(attacks?: ICharacter['attacks']) {
+    if (!attacks) return;
     this.form.get('attacks')?.setValue([]);
 
-    this.character.attacks.forEach(attack => {
+    attacks.forEach(attack => {
       this.addAttack(attack)
     });
 
@@ -60,10 +67,13 @@ export class AttackComponent implements OnInit, OnChanges {
     )
   }
 
+  removeAttack(attack: Attack) {
+    console.log(`TODO: eliminar ${attack.name}`)
+  }
+
   addNewAttack() {
     this.addAttack();
 
     const attacks = this.form.get('attacks')?.value as Attack[];
-    this.onAttacksChange.emit(attacks)
   }
 }
