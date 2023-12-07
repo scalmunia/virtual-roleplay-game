@@ -79,9 +79,17 @@ export class CharacterDetailComponent implements OnInit {
   ngOnInit(): void {
     this.resetSkills();
 
-    if (this.mode === 'create') return;
+    if (this.mode === 'edit' || this.mode === 'view') {
+      this.setFormWhenCharacterLoadedSubscription();
+      this.characterService.loadCharacter(this.id as string);
+    };
+  }
 
-    this.loadCharacter();
+  setFormWhenCharacterLoadedSubscription() {
+    this.characterService.character$.subscribe(character => {
+      if (!character) return;
+      this.loadCharacterFormValues(character)
+    })
   }
 
   private resetSkills() {
@@ -114,32 +122,29 @@ export class CharacterDetailComponent implements OnInit {
     }
   }
 
-  async loadCharacter() {
-    const response = await this.characterService.getOne(this.id as string);
-
+  async loadCharacterFormValues(character: ICharacter) {
     //Cargar los valores en el formulario
-    this.form.controls['avatar'].setValue(response.result.avatar);
-    this.form.controls['name'].setValue(response.result.name);
-    this.form.controls['level'].setValue(response.result.level);
-    this.form.controls['characterClass'].setValue(response.result.class);
-    this.form.controls['strength'].setValue(response.result.abilities.strength);
+    this.form.controls['avatar'].setValue(character.avatar);
+    this.form.controls['name'].setValue(character.name);
+    this.form.controls['level'].setValue(character.level);
+    this.form.controls['characterClass'].setValue(character.class);
+    this.form.controls['strength'].setValue(character.abilities.strength);
     this.form.controls['dexterity'].setValue(
-      response.result.abilities.dexterity
+      character.abilities.dexterity
     );
     this.form.controls['constitution'].setValue(
-      response.result.abilities.constitution
+      character.abilities.constitution
     );
     this.form.controls['intelligence'].setValue(
-      response.result.abilities.intelligence
+      character.abilities.intelligence
     );
-    this.form.controls['wisdom'].setValue(response.result.abilities.wisdom);
-    this.form.controls['charisma'].setValue(response.result.abilities.charisma);
-    this.form.controls['skills'].setValue(response.result.skills);
-    this.form.controls['description'].setValue(response.result.description);
+    this.form.controls['wisdom'].setValue(character.abilities.wisdom);
+    this.form.controls['charisma'].setValue(character.abilities.charisma);
+    this.form.controls['skills'].setValue(character.skills);
+    this.form.controls['description'].setValue(character.description);
 
-    this.attacks = response.result.attacks;
-    this.equipment = response.result.equipment;
-
+    this.attacks = character.attacks;
+    this.equipment = character.equipment;
   }
 
   async onSubmit() {

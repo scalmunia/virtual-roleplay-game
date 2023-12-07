@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Character, ICharacter } from '../models/Character/Character';
 import { fetcher } from '../config/fetch.config';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharacterService {
   private URL = 'api/character';
+  character$ = new BehaviorSubject<ICharacter | null>(null)
+
+  async loadCharacter(id: string) {
+    const response = await this.getOne(id);
+    this.character$.next(response.result);
+  }
 
   async getOne(id: string) {
     const url = `${this.URL}/${id}`;
