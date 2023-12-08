@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Abilities } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
-import { ABILITIES_TRANSLATION, SKILLS_LIST } from 'src/app/models/Character/character.constants';
+import { ABILITIES_TRANSLATION, PROFICIENCY_BONUS_ACORDING_TO_LEVEL, SKILLS_LIST } from 'src/app/models/Character/character.constants';
 
 @Component({
   selector: 'vrg-skill',
@@ -24,9 +24,16 @@ export class SkillComponent {
     return abreviateSkill;
   }
 
-  calcAbilityModifier(ability?: string): number {
-    if (!ability) return 0;
-    return calcAbilityModifier(this.character, ability as keyof Abilities);
+  calcSkillModifier(control: FormControl<boolean>): number {
+    if (!this.character) return 0;
+
+    const ability = this.ability;
+    const abilityBonus = calcAbilityModifier(this.character, ability as keyof Abilities);
+
+    const hasProficiency = control?.value
+    const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[this.character?.level];
+
+    return hasProficiency ? abilityBonus + proficiencyBonus : abilityBonus;
   };
 
   get ability() {
