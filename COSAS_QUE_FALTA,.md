@@ -7,7 +7,6 @@
 9. Poner en el listado de pj el nivel
 10. El + de crear el pj está descuadrado?
 
-Funcionalidad eliminar ataque
-Calcular bonus
+Calcular bonus -> skills
 Ataques modo edición/creación/visualización
 los bonus de skills y ataques al menos 16px de tamañ fuente

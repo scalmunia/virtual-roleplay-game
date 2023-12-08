@@ -42,6 +42,14 @@ export class CharacterDetailComponent implements OnInit {
   get character(): ICharacter {
     return {
       ...this.form.value,
+      abilities: {
+        strength: this.form.get('strength')?.value,
+        dexterity: this.form.get('dexterity')?.value,
+        constitution: this.form.get('constitution')?.value,
+        intelligence: this.form.get('intelligence')?.value,
+        wisdom: this.form.get('wisdom')?.value,
+        charisma: this.form.get('charisma')?.value,
+      },
       attacks: this.attacks,
       equipment: this.equipment
     }
@@ -65,7 +73,7 @@ export class CharacterDetailComponent implements OnInit {
       wisdom: new FormControl(''),
       charisma: new FormControl(''),
       description: new FormControl(''),
-      skills: new FormGroup(skillControls)
+      skills: new FormGroup(skillControls),
     });
 
     //'combineLatest' combina varias fuentes de observables en una sola secuencia de emisiones
@@ -290,7 +298,6 @@ export class CharacterDetailComponent implements OnInit {
 
   updateAttacks(attacks: Attack[]) {
     this.attacks = attacks;
-    console.log({ character: this.character, attacks })
   }
 
   get strengthControl(): FormControl {

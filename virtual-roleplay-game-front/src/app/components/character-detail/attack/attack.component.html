@@ -34,12 +34,10 @@
             <input type="number" class="damage" formControlName="damage">
           </td>
           <td>
-            <!-- <div *ngIf="selectedAbility" class="bonus" formControlName="bonus">{{ calculateBonus(character.level) |
-              addSignFilter }}</div> -->
-            <button class="bonus">+3</button>
+            <div *ngIf="attack.get('ability')?.value" class="bonus">{{ calcAttackBonus(attack) | addSignFilter }}</div>
           </td>
           <td>
-            <button *ngIf="!last" type="button" class="actionBtn" (click)="removeAttack(attack.value)">
+            <button *ngIf="!last" type="button" class="actionBtn" (click)="removeAttack(i)">
               <img src="assets/icons/trash.svg" alt="Imagen">
             </button>
             <button *ngIf="last" type="button" class="actionBtn" (click)="addNewAttack()">

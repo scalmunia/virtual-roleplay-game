@@ -1,4 +1,3 @@
-import { calcAbilitiesBonus } from './calcAbilityBonus';
 import { POINT_COST_OF_ABILITY_SCORES } from './character.constants';
 
 type Classes =

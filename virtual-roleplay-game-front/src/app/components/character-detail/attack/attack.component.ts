@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Attack, ICharacter } from 'src/app/models/Character/Character';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Abilities, Attack, ICharacter } from 'src/app/models/Character/Character';
+import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
 import { ABILITY_SCORES_AND_MODIFIERS, PROFICIENCY_BONUS_ACORDING_TO_LEVEL, SKILLS_LIST } from 'src/app/models/Character/character.constants';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -39,7 +40,6 @@ export class AttackComponent implements OnInit {
   updateCharacterWhenAttackFormChangesSubscription() {
     this.form.valueChanges.subscribe(form => {
       const attacks = form.attacks?.filter(attack => attack.name)
-      console.log({ attacks })
       this.onAttacksChange.emit(attacks);
     })
   }
@@ -53,8 +53,19 @@ export class AttackComponent implements OnInit {
     });
 
     this.addAttack();
-    console.log('loadAttacks', this.form.getRawValue(), this.character)
-  }
+  };
+
+  calcAttackBonus(attack: AbstractControl<any, any>): number {
+    if (!this.character) return 0;
+
+    const ability = attack.get('ability')?.value;
+    const abilityBonus = calcAbilityModifier(this.character, ability as keyof Abilities);
+
+    const hasProficiency = attack.get('proficiency')?.value;
+    const proficiencyBonus = PROFICIENCY_BONUS_ACORDING_TO_LEVEL[this.character?.level];
+
+    return hasProficiency ? abilityBonus + proficiencyBonus : abilityBonus;
+  };
 
   addAttack(attack?: Attack) {
     this.form.controls.attacks.push(
@@ -67,8 +78,8 @@ export class AttackComponent implements OnInit {
     )
   }
 
-  removeAttack(attack: Attack) {
-    console.log(`TODO: eliminar ${attack.name}`)
+  removeAttack(attack: number) {
+    this.attacks.removeAt(attack);
   }
 
   addNewAttack() {
