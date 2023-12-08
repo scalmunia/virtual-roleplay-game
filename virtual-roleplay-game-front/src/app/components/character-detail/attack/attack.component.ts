@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Abilities, Attack, ICharacter } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
@@ -10,7 +10,8 @@ import { CharacterService } from 'src/app/services/character.service';
   templateUrl: './attack.component.html',
   styleUrls: ['./attack.component.css']
 })
-export class AttackComponent implements OnInit {
+export class AttackComponent implements OnInit, OnChanges {
+  @Input() mode: 'edit' | 'view' | 'create' | null = null;
   character: ICharacter | null = null;
   @Output() onAttacksChange: EventEmitter<Attack[]> = new EventEmitter()
 
@@ -22,11 +23,18 @@ export class AttackComponent implements OnInit {
     return this.form.get('attacks') as FormArray;
   }
 
-  constructor(private characterService: CharacterService) { }
+  constructor(private characterService: CharacterService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.loadFormWhenCharagerloadedSubscription();
     this.updateCharacterWhenAttackFormChangesSubscription();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['mode']) {
+      if (changes['mode'].currentValue === 'view') this.form.disable();
+      else this.form.enable();
+    }
   }
 
   loadFormWhenCharagerloadedSubscription() {
@@ -53,6 +61,10 @@ export class AttackComponent implements OnInit {
     });
 
     this.addAttack();
+
+    if (this.mode === 'view') {
+      this.form.disable();
+    }
   };
 
   calcAttackBonus(attack: AbstractControl<any, any>): number {

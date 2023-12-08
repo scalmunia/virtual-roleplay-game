@@ -92,7 +92,7 @@
       <div class="additionalInformation">
         <div class="attacksAndSpells">
           <p>ATAQUES Y CONJUROS</p>
-          <vrg-attack (onAttacksChange)="updateAttacks($event)"></vrg-attack>
+          <vrg-attack [mode]="mode" (onAttacksChange)="updateAttacks($event)"></vrg-attack>
         </div>
         <div class="annotations">
           <p>ANOTACIONES</p>

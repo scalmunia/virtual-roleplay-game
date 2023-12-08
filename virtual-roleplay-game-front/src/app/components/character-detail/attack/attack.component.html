@@ -13,37 +13,40 @@
       </thead>
       <tbody>
         <tr *ngFor="let attack of attacks.controls; let i = index; let last = last;" [formGroupName]="i">
-          <td>
-            <input type="checkbox" class="proficiency" aria-label="Competencia" formControlName="proficiency">
-          </td>
-          <td>
-            <input type="text" class="name" formControlName="name">
-          </td>
-          <td>
-            <select class="select-ability" formControlName="ability">
-              <option value="">-</option>
-              <option value="strength">FUE</option>
-              <option value="dexterity">DES</option>
-              <option value="constitution">CON</option>
-              <option value="intelligence">INT</option>
-              <option value="wisdom">SAB</option>
-              <option value="charisma">CAR</option>
-            </select>
-          </td>
-          <td>
-            <input type="number" class="damage" formControlName="damage">
-          </td>
-          <td>
-            <div *ngIf="attack.get('ability')?.value" class="bonus">{{ calcAttackBonus(attack) | addSignFilter }}</div>
-          </td>
-          <td>
-            <button *ngIf="!last" type="button" class="actionBtn" (click)="removeAttack(i)">
-              <img src="assets/icons/trash.svg" alt="Imagen">
-            </button>
-            <button *ngIf="last" type="button" class="actionBtn" (click)="addNewAttack()">
-              <img src="assets/icons/plus.svg" alt="Imagen">
-            </button>
-          </td>
+          <ng-container *ngIf="!last || last && mode !== 'view'">
+            <td>
+              <input type="checkbox" class="proficiency" aria-label="Competencia" formControlName="proficiency">
+            </td>
+            <td>
+              <input type="text" class="name" formControlName="name">
+            </td>
+            <td>
+              <select class="select-ability" formControlName="ability">
+                <option value="">-</option>
+                <option value="strength">FUE</option>
+                <option value="dexterity">DES</option>
+                <option value="constitution">CON</option>
+                <option value="intelligence">INT</option>
+                <option value="wisdom">SAB</option>
+                <option value="charisma">CAR</option>
+              </select>
+            </td>
+            <td>
+              <input type="number" class="damage" formControlName="damage">
+            </td>
+            <td>
+              <div *ngIf="attack.get('ability')?.value" class="bonus">{{ calcAttackBonus(attack) | addSignFilter }}
+              </div>
+            </td>
+            <td>
+              <button *ngIf="mode !== 'view' && !last" type="button" class="actionBtn" (click)="removeAttack(i)">
+                <img src="assets/icons/trash.svg" alt="Imagen">
+              </button>
+              <button *ngIf="mode !== 'view' && last" type="button" class="actionBtn" (click)="addNewAttack()">
+                <img src="assets/icons/plus.svg" alt="Imagen">
+              </button>
+            </td>
+          </ng-container>
         </tr>
       </tbody>
     </table>
