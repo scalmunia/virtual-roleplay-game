@@ -22,6 +22,7 @@
   font-family: Montserrat;
   font-weight: 700;
   line-height: 100%;
+  cursor: pointer;
 
   margin-left: -1.5px;
   margin-right: -1.5px;
@@ -32,57 +33,57 @@
 }
 
 /* primary */
-.button-primary > .button {
+.button-primary>.button {
   background: var(--primary-text-color);
 }
 
-.button-primary > svg {
+.button-primary>svg {
   --button-decoration-background: var(--primary-text-color);
 }
 
-.button-ghost.button-primary > svg {
+.button-ghost.button-primary>svg {
   --button-decoration-border: var(--primary-text-color);
 }
 
-.button-ghost.button-primary > .button {
+.button-ghost.button-primary>.button {
   color: var(--primary-text-color);
   border-color: var(--primary-text-color);
 }
 
 /* secondary */
 
-.button-secondary > .button {
+.button-secondary>.button {
   background: var(--button-grey);
 }
 
-.button-secondary > svg {
+.button-secondary>svg {
   --button-decoration-background: var(--button-grey);
 }
 
-.button-secondary.button-ghost > svg {
+.button-secondary.button-ghost>svg {
   --button-decoration-border: var(--button-grey);
 }
 
-.button-secondary.button-ghost > .button {
+.button-secondary.button-ghost>.button {
   color: var(--button-grey);
   border-color: var(--button-grey);
 }
 
 /* danger */
 
-.button-danger > .button {
+.button-danger>.button {
   background: var(--button-red);
 }
 
-.button-danger > svg {
+.button-danger>svg {
   --button-decoration-background: var(--button-red);
 }
 
-.button-danger.button-ghost > svg {
+.button-danger.button-ghost>svg {
   --button-decoration-border: var(--button-red);
 }
 
-.button-danger.button-ghost > .button {
+.button-danger.button-ghost>.button {
   color: var(--button-red);
   border-color: var(--button-red);
 }
@@ -90,10 +91,10 @@
 
 /* Generic ghost styles */
 
-.button-ghost > .button {
+.button-ghost>.button {
   background: transparent;
 }
 
-.button-ghost > svg {
+.button-ghost>svg {
   --button-decoration-background: transparent;
 }

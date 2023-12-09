@@ -8,6 +8,7 @@ import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { DiceComponent } from './dice/dice.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     InputComponent,
     SelectComponent,
     TextareaComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    DiceComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     SelectComponent,
     TextareaComponent,
     SpinnerComponent,
-    MatDialogModule
+    MatDialogModule,
+    DiceComponent
   ]
 })
 export class SharedModule { }

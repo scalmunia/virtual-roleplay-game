@@ -1,0 +1,223 @@
+:host {
+  background: red;
+  display: block;
+}
+
+.dice-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+$containerWidth: 200px;
+$containerHeight: $containerWidth;
+
+$faceWidth: $containerWidth*0.5;
+$faceHeight: $faceWidth*0.86;
+
+$transitionDuration: 1s;
+$animationDuration: 2s;
+$easing: ease-in-out;
+
+$angle: 53deg;
+$ringAngle: -11deg;
+$sideAngle: 360deg/5;
+$opacity: 0.75;
+$color: rgb(248 183 0 / 80%);
+
+$rotateX: -$angle;
+$translateZ: $faceWidth*0.335;
+$translateY: -$faceHeight*0.15;
+$translateRingZ: $faceWidth*0.75;
+$translateRingY: $faceHeight*0.78 + $translateY;
+$translateLowerZ: $translateZ;
+$translateLowerY: $faceHeight*0.78 + $translateRingY;
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // gap: 16px;
+
+  color: var(--secondary-text-color);
+}
+
+.content {
+  width: $containerWidth;
+  height: $containerHeight;
+  perspective: 1500px;
+  /* opacity: 0; */
+  /* animation: fade-in $transitionDuration linear forwards; */
+}
+
+.dice-roll-btn {
+  margin-top: -1.6rem;
+}
+
+.dice-calc {
+  position: relative;
+  margin-top: 16px;
+  font-size: 20px;
+  font-family: var(--primary-typography);
+  color: var(--secondary-text-color);
+}
+
+.dice-result {
+  position: relative;
+  font-size: 56px;
+  font-family: var(--primary-typography);
+  color: var(--primary-text-color);
+  line-height: 100%;
+}
+
+.dice-result-container {
+  position: relative;
+  transition: all .45s cubic-bezier(0.65, 0, 0.35, 1);
+  transform-origin: center center;
+  transform: scale(1.2) translateY(-0.8rem);
+  opacity: 0;
+
+  &.--show {
+    transform: scale(1.25) translateY(-1.6rem);
+    opacity: 1;
+  }
+}
+
+.dice-result-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250%;
+}
+
+.dice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+  transition: transform $transitionDuration ease-in-out;
+  cursor: pointer;
+
+  &.rolling {
+    animation: roll $animationDuration linear forwards;
+  }
+
+  @for $i from 1 through 5 {
+    &[data-face="#{$i}"] {
+      $angleMultiplier: $i - 1;
+      transform: rotateX(-$angle) rotateY($sideAngle * $angleMultiplier);
+    }
+  }
+
+  @for $i from 16 through 20 {
+    &[data-face="#{$i}"] {
+      $angleMultiplier: $i - 15;
+      transform: rotateX(-$angle + 180deg) rotateY(-$sideAngle * $angleMultiplier);
+    }
+  }
+
+  @for $i from 6 through 10 {
+    &[data-face="#{$i}"] {
+      $angleMultiplier: $i - 6;
+      transform: rotateX(-$ringAngle) rotateZ(180deg) rotateY($sideAngle * $angleMultiplier);
+    }
+  }
+
+  @for $i from 11 through 15 {
+    &[data-face="#{$i}"] {
+      $angleMultiplier: $i - 8;
+      transform: rotateX(-$ringAngle) rotateY(-$sideAngle * $angleMultiplier - $sideAngle/2);
+    }
+  }
+
+  @for $i from 1 through 20 {
+    &[data-face="#{$i}"] {
+      .face-#{$i} {
+        border-bottom-color: var(--primary-text-color);
+
+        &::before {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .face {
+    $horizontalMargin: -$faceWidth*0.5;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin: 0 $horizontalMargin;
+    border-left: $faceWidth*0.5 solid transparent;
+    border-right: $faceWidth*0.5 solid transparent;
+    border-bottom: $faceHeight solid $color;
+    width: 0px;
+    height: 0px;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    counter-increment: steps 1;
+    transition: all .3s ease-in-out $transitionDuration * 0.85;
+
+    &:before {
+      content: counter(steps);
+      position: absolute;
+      top: $faceHeight*0.2;
+      left: -$faceWidth;
+      color: #2f3742;
+      font-weight: 800;
+      /* text-shadow: 1px 1px 3px #000; */
+      font-size: $faceHeight*0.35;
+      letter-spacing: -1px;
+      transform: scale(0.75);
+      text-align: center;
+      line-height: $faceHeight*0.9;
+      width: $faceWidth*2;
+      height: $faceHeight;
+      opacity: 0.25;
+      transition: all .3s ease-in-out $transitionDuration * 0.85;
+    }
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        $angleMultiplier: $i - 1;
+        transform: rotateY(-$sideAngle * $angleMultiplier) translateZ($translateZ) translateY($translateY) rotateX($angle);
+      }
+    }
+
+    @for $i from 16 through 20 {
+      &:nth-child(#{$i}) {
+        $angleMultiplier: $i - 18;
+        transform: rotateY($sideAngle * $angleMultiplier + $sideAngle/2) translateZ($translateLowerZ) translateY($translateLowerY) rotateZ(180deg) rotateX($angle);
+      }
+    }
+
+    @for $i from 6 through 10 {
+      &:nth-child(#{$i}) {
+        $angleMultiplier: $i - 11;
+        transform: rotateY(-$sideAngle * $angleMultiplier) translateZ($translateRingZ) translateY($translateRingY) rotateZ(180deg) rotateX($ringAngle);
+      }
+    }
+
+    @for $i from 11 through 15 {
+      &:nth-child(#{$i}) {
+        $angleMultiplier: $i - 8;
+        transform: rotateY($sideAngle * $angleMultiplier + $sideAngle/2) translateZ($translateRingZ) translateY($translateRingY) rotateX($ringAngle);
+      }
+    }
+  }
+}
