@@ -1,7 +1,9 @@
 <div *ngIf="ability" class="ability">
   <p>{{ text(ability) }}</p>
   <img src="assets/images/ability.svg" alt="Imagen">
-  <div *ngIf="character" class="modifier">{{ modifier | addSignFilter }}</div>
+  <button type="button" (click)="onBonusClick.emit(modifier)" *ngIf="character" class="modifier">{{ modifier |
+    addSignFilter
+    }}</button>
   <input class="input-ability-score" type="number" [formControl]="control" [ngClass]="{
     'disabled': disabled}">
 </div>

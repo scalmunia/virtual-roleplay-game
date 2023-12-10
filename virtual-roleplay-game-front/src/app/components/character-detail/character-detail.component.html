@@ -56,21 +56,22 @@
       <div class="bonus">
         <div class="abilities">
           <vrg-ability [character]="character" ability="strength" [control]="strengthControl"
-            [disabled]="mode === 'view'">
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
           </vrg-ability>
           <vrg-ability [character]="character" ability="dexterity" [control]="dexterityControl"
-            [disabled]="mode === 'view'">
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
           </vrg-ability>
           <vrg-ability [character]="character" ability="constitution" [control]="constitutionControl"
-            [disabled]="mode === 'view'">
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
           </vrg-ability>
           <vrg-ability [character]="character" ability="intelligence" [control]="intelligenceControl"
-            [disabled]="mode === 'view'">
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
           </vrg-ability>
-          <vrg-ability [character]="character" ability="wisdom" [control]="wisdomControl" [disabled]="mode === 'view'">
+          <vrg-ability [character]="character" ability="wisdom" [control]="wisdomControl" [disabled]="mode === 'view'"
+            (onBonusClick)="dice.roll('D20', $event)">
           </vrg-ability>
           <vrg-ability [character]="character" ability="charisma" [control]="charismaControl"
-            [disabled]="mode === 'view'">
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
           </vrg-ability>
         </div>
         <div class="scores">

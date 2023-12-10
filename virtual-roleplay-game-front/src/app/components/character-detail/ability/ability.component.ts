@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Abilities, ICharacter } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
@@ -15,6 +15,7 @@ export class AbilityComponent implements OnChanges {
   @Input() control: FormControl = new FormControl();
   @Input() disabled: boolean = false;
   @Input() character: ICharacter | null = null;
+  @Output() onBonusClick: EventEmitter<number> = new EventEmitter()
 
   // Almacena el modificador calculado
   modifier: number = 0;
