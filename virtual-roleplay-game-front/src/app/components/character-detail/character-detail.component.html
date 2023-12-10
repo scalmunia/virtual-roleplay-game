@@ -19,39 +19,44 @@
     <br>
 
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="header">
-        <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
-          (avatar)="updateImage($event)">
-        </vrg-avatar>
-        <div class=" character-info">
-          <input class="input-name" type="text" formControlName="name"
-            [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
-          <div class="character-details">
-            <div class="level">
-              <label for="level">Nivel</label>
-              <select class="select-level" formControlName="level"
+      <header class="header">
+        <div class="character-info-container">
+          <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
+            (avatar)="updateImage($event)">
+          </vrg-avatar>
+          <div class=" character-info">
+            <input class="input-name" type="text" formControlName="name"
+              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+            <div class="character-details">
+              <div class="level">
+                <label for="level">Nivel</label>
+                <select class="select-level" formControlName="level"
+                  [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+                  <option *ngFor="let level of levelOptions" [value]="level">{{ level }}</option>
+                </select>
+              </div>
+              <select class="select-character-class" formControlName="characterClass"
                 [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
-                <option *ngFor="let level of levelOptions" [value]="level">{{ level }}</option>
+                <option value="barbarian">Bárbaro</option>
+                <option value="bard">Bardo</option>
+                <option value="warlock">Brujo</option>
+                <option value="cleric">Clérigo</option>
+                <option value="druid">Druida</option>
+                <option value="ranger">Explorador</option>
+                <option value="fighter">Guerrero</option>
+                <option value="sorcerer">Hechicero</option>
+                <option value="wizard">Mago</option>
+                <option value="monk">Monje</option>
+                <option value="paladin">Paladín</option>
+                <option value="rogue">Pícaro</option>
               </select>
             </div>
-            <select class="select-character-class" formControlName="characterClass"
-              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
-              <option value="barbarian">Bárbaro</option>
-              <option value="bard">Bardo</option>
-              <option value="warlock">Brujo</option>
-              <option value="cleric">Clérigo</option>
-              <option value="druid">Druida</option>
-              <option value="ranger">Explorador</option>
-              <option value="fighter">Guerrero</option>
-              <option value="sorcerer">Hechicero</option>
-              <option value="wizard">Mago</option>
-              <option value="monk">Monje</option>
-              <option value="paladin">Paladín</option>
-              <option value="rogue">Pícaro</option>
-            </select>
           </div>
         </div>
-      </div>
+        <button class="natural-dice">
+          <img src="assets/icons/d20.svg" alt="Dado" (click)="dice.roll('D20', 0)">
+        </button>
+      </header>
 
       <div class="bonus">
         <div class="abilities">

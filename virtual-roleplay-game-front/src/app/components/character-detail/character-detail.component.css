@@ -31,7 +31,31 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.character-info-container {
+  display: flex;
+  align-items: center;
   gap: 18px;
+}
+
+.natural-dice {
+  background: none;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px 12px 4px;
+  border-radius: 6px;
+  transition: all .3s linear;
+}
+
+.natural-dice img {
+  width: 2.5rem;
+}
+
+.natural-dice:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .character-info {
@@ -45,6 +69,7 @@
   height: 35px;
   padding-left: 5px;
 
+  width: 100%;
   color: var(--primary-text-color);
   font-family: var(--primary-typography);
   font-size: 38px;
@@ -186,32 +211,43 @@
   flex-wrap: wrap;
   padding: 16px;
   flex-direction: column;
-  align-items: flex-start;
   gap: 8px;
 
-  max-height: 200px;
 
   border-radius: 8px;
   background: rgba(28, 28, 34, 0.60);
 }
 
+@media (min-width: 600px) {
+  .skills-container {
+    max-height: 350px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-container {
+    max-height: 200px;
+  }
+}
+
 .skills {
-  padding-right: 8px;
+  /* width: 25%; */
 }
 
 .additionalInformation {
   display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
 
   margin-top: 40px;
   margin-bottom: 40px;
 }
 
 .attacksAndSpells {
-  flex: 1 1 50%;
+  flex: 1;
+
   display: flex;
   flex-direction: column;
-
-  margin-right: 30px;
 
   color: var(--secondary-text-color);
   font-family: var(--secondary-typography);
@@ -219,6 +255,12 @@
   font-weight: 800;
   line-height: 100%;
   text-transform: uppercase;
+}
+
+@media screen and (min-width: 600px) {
+  .attacksAndSpells {
+    min-width: 420px;
+  }
 }
 
 /* .inputAttacks {
@@ -237,7 +279,13 @@
 } */
 
 .annotations {
-  flex: 1 1 50%;
+  flex: 1;
+}
+
+@media (min-width: 600px) {
+  .annotations {
+    min-width: 520px;
+  }
 }
 
 .annotations p {
