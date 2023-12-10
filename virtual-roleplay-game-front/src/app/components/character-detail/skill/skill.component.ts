@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Abilities } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
@@ -14,6 +14,8 @@ export class SkillComponent {
   @Input() skillId: string = '';
   @Input() control?: FormControl<boolean>;
   @Input() character: any | null = null;
+  @Output() onBonusClick: EventEmitter<number> = new EventEmitter();
+
   proficiencyModifier: number = 2;
 
   convertSkill(ability?: string): string {

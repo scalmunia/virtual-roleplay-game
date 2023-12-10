@@ -86,7 +86,8 @@
       <p class="p-skill">HABILIDADES</p>
       <div class="skills-container">
         <div class="skills" *ngFor="let skill of skillsControls; let i = index">
-          <vrg-skill [character]="character" [skillId]="skill.skillId" [control]="skill.control"></vrg-skill>
+          <vrg-skill [character]="character" [skillId]="skill.skillId" [control]="skill.control"
+            (onBonusClick)="dice.roll('D20', $event)"></vrg-skill>
         </div>
       </div>
 
