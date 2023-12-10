@@ -12,6 +12,7 @@ import { LoginService } from 'src/app/services/login.service';
 
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  showPassword: boolean = false;
   error: Error | null = null;
 
   constructor(private loginService: LoginService, private router: Router) {
@@ -48,5 +49,15 @@ export class LoginComponent implements OnInit {
         }
       }
     }
+  }
+
+  // Método para alternar la visibilidad de la contraseña
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  // Método para obtener el tipo de input dinámicamente
+  getPasswordFieldType() {
+    return this.showPassword ? 'text' : 'password';
   }
 }

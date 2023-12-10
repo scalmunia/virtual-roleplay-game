@@ -6,8 +6,11 @@
         formControlName="email"></vrg-input>
     </div>
     <div class="input-container">
-      <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
-        formControlName="password"></vrg-input>
+      <vrg-input for="inputPassword" label="PASSWORD" [type]="getPasswordFieldType()" id="inputPassword"
+        placeholder="****************" formControlName="password">
+      </vrg-input>
+      <img class="toggle-password" [src]="showPassword ? 'assets/icons/eye-off.svg' : 'assets/icons/eye.svg'"
+        (click)="togglePasswordVisibility()">
     </div>
     <!-- <div class="recover-pwd-container">
       <a class="recover-pwd">¿Has olvidado la contraseña?</a>
