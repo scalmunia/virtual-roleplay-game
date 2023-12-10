@@ -14,6 +14,7 @@ export class AttackComponent implements OnInit, OnChanges {
   @Input() mode: 'edit' | 'view' | 'create' | null = null;
   character: ICharacter | null = null;
   @Output() onAttacksChange: EventEmitter<Attack[]> = new EventEmitter()
+  @Output() onBonusClick: EventEmitter<number> = new EventEmitter();
 
   form = new FormGroup({
     attacks: new FormArray([] as FormGroup[]),

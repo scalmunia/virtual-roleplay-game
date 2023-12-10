@@ -94,7 +94,8 @@
       <div class="additionalInformation">
         <div class="attacksAndSpells">
           <p>ATAQUES Y CONJUROS</p>
-          <vrg-attack [mode]="mode" (onAttacksChange)="updateAttacks($event)"></vrg-attack>
+          <vrg-attack [mode]="mode" (onAttacksChange)="updateAttacks($event)"
+            (onBonusClick)="dice.roll('D20', $event)"></vrg-attack>
         </div>
         <div class="annotations">
           <p>ANOTACIONES</p>

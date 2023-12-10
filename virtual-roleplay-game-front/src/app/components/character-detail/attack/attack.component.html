@@ -35,8 +35,10 @@
               <input type="number" class="damage" formControlName="damage">
             </td>
             <td>
-              <div *ngIf="attack.get('ability')?.value" class="bonus">{{ calcAttackBonus(attack) | addSignFilter }}
-              </div>
+              <button type="button" *ngIf="attack.get('ability')?.value" class="bonus"
+                (click)="onBonusClick.emit(calcAttackBonus(attack))">{{ calcAttackBonus(attack) |
+                addSignFilter }}
+              </button>
             </td>
             <td>
               <button *ngIf="mode !== 'view' && !last" type="button" class="actionBtn" (click)="removeAttack(i)">
