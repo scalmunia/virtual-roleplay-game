@@ -6,7 +6,7 @@ export class AddSignFilter implements PipeTransform {
     if (value === undefined || value === null) {
       return '';
     }
-    
+
     return value >= 0 ? `+${value}` : `${value}`;
   }
 }

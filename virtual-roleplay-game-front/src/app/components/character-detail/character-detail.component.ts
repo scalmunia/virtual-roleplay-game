@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EquipmentDialogResult, EquipmentModalComponent } from './equipment-modal/equipment-modal.component';
 import { Attack, Equipment, ICharacter } from 'src/app/models/Character/Character';
 import { SKILLS_LIST } from 'src/app/models/Character/character.constants';
+import { DiceComponent } from '../shared/dice/dice.component';
 
 const skillsEntries = SKILLS_LIST.map((skill) => ([skill.id, new FormControl(false)]));
 const skillControls = Object.fromEntries(skillsEntries);
@@ -16,7 +17,6 @@ const skillControls = Object.fromEntries(skillsEntries);
   templateUrl: './character-detail.component.html',
   styleUrls: ['./character-detail.component.css'],
 })
-
 
 export class CharacterDetailComponent implements OnInit {
   form: FormGroup;
@@ -38,6 +38,8 @@ export class CharacterDetailComponent implements OnInit {
   attacks: Attack[] = [];
   equipment: Equipment[] = [];
   error: null | Error = null;
+  // ViewChild para el componente vrg-dice
+  @ViewChild(DiceComponent) dice!: DiceComponent;
 
   get character(): ICharacter {
     return {
