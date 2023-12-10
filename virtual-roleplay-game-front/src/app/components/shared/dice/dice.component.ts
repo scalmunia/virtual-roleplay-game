@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import random from 'random';
 
+const diceRollAudio = new Audio('assets/audio/roll-dice.mp3')
+
 @Component({
   selector: 'vrg-dice',
   templateUrl: './dice.component.html',
@@ -12,9 +14,11 @@ export class DiceComponent {
 
   public async roll(dice: 'D20', bonus: number) {
     this.rolling = true;
-    await new Promise(resolve => setTimeout(resolve, 500));
-    const randomUniformNumber = random.uniform(0, 1);
 
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setTimeout(() => diceRollAudio.play(), 250);
+
+    const randomUniformNumber = random.uniform(0, 1);
     const randomNumber = randomUniformNumber();
     const roll = Math.ceil(randomNumber * 20);
 
