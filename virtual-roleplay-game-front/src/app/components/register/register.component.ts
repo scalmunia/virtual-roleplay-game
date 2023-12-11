@@ -12,6 +12,7 @@ import { RegisterService } from 'src/app/services/register.service';
 
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  confirmPassword: string = '';
   error: Error | null = null;
 
   constructor(
@@ -31,17 +32,28 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
       ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ])
     });
   }
 
   ngOnInit(): void { }
 
   async onSubmit() {
+
+    if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
+      this.error = new Error('Las contraseñas no coinciden');
+      return;
+    }
+
     const user: User = {
       name: this.form.value.name,
       email: this.form.value.email,
       password: this.form.value.password,
     };
+
     try {
       await this.registerService.registerUser(user);
       this.router.navigate(['/login']);

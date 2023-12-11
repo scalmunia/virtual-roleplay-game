@@ -13,6 +13,10 @@
       <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
         formControlName="password"></vrg-input>
     </div>
+    <div class="input-container">
+      <vrg-input for="inputConfirmPassword" label="CONFIRMAR PASSWORD" type="password" id="inputConfirmPassword"
+        placeholder="****************" formControlName="confirmPassword"></vrg-input>
+    </div>
     <p class="error" *ngIf="error">{{error}}</p>
     <div class="button-container">
       <vrg-button type="submit" color="primary">Crear cuenta</vrg-button>
