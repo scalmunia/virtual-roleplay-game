@@ -55,7 +55,6 @@ export class AttackComponent implements OnInit, OnChanges {
 
   loadForm(attacks?: ICharacter['attacks']) {
     if (!attacks) return;
-    this.form.get('attacks')?.setValue([]);
 
     attacks.forEach(attack => {
       this.addAttack(attack)

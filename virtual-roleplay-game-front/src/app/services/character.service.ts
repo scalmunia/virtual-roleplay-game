@@ -15,6 +15,10 @@ export class CharacterService {
     this.character$.next(response.result);
   }
 
+  async unload() {
+    this.character$.next(null);
+  }
+
   async getOne(id: string) {
     const url = `${this.URL}/${id}`;
     const response = await fetcher(url);

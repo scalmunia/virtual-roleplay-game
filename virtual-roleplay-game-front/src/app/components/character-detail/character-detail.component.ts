@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
@@ -18,7 +18,7 @@ const skillControls = Object.fromEntries(skillsEntries);
   styleUrls: ['./character-detail.component.css'],
 })
 
-export class CharacterDetailComponent implements OnInit {
+export class CharacterDetailComponent implements OnInit, OnDestroy {
   form: FormGroup;
   id: string | null = null;
   mode: 'create' | 'edit' | 'view' | null = null;
@@ -93,6 +93,10 @@ export class CharacterDetailComponent implements OnInit {
       this.setFormWhenCharacterLoadedSubscription();
       this.characterService.loadCharacter(this.id as string);
     };
+  }
+
+  ngOnDestroy(): void {
+    this.characterService.unload();
   }
 
   setFormWhenCharacterLoadedSubscription() {
