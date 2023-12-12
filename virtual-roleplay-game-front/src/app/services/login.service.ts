@@ -16,7 +16,6 @@ export class LoginService {
     });
     const { token } = await response.json();
 
-    //Guardar token en localStorage
     localStorage.setItem('token', token);
   }
 }

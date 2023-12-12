@@ -20,14 +20,12 @@ export async function getCharactersController(req: Request, res: Response) {
     const db = await mongodb();
 
     const info = await db.collection('user_character').find({ userId: userId }).toArray();
-
     if (!info) {
       res.send(204);
       return;
     }
 
     const characterIds = info.map((element) => new ObjectId(element.characterId));
-
     const result = await db.collection('characters').find({ _id: { $in: characterIds } }).toArray();
 
     res.status(200).send({ result });

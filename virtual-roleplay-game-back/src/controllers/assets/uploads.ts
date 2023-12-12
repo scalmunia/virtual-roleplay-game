@@ -16,7 +16,7 @@ export async function uploadsFilesController(req: Request, res: Response) {
     const decodedToken = jwt.verify(token, JWT_SECRET_KEY) as { userId: string };
 
     if (!decodedToken) {
-      console.log('NO HAY TOKEN');
+      console.error('NO HAY TOKEN');
       res.status(401);
     }
 
@@ -41,7 +41,7 @@ export async function uploadsFilesController(req: Request, res: Response) {
     res.status(200).send({ result: result });
 
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(500).send(error);
   }
 }

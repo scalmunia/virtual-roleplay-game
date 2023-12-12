@@ -1,4 +1,4 @@
-import { Abilities, Bonus, ICharacter } from "./Character";
+import { Abilities, ICharacter } from "./Character";
 import { ABILITY_SCORES_AND_MODIFIERS } from "./character.constants";
 
 export function calcAbilityModifier(character: ICharacter, ability: keyof Abilities): number {

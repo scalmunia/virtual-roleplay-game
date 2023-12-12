@@ -8,6 +8,7 @@ const diceRollAudio = new Audio('assets/audio/roll-dice.mp3')
   templateUrl: './dice.component.html',
   styleUrls: ['./dice.component.scss']
 })
+
 export class DiceComponent {
   rolling: boolean = false;
   result: { roll: number, bonus: number, total: number } | null = null;

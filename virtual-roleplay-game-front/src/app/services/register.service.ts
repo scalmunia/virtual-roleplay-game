@@ -5,6 +5,7 @@ import { fetcher } from '../config/fetch.config';
 @Injectable({
   providedIn: 'root',
 })
+
 export class RegisterService {
   private URL = 'api/user/register';
 

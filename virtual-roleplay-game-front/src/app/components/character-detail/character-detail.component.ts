@@ -38,8 +38,7 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
   attacks: Attack[] = [];
   equipment: Equipment[] = [];
   error: null | Error = null;
-  // ViewChild para el componente vrg-dice
-  @ViewChild(DiceComponent) dice!: DiceComponent;
+  @ViewChild(DiceComponent) dice!: DiceComponent; // ViewChild para el componente vrg-dice
 
   get character(): ICharacter {
     return {
@@ -239,7 +238,6 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
     if (event.html) {
       this.htmlContent = event.html;
       this.form.controls['description'].setValue(this.htmlContent);
-      console.log('description', this.form.controls['description']);
     }
   }
 

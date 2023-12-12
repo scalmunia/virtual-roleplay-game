@@ -21,10 +21,7 @@ export class AvatarComponent {
 
     this.loadingImage = true;
     try {
-      console.log('isEditable', this.isEditable);
-
       const rawFile: File = event.target.files[0];
-
       const blob = rawFile.slice(0, rawFile.size, rawFile.type);
       const timestamp = new Date().getTime();
       const file = new File([blob], `${rawFile.name}-${timestamp}`, { type: rawFile.type });

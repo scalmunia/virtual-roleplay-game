@@ -43,4 +43,3 @@ export class SkillComponent {
     return skill?.ability;
   }
 }
-

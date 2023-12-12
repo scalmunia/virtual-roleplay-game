@@ -27,11 +27,9 @@ export class NavComponent implements OnInit {
   }
 
   signOff() {
-    console.log('haciendo click');
     localStorage.removeItem('token');
 
     const token = localStorage.getItem('token');
-
     if (!token) {
       this.router.navigate(['/login']);
     }

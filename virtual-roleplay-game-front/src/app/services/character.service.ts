@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CharacterService {
   private URL = 'api/character';
   character$ = new BehaviorSubject<ICharacter | null>(null)

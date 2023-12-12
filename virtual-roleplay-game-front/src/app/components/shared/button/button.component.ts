@@ -6,6 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./button.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class ButtonComponent {
   @Input() type: string = 'button';
   @Input() color: 'primary' | 'secondary' | 'danger' | null = null;

@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   async onSubmit() {
-
     if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
       this.error = new Error('Las contraseñas no coinciden');
       return;

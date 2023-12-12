@@ -4,6 +4,7 @@ import { fetcher } from '../config/fetch.config';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CharactersListService {
   private URL = 'api/characters';
 

@@ -7,6 +7,7 @@ import { calcArmor } from 'src/app/models/Character/calcArmor';
   templateUrl: './armor.component.html',
   styleUrls: ['./armor.component.css']
 })
+
 export class ArmorComponent {
   @Input() character: ICharacter | null = null;
 

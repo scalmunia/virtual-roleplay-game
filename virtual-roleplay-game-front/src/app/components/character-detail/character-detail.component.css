@@ -230,10 +230,6 @@
   }
 }
 
-.skills {
-  /* width: 25%; */
-}
-
 .additionalInformation {
   display: flex;
   flex-wrap: wrap;
@@ -262,21 +258,6 @@
     min-width: 420px;
   }
 }
-
-/* .inputAttacks {
-  width: 395px;
-  height: 32px;
-  margin-bottom: 10px;
-
-  border-radius: 8px;
-  border: none;
-  background: rgba(28, 28, 34, 0.60);
-
-  color: var(--secondary-text-color);
-  font-family: var(--secondary-typography);
-  font-size: 13px;
-  line-height: 160%;
-} */
 
 .annotations {
   flex: 1;

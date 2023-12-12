@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, O
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Abilities, Attack, ICharacter } from 'src/app/models/Character/Character';
 import { calcAbilityModifier } from 'src/app/models/Character/calcAbilityBonus';
-import { ABILITY_SCORES_AND_MODIFIERS, PROFICIENCY_BONUS_ACORDING_TO_LEVEL, SKILLS_LIST } from 'src/app/models/Character/character.constants';
+import { PROFICIENCY_BONUS_ACORDING_TO_LEVEL } from 'src/app/models/Character/character.constants';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { CharacterService } from 'src/app/services/character.service';
   templateUrl: './attack.component.html',
   styleUrls: ['./attack.component.css']
 })
+
 export class AttackComponent implements OnInit, OnChanges {
   @Input() mode: 'edit' | 'view' | 'create' | null = null;
   character: ICharacter | null = null;

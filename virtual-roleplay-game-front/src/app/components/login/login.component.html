@@ -12,9 +12,6 @@
       <img class="toggle-password" [src]="showPassword ? 'assets/icons/eye-off.svg' : 'assets/icons/eye.svg'"
         (click)="togglePasswordVisibility()">
     </div>
-    <!-- <div class="recover-pwd-container">
-      <a class="recover-pwd">¿Has olvidado la contraseña?</a>
-    </div> -->
     <p class="error" *ngIf="error">{{error}}</p>
     <div class="button-container">
       <vrg-button type="submit" color="primary">Iniciar sesión</vrg-button>

@@ -58,8 +58,6 @@ $translateLowerY: $faceHeight*0.78 + $translateRingY;
   width: $containerWidth;
   height: $containerHeight;
   perspective: 1500px;
-  /* opacity: 0; */
-  /* animation: fade-in $transitionDuration linear forwards; */
 }
 
 .dice-roll-btn {
@@ -188,7 +186,6 @@ $translateLowerY: $faceHeight*0.78 + $translateRingY;
       left: -$faceWidth;
       color: #2f3742;
       font-weight: 800;
-      /* text-shadow: 1px 1px 3px #000; */
       font-size: $faceHeight*0.35;
       letter-spacing: -1px;
       transform: scale(0.75);

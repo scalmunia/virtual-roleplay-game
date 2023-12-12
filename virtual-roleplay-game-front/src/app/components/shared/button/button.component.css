@@ -51,7 +51,6 @@
 }
 
 /* secondary */
-
 .button-secondary>.button {
   background: var(--button-grey);
 }
@@ -70,7 +69,6 @@
 }
 
 /* danger */
-
 .button-danger>.button {
   background: var(--button-red);
 }
@@ -90,7 +88,6 @@
 
 
 /* Generic ghost styles */
-
 .button-ghost>.button {
   background: transparent;
 }

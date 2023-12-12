@@ -73,7 +73,7 @@ export class EquipmentModalComponent implements OnInit {
       attributesFormArray.patchValue(data.attributes);
     }
 
-    // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
+    // Workaround: fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
     setTimeout(() => this.cd.detectChanges());
   }
 
@@ -97,7 +97,6 @@ export class EquipmentModalComponent implements OnInit {
       })
     );
 
-    // Workaround (en cristiano, ñapa): Fuerza la detección de cambios de angular una vez se ha limpiado la pila de llamadas
     setTimeout(() => this.cd.detectChanges());
   }
 
@@ -114,7 +113,6 @@ export class EquipmentModalComponent implements OnInit {
       ...this.form.value,
       attributes: filteredAttributes
     };
-
 
     this.dialogRef.close({ operation: 'save', item: result });
   }
@@ -157,7 +155,6 @@ export class EquipmentModalComponent implements OnInit {
     this.form.controls['img'].setValue('');
   }
 }
-
 
 export interface EquipmentDialogResult {
   operation: 'save' | 'delete' | 'cancel';
