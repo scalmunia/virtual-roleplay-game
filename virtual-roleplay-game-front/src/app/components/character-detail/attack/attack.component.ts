@@ -29,6 +29,10 @@ export class AttackComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.loadFormWhenCharagerloadedSubscription();
     this.updateCharacterWhenAttackFormChangesSubscription();
+
+    if (this.mode === 'create') {
+      this.addAttack();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
