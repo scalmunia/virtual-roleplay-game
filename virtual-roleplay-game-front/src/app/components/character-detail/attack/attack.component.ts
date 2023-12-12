@@ -13,7 +13,7 @@ import { CharacterService } from 'src/app/services/character.service';
 
 export class AttackComponent implements OnInit, OnChanges {
   @Input() mode: 'edit' | 'view' | 'create' | null = null;
-  character: ICharacter | null = null;
+  @Input() character: ICharacter | null = null;
   @Output() onAttacksChange: EventEmitter<Attack[]> = new EventEmitter()
   @Output() onBonusClick: EventEmitter<number> = new EventEmitter();
 
@@ -47,7 +47,6 @@ export class AttackComponent implements OnInit, OnChanges {
     this.characterService.character$.subscribe((character) => {
       if (!character) return;
       this.loadForm(character?.attacks);
-      this.character = character;
     })
   }
 
@@ -73,6 +72,7 @@ export class AttackComponent implements OnInit, OnChanges {
   };
 
   calcAttackBonus(attack: AbstractControl<any, any>): number {
+    console.log(this.character)
     if (!this.character) return 0;
 
     const ability = attack.get('ability')?.value;

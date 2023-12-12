@@ -65,7 +65,7 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       avatar: new FormControl(''),
       name: new FormControl(''),
-      level: new FormControl(''),
+      level: new FormControl(1),
       characterClass: new FormControl(''),
       strength: new FormControl(''),
       dexterity: new FormControl(''),
