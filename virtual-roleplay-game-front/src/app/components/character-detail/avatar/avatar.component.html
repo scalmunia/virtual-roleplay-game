@@ -1,6 +1,6 @@
 <div class="image">
   <img *ngIf="src" class="avatar" [src]="src" [ngClass]="{ 'image-loading': loadingImage }" (error)="handleError()">
-  <img src="assets/images/image_outline.svg" alt="Imagen">
+  <img src="assets/icons/image_outline.svg" alt="Imagen">
   <p *ngIf="!src && !loadingImage" class="no-avatar">+</p>
   <input class="image-input" type="file" (change)="updateImageUrl($event)" [disabled]="!isEditable" />
   <vrg-spinner *ngIf="loadingImage" class="spinner"></vrg-spinner>

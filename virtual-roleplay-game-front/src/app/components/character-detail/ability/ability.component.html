@@ -1,6 +1,6 @@
 <div *ngIf="ability" class="ability">
   <p>{{ text(ability) }}</p>
-  <img src="assets/images/ability.svg" alt="Imagen">
+  <img src="assets/icons/ability.svg" alt="Imagen">
   <button type="button" (click)="onBonusClick.emit(modifier)" *ngIf="character" class="modifier">{{ modifier |
     addSignFilter
     }}</button>

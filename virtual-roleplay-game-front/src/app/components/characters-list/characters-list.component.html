@@ -7,11 +7,11 @@
     <div class="title">Mis personajes</div>
     <div class="character-link-container">
       <vrg-character-link class="character-link" *ngFor="let character of characters" [src]="character.avatar"
-        srcLeft="assets/images/character_link_left_side.svg" [name]="character.name" [level]="character.level"
-        [characterClass]="character.class" srcRight="assets/images/character_link_right_side.svg"
+        srcLeft="assets/icons/character_link_left_side.svg" [name]="character.name" [level]="character.level"
+        [characterClass]="character.class" srcRight="assets/icons/character_link_right_side.svg"
         [routerLink]="'/character/' + character._id"></vrg-character-link>
-      <vrg-character-link class="character-link" srcLeft="assets/images/character_link_button_left_side.svg"
-        srcRight="assets/images/character_link_button_right_side.svg" borderColor='newCharacterLink'
+      <vrg-character-link class="character-link" srcLeft="assets/icons/character_link_button_left_side.svg"
+        srcRight="assets/icons/character_link_button_right_side.svg" borderColor='newCharacterLink'
         routerLink="/create-character">
         Nuevo personaje
       </vrg-character-link>
