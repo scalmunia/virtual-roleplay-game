@@ -16,7 +16,7 @@ export class DiceComponent {
     this.rolling = true;
 
     await new Promise(resolve => setTimeout(resolve, 500));
-    setTimeout(() => diceRollAudio.play(), 250);
+    setTimeout(() => diceRollAudio.play(), 200);
 
     const randomUniformNumber = random.uniform(0, 1);
     const randomNumber = randomUniformNumber();

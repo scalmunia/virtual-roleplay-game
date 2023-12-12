@@ -13,6 +13,7 @@ export class CharacterLinkComponent {
   @Input() src: string | null = null;
   @Input() srcLeft: string = '';
   @Input() name: string | null = null;
+  @Input() level: number | null = null;
   @Input() characterClass: string | null = null;
   @Input() srcRight: string = '';
 
