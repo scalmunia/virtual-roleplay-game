@@ -1,0 +1,7 @@
+<div *ngIf="control" class="skill-container">
+  <input class="check" [formControl]="control" [value]="control.value" type="checkbox" [id]="skillId">
+  <label class="ability" [for]="skillId">{{ convertSkill(ability) }}</label>
+  <label class="name" [for]="skillId">{{ skillId }}</label>
+  <button type="button" *ngIf="character" class="bonus" (click)="onBonusClick.emit(calcSkillModifier(control))">{{
+    calcSkillModifier(control) | addSignFilter }}</button>
+</div>

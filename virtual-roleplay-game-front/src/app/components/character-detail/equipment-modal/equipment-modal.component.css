@@ -1,0 +1,137 @@
+.container {
+  max-height: 100%;
+  max-width: 100%;
+  flex-shrink: 0;
+
+  border-radius: 8px;
+  background: #12121b;
+  border: 2px solid #2e2e34;
+}
+
+.item-blue {
+  background: #0a1425;
+  border: 2px solid #073666;
+}
+
+.item-yellow {
+  background: #1c1814;
+  border: 2px solid #604c0e;
+}
+
+.title {
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.object-data-container {
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  max-width: 100%;
+  margin-top: 30px;
+}
+
+.object-data {
+  flex: 1 0 0;
+}
+
+.selectQuality {
+  margin-top: 30px;
+}
+
+.image-container {
+  position: relative;
+  flex: 0 0 250px;
+  margin-top: 20px;
+
+  border: 1px dashed rgba(112, 112, 112, 0.30);
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-input {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.image-upload-text {
+  position: absolute;
+  color: white;
+}
+
+.image {
+  position: absolute;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  transition: filter 0.5s linear;
+}
+
+.image-loading {
+  filter: opacity(0.75) grayscale(1) blur(3px);
+}
+
+.attributes-title {
+  margin-top: 40px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.attributes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+
+  margin-top: 15px;
+}
+
+.attributes {
+  flex: 0 0 240px
+}
+
+.bonus-contaienr {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 105px;
+}
+
+.inputBonus {
+  flex: 1 1 0;
+}
+
+.effect-container {
+  flex: 1 1 0;
+}
+
+.save-attribute-container {
+  margin-left: auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 30px;
+}
+
+.buttons-cancel-save {
+  display: flex;
+  gap: 15px;
+}

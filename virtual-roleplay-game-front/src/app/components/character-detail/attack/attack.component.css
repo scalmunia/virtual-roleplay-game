@@ -1,0 +1,132 @@
+input {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.container {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.table {
+  width: 100%;
+}
+
+.attack-header {
+  margin-top: 18px;
+
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 100%;
+  text-align: left;
+}
+
+th {
+  padding-bottom: 4px;
+}
+
+th,
+td {
+  padding: 4px 12px 4px 0;
+}
+
+.proficiency {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+}
+
+.proficiency:checked {
+  background-color: var(--primary-text-color);
+  border: 1.5px solid var(--primary-text-color);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-typography);
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  opacity: 1;
+
+  width: 100%;
+  padding: 6px 8px;
+}
+
+select {
+  font-size: 12px;
+}
+
+input[type="text"]:not(:disabled),
+input[type="number"]:not(:disabled),
+select:not(:disabled) {
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.damage {
+  max-width: 50px;
+}
+
+
+select option {
+  background-color: rgb(69, 69, 73);
+  font-size: 12px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bonus {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  appearance: none;
+  padding: 4px 8px;
+  transition: all .3s linear;
+  cursor: pointer;
+
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 16px;
+}
+
+.bonus:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.actionBtn {
+  background: none;
+  appearance: none;
+  border: 0;
+  margin: 0 auto;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0px 8px;
+  border-radius: 6px;
+  transition: all .3s linear;
+
+  width: 28px;
+  height: 28px;
+}
+
+.actionBtn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}

@@ -1,0 +1,18 @@
+<a class="container" [routerLink]="routerLink">
+  <vrg-avatar [src]="src" [isEditable]="false"></vrg-avatar>
+  <div class="field">
+    <img class="left-side" [src]="srcLeft" alt="Imagen">
+    <div class="rectangle" [ngClass]="{
+      'character-link': borderColor === 'characterLink',
+      'new-character-link': borderColor === 'newCharacterLink'
+    }">
+      <p *ngIf="borderColor === 'newCharacterLink'" class="new-character">Nuevo personaje</p>
+      <p *ngIf="borderColor === 'characterLink'" class="name">{{ name }}</p>
+      <div class="details-container">
+        <p *ngIf="borderColor === 'characterLink'" class="character-level">Nivel {{ level }}</p>
+        <p *ngIf="borderColor === 'characterLink'" class="character-class">{{ getClassTranslation(characterClass) }}</p>
+      </div>
+    </div>
+    <img class="right-side" [src]="srcRight" alt="Imagen">
+  </div>
+</a>

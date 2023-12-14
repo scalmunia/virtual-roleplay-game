@@ -1,0 +1,17 @@
+<div class="container" [ngClass]="{
+  'item-grey': color === 'grey',
+  'item-blue': color === 'blue',
+  'item-yellow': color === 'yellow'
+}">
+  <img [ngClass]="{ 'img-placeholder': !src, 'img': true }" [src]="src || 'assets/images/equipment-placeholder.png'"
+    (error)="handleError()" />
+  <div class="name">{{ name }}</div>
+  <ul class="statistics">
+    <li *ngFor="let attribute of attributes">
+      <span *ngIf="attribute.bonus" class="bonus">{{ attribute.bonus | addSignFilter }}</span>
+      <span *ngIf="attribute.bonus">{{ translateAttribute(attribute.name) }}</span>
+      <span>{{ attribute.effect }}</span>
+    </li>
+  </ul>
+  <div class="description">{{ description }}</div>
+</div>

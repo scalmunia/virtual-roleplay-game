@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  justify-content: center;
+  --button-grey: #DDDDE8;
+  --button-red: #FF9A9A;
+  --button-decoration-border: #1C1C22;
+}
+
+.button {
+  height: 48px;
+  width: 126px;
+  flex-shrink: 0;
+
+  border-top: 2px solid #1C1C22;
+  border-bottom: 2px solid #1C1C22;
+  border-left: none;
+  border-right: none;
+
+  color: #1C1C22;
+  text-align: center;
+  font-size: 15px;
+  font-family: Montserrat;
+  font-weight: 700;
+  line-height: 100%;
+  cursor: pointer;
+
+  margin-left: -1.5px;
+  margin-right: -1.5px;
+}
+
+.right-side {
+  transform: scaleX(-1);
+}
+
+/* primary */
+.button-primary>.button {
+  background: var(--primary-text-color);
+}
+
+.button-primary>svg {
+  --button-decoration-background: var(--primary-text-color);
+}
+
+.button-ghost.button-primary>svg {
+  --button-decoration-border: var(--primary-text-color);
+}
+
+.button-ghost.button-primary>.button {
+  color: var(--primary-text-color);
+  border-color: var(--primary-text-color);
+}
+
+/* secondary */
+.button-secondary>.button {
+  background: var(--button-grey);
+}
+
+.button-secondary>svg {
+  --button-decoration-background: var(--button-grey);
+}
+
+.button-secondary.button-ghost>svg {
+  --button-decoration-border: var(--button-grey);
+}
+
+.button-secondary.button-ghost>.button {
+  color: var(--button-grey);
+  border-color: var(--button-grey);
+}
+
+/* danger */
+.button-danger>.button {
+  background: var(--button-red);
+}
+
+.button-danger>svg {
+  --button-decoration-background: var(--button-red);
+}
+
+.button-danger.button-ghost>svg {
+  --button-decoration-border: var(--button-red);
+}
+
+.button-danger.button-ghost>.button {
+  color: var(--button-red);
+  border-color: var(--button-red);
+}
+
+
+/* Generic ghost styles */
+.button-ghost>.button {
+  background: transparent;
+}
+
+.button-ghost>svg {
+  --button-decoration-background: transparent;
+}

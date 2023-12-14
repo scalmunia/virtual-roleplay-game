@@ -1,0 +1,64 @@
+.image {
+  position: relative;
+
+  width: 80px;
+  height: 86px;
+}
+
+.avatar {
+  position: absolute;
+  top: 13%;
+  left: 10%;
+  height: 64px;
+  width: 64px;
+
+  border-radius: 40px;
+}
+
+.image-loading {
+  filter: opacity(0.75) grayscale(1) blur(3px);
+
+  top: 10%;
+  left: 10%;
+  height: 64px;
+  width: 64px;
+}
+
+.image-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+
+  top: 10%;
+  left: 10%;
+  height: 64px;
+  width: 64px;
+}
+
+.no-avatar {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  height: 64px;
+  width: 64px;
+
+  background: transparent;
+  border: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--primary-text-color);
+  font-family: var(--primary-typography);
+  font-size: 56px;
+  padding-bottom: 16px;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(3);
+}

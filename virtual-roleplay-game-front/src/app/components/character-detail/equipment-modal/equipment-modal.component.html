@@ -1,0 +1,85 @@
+<mat-dialog-content class="container" [ngClass]="{
+  'item-blue': form.controls['quality'].value === 'rare',
+  'item-yellow': form.controls['quality'].value === 'legendary'
+}">
+  <div class="title">NUEVO OBJETO</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="object-data-container">
+      <div class="object-data">
+        <vrg-input for="inputName" label="NOMBRE DEL OBJETO" type="text" id="inputName" placeholder="Nombre"
+          formControlName="name">
+        </vrg-input>
+
+        <div class="selectQuality">
+          <vrg-select for="selectQuality" label="CALIDAD" id="selectQuality" placeholder="Selecciona el tipo de objeto"
+            [options]="[
+              { value: 'common', label: 'Objeto común' },
+              { value: 'rare', label: 'Objeto raro' },
+              { value: 'legendary', label: 'Objeto legendario' }
+            ]" formControlName="quality">
+          </vrg-select>
+        </div>
+
+        <vrg-textarea for="selectDescription" label="DESCRIPCIÓN" id="selectDescription" formControlName="description">
+        </vrg-textarea>
+      </div>
+      <div class="image-container">
+        <p *ngIf="!form.value.img && !loadingImage" class="image-upload-text">Subir imagen
+        </p>
+        <img *ngIf="form.value.img" class="image" [ngClass]="{ 'image-loading': loadingImage }" [src]="form.value.img"
+          (error)="handleError()">
+        <vrg-spinner *ngIf="loadingImage"></vrg-spinner>
+        <input class="image-input" type="file" (change)="updateImageUrl($event)" />
+      </div>
+    </div>
+
+    <div class="attributes-title">ATRIBUTOS</div>
+    <ng-container formArraayName="attributes">
+      <ng-container *ngFor="let attribute of attributes.controls; let i = index">
+        <div class="attributes-container" [formGroup]="attribute">
+          <div class="attributes">
+            <vrg-select for="selectAttributes" id="selectAttributes" placeholder="Selecciona un atributo" [options]="[
+              { value: 'hitPoints', label: 'Puntos de golpe' },
+              { value: 'armor', label: 'Armadura' },
+              { value: 'proficiency', label: 'Competencia' },
+              { value: 'strength', label: 'Fuerza' },
+              { value: 'dexterity', label: 'Destreza' },
+              { value: 'constitution', label: 'Constitución' },
+              { value: 'intelligence', label: 'Intelecto' },
+              { value: 'wisdom', label: 'Sabiduría' },
+              { value: 'charisma', label: 'Carisma' },
+              { value: 'customEffect', label: 'Efecto personalizado' }
+              ]" formControlName="name">
+            </vrg-select>
+          </div>
+
+          <div class="bonus-contaienr" *ngIf="attribute.get('name')?.value !== 'customEffect'">
+            <vrg-input class="inputBonus" id="inputBonus" placeholder="Bonus" formControlName="bonus"
+              type="number"></vrg-input>
+          </div>
+
+          <div class="effect-container" *ngIf="attribute.get('name')?.value === 'customEffect'">
+            <vrg-input class="inputEffect" type="text" placeholder="Efecto" formControlName="effect"></vrg-input>
+          </div>
+
+          <div class="save-attribute-container">
+            <vrg-button *ngIf="!attribute.get('isAdded')?.value" color="secondary" variant="ghost"
+              (click)="addAttribute()">Añadir</vrg-button>
+            <vrg-button *ngIf="attribute.get('isAdded')?.value" color="danger" variant="ghost"
+              (click)="removeAttribute(i)">Eliminar</vrg-button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <div>
+        <vrg-button color="danger" (click)="deleteItem()">Eliminar</vrg-button>
+      </div>
+      <div class="buttons-cancel-save">
+        <vrg-button color="secondary" type="button" (click)="closeModal()">Cancelar</vrg-button>
+        <vrg-button color="primary" type="submit">Guardar</vrg-button>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>

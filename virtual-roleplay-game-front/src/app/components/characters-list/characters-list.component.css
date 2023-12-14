@@ -1,0 +1,48 @@
+:host {
+  background-image: url("src/assets/images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  display: block;
+  min-height: 100%;
+}
+
+.root {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+
+  padding: 32px 16px 0px;
+}
+
+.title {
+  margin-bottom: 30px;
+
+  color: #F9F9F9;
+  font-size: 40px;
+  font-family: Old Fenris;
+  line-height: 100%;
+}
+
+.character-link-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.character-link {
+  flex: 1 1;
+
+  @media (min-width: 679px) {
+    max-width: calc(50% - 22px);
+  }
+
+  @media (min-width: 1000px) {
+    max-width: calc(33.33% - 22px);
+  }
+}

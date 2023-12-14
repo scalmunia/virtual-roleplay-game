@@ -1,0 +1,24 @@
+<div class="container">
+  <img class="logo-img" src="assets/images/logo.png" alt="Imagen">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
+        formControlName="email"></vrg-input>
+    </div>
+    <div class="input-container">
+      <vrg-input for="inputPassword" label="PASSWORD" [type]="getPasswordFieldType()" id="inputPassword"
+        placeholder="****************" formControlName="password">
+      </vrg-input>
+      <img class="toggle-password" [src]="showPassword ? 'assets/icons/eye-off.svg' : 'assets/icons/eye.svg'"
+        (click)="togglePasswordVisibility()">
+    </div>
+    <p class="error" *ngIf="error">{{error}}</p>
+    <div class="button-container">
+      <vrg-button type="submit" color="primary">Iniciar sesión</vrg-button>
+    </div>
+  </form>
+
+  <hr class="line">
+
+  <a class="register" routerLink="/register">Regístrate</a>
+</div>

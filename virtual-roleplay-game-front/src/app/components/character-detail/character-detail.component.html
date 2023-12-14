@@ -1,0 +1,145 @@
+<vrg-nav [segments]="[
+    { name: 'Mi personajes', url: '/characters' },
+    { name: mode === 'create' ? 'Nuevo personaje' : form.controls['name'].value }]">
+</vrg-nav>
+
+<div class="root">
+  <div class="container" [ngClass]="{ 'blur-background': isModalOpen }">
+
+    <div class="error" *ngIf="error">
+      <span *ngIf="error.message === 'nameRequired'">Nombre del personaje requerido</span>
+      <span *ngIf="error.message === 'classRequired'">Clase del personaje requerida</span>
+      <span *ngIf="error.message === 'abilityBelowMinValueAllowed'">El valor de las características debe ser superior a
+        8</span>
+      <span *ngIf="error.message === 'abilityOverMaxValueAllowed'">El valor de las características debe ser inferior a
+        15</span>
+      <span *ngIf="error.message === 'creationPointsForAbilitiesExceeded'">Has excedido el número máximo de puntos en
+        las características que puedes asignar al personaje</span>
+    </div>
+    <br>
+
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <header class="header">
+        <div class="character-info-container">
+          <vrg-avatar [isEditable]="mode === 'edit' || mode === 'create'" [src]="this.form.controls['avatar'].value"
+            (avatar)="updateImage($event)">
+          </vrg-avatar>
+          <div class=" character-info">
+            <input class="input-name" type="text" formControlName="name"
+              [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+            <div class="character-details">
+              <div class="level">
+                <label for="level">Nivel</label>
+                <select class="select-level" formControlName="level"
+                  [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+                  <option *ngFor="let level of levelOptions" [value]="level">{{ level }}</option>
+                </select>
+              </div>
+              <select class="select-character-class" formControlName="characterClass"
+                [ngClass]="{'edit-mode': mode === 'create' || mode === 'edit', 'view-mode': mode === 'view'}">
+                <option value="barbarian">Bárbaro</option>
+                <option value="bard">Bardo</option>
+                <option value="warlock">Brujo</option>
+                <option value="cleric">Clérigo</option>
+                <option value="druid">Druida</option>
+                <option value="ranger">Explorador</option>
+                <option value="fighter">Guerrero</option>
+                <option value="sorcerer">Hechicero</option>
+                <option value="wizard">Mago</option>
+                <option value="monk">Monje</option>
+                <option value="paladin">Paladín</option>
+                <option value="rogue">Pícaro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button class="natural-dice">
+          <img src="assets/icons/d20.svg" alt="Dado" (click)="dice.roll('D20', 0)">
+        </button>
+      </header>
+
+      <div class="bonus">
+        <div class="abilities">
+          <vrg-ability [character]="character" ability="strength" [control]="strengthControl"
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
+          </vrg-ability>
+          <vrg-ability [character]="character" ability="dexterity" [control]="dexterityControl"
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
+          </vrg-ability>
+          <vrg-ability [character]="character" ability="constitution" [control]="constitutionControl"
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
+          </vrg-ability>
+          <vrg-ability [character]="character" ability="intelligence" [control]="intelligenceControl"
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
+          </vrg-ability>
+          <vrg-ability [character]="character" ability="wisdom" [control]="wisdomControl" [disabled]="mode === 'view'"
+            (onBonusClick)="dice.roll('D20', $event)">
+          </vrg-ability>
+          <vrg-ability [character]="character" ability="charisma" [control]="charismaControl"
+            [disabled]="mode === 'view'" (onBonusClick)="dice.roll('D20', $event)">
+          </vrg-ability>
+        </div>
+        <div class="scores">
+          <vrg-hit-points [character]="character"></vrg-hit-points>
+          <vrg-armor [character]="character"></vrg-armor>
+          <vrg-proficiency [character]="character"></vrg-proficiency>
+        </div>
+      </div>
+
+      <hr class="line">
+
+      <p class="p-skill">HABILIDADES</p>
+      <div class="skills-container">
+        <div class="skills" *ngFor="let skill of skillsControls; let i = index">
+          <vrg-skill [character]="character" [skillId]="skill.skillId" [control]="skill.control"
+            (onBonusClick)="dice.roll('D20', $event)"></vrg-skill>
+        </div>
+      </div>
+
+      <div class="additionalInformation">
+        <div class="attacksAndSpells">
+          <p>ATAQUES Y CONJUROS</p>
+          <vrg-attack [mode]="mode" (onAttacksChange)="updateAttacks($event)" (onBonusClick)="dice.roll('D20', $event)"
+            [character]="this.character"></vrg-attack>
+        </div>
+        <div class="annotations">
+          <p>ANOTACIONES</p>
+          <quill-editor class="text-editor" name="annotations" id="annotations" [modules]="modulesQuill"
+            formControlName="description" (onEditorChange)="onChangedEditor($event)"></quill-editor>
+        </div>
+      </div>
+
+      <div class="inventory-container">
+        <p class="p-title">INVENTARIO Y EQUIPO</p>
+        <div class="equipment-container">
+          <ng-container *ngFor="let item of equipment">
+            <div class="equipment" *ngIf="item.name || item.quality || item.description" (click)="openDialog(item)">
+              <vrg-equipment-item [src]="item.img" [color]="convertQualityToColor(item.quality)" [name]="item.name"
+                [attributes]="item.attributes" [description]="item.description">
+              </vrg-equipment-item>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Modal equipo -->
+      <button *ngIf="mode === 'edit' || mode === 'create'" type="button" class="add-equipment" mat-button
+        (click)="openDialog()">Añadir equipo</button>
+
+      <div class="button-container">
+        <!-- Modo Creación -->
+        <vrg-button *ngIf="mode === 'create'" color="primary" type="submit">Crear</vrg-button>
+
+        <!-- Modo Edición -->
+        <vrg-button *ngIf="mode === 'edit'" color="secondary" [routerLink]="'/character/' + id">Cancelar</vrg-button>
+        <vrg-button *ngIf="mode === 'edit'" color="primary" type="submit">Guardar</vrg-button>
+
+        <!-- Modo visualización -->
+        <vrg-button *ngIf="mode === 'view'" color="danger" (click)="deleteCharacter()">Eliminar</vrg-button>
+        <vrg-button *ngIf="mode === 'view'" color="secondary" (click)="navigate()">Editar</vrg-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<vrg-dice></vrg-dice>

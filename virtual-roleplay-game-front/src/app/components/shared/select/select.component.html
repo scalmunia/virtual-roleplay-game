@@ -1,0 +1,10 @@
+<label *ngIf="label" class="label-quality" [for]="id">{{label}}</label>
+
+<div class="select-container">
+  <img src="assets/icons/input_side.svg" alt="Imagen">
+  <select class="select-quality" [id]="id" [(ngModel)]="value" (change)="onOptionChange($event)">
+    <option class="placeholder" value="" disabled selected>{{placeholder}}</option>
+    <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+  </select>
+  <img class="right-side" src="assets/icons/input_side.svg" alt="Imagen">
+</div>

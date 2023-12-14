@@ -1,0 +1,28 @@
+<div class="container">
+  <img class="logo-img" src="assets/images/logo.png" alt="Imagen">
+  <form class="form" autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <vrg-input for="inputName" label="NOMBRE" type="text" id="inputName" placeholder="Nombre"
+        formControlName="name"></vrg-input>
+    </div>
+    <div class="input-container">
+      <vrg-input for="inputEmail" label="EMAIL" type="email" id="inputEmail" placeholder="ejemplo@gmail.com"
+        formControlName="email"></vrg-input>
+    </div>
+    <div class="input-container">
+      <vrg-input for="inputPassword" label="PASSWORD" type="password" id="inputPassword" placeholder="****************"
+        formControlName="password"></vrg-input>
+    </div>
+    <div class="input-container">
+      <vrg-input for="inputConfirmPassword" label="CONFIRMAR PASSWORD" type="password" id="inputConfirmPassword"
+        placeholder="****************" formControlName="confirmPassword"></vrg-input>
+    </div>
+    <p class="error" *ngIf="error">{{error}}</p>
+    <div class="button-container">
+      <vrg-button type="submit" color="primary">Crear cuenta</vrg-button>
+    </div>
+  </form>
+
+  <hr class="line">
+
+</div>
