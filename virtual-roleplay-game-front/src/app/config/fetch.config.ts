@@ -1,3 +1,5 @@
+import { environment } from "src/environments/environment";
+
 const defaultHeaders = (headers: HeadersInit) => {
   const token = localStorage.getItem('token');
 
@@ -18,7 +20,7 @@ export async function fetcher(
   init?: RequestInit | undefined
 ): Promise<Response> {
   try {
-    const baseUrl = 'http://localhost:8080/';
+    const baseUrl = environment.baseUrl;
     const url = baseUrl + path;
 
     const response = await fetch(url, {
