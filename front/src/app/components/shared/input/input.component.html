@@ -2,7 +2,7 @@
 
 <div class="container">
   <img src="assets/icons/input_side.svg" alt="Imagen">
-  <input class="input" [type]="type" [id]="id" [placeholder]="placeholder" [value]="value"
+  <input [attr.aria-label]="label" class="input" [type]="type" [id]="id" [placeholder]="placeholder" [value]="value"
     (input)="onInputChange($event)">
   <img class="right-side" src="assets/icons/input_side.svg" alt="Imagen">
 </div>
