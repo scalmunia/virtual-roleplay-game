@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('Testing Login', () => {
   test('should login with valid credentials', async ({ page }) => {
     // Llamamar a la función de login
-    await login(page, 'zirze@zirze.es', 'zirze');
+    await login(page, 'prueba@prueba.es', 'prueba');
 
     // Esperar a que se cargue la página de inicio
     await expect(page).toHaveURL(LOCALHOST_URL + 'characters');
@@ -19,7 +19,7 @@ test.describe('Testing Login', () => {
 
   test('Should display an error message when the email is missing', async ({ page }) => {
     // Llamamar a la función de login
-    await login(page, '', 'zirze');
+    await login(page, '', 'prueba');
 
     const error = await page.getByText('Email no enviado');
 
@@ -29,7 +29,7 @@ test.describe('Testing Login', () => {
 
   test('Should display an error message when the password is missing', async ({ page }) => {
     // Llamamar a la función de login
-    await login(page, 'zirze@zirze.es', '');
+    await login(page, 'prueba@prueba.es', '');
 
     const error = await page.getByText('Contraseña no enviada');
 
@@ -39,7 +39,7 @@ test.describe('Testing Login', () => {
 
   test('Should display an error message when the credentials are invalid', async ({ page }) => {
     // Llamamar a la función de login
-    await login(page, 'zirze@zirze.com', 'zirze');
+    await login(page, 'prueba@prueba.com', 'prueba');
 
     const error = await page.getByText('Inicio de sesión no válido');
 

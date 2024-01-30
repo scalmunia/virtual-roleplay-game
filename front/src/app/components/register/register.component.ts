@@ -42,11 +42,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   async onSubmit() {
-    if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
-      this.error = new Error('Las contraseñas no coinciden');
-      return;
-    }
-
     const user: User = {
       name: this.form.value.name,
       email: this.form.value.email,
@@ -54,7 +49,24 @@ export class RegisterComponent implements OnInit {
     };
 
     try {
+      console.log(this.form.value.password, this.form.value.confirmPassword);
+
+      if (this.form.value.password !== this.form.value.confirmPassword) {
+        this.error = new Error('Las contraseñas no coinciden');
+
+        // Elimina y vuelve a agregar la clase error para reiniciar la animación
+        const errorElement = document.querySelector('.error') as any;
+        if (errorElement) {
+          errorElement.classList.remove('error');
+          void errorElement.offsetWidth; // Forzar un nuevo layout para reiniciar la animación
+          errorElement.classList.add('error');
+        }
+
+        return;
+      }
+
       await this.registerService.registerUser(user);
+
       this.router.navigate(['/login']);
     } catch (error: any) {
       this.error = error as Error;
