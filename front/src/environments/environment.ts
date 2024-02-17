@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://api.vrg-2.com/'
+  baseUrl: 'https://api-vrg.onrender.com/',
 };
