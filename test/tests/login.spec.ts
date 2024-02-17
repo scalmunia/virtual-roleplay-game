@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { login } from '../use-cases/authentication/login';
 
 const LOCALHOST_URL = 'http://localhost:4200/';
@@ -15,6 +15,12 @@ test.describe('Testing Login', () => {
 
     // Esperar a que se cargue la página de inicio
     await expect(page).toHaveURL(LOCALHOST_URL + 'characters');
+
+    // Hacer click en el botón de cerrar sesión
+    await page.getByTestId('logout-button').click();
+
+    // Esperar a que se cargue el login
+    await expect(page).toHaveURL(LOCALHOST_URL + 'login');
   });
 
   test('Should display an error message when the email is missing', async ({ page }) => {
