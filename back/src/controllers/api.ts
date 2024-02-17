@@ -13,9 +13,12 @@ import multer from 'multer';
 
 import { logger } from '../handlers/logger';
 import { authGuard } from '../handlers/authGuard';
+import { getHealth } from "./vitals/health";
 
 export const loadApiEndpoints = (app: Application): void => {
 	// Routes
+	app.get('/api/health', logger, getHealth);
+
 	app.get('/api', logger, (req: Request, res: Response) => { res.send({ message: 'node-mongo-api works!' }); });
 	app.post('/api/user/register', logger, registerController);
 	app.post('/api/user/login', logger, loginController);
