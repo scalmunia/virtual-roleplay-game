@@ -21,14 +21,15 @@ jobs:
       with:
         node-version: 18
 
-    - name: Go to the directory
-      run: cd test
     - name: Install dependencies
       run: npm ci
+      working-directory: test
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+      working-directory: test
     - name: Run Playwright tests
       run: npx playwright test
+      working-directory: test
     - uses: actions/upload-artifact@v3
       if: always()
       with:
