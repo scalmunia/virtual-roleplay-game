@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/virtual-roleplay-game-front",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
