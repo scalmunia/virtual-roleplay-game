@@ -1,6 +1,6 @@
 import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { Campaing } from "../../core/domain/campaing/Campaing";
-import { createDoc } from "../../hooks/createDoc";
+import { useFirebaseMutation } from "../../hooks/createDoc";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "reactfire";
 
@@ -8,18 +8,19 @@ const Campaings = () => {
   const firestore = useFirestore();
 
   const { data: campaings } = useCollection<Campaing>('campaings');
+  const { saveDoc } = useFirebaseMutation();
   const currentDate = new Date().toISOString();
 
-  const campaingData: Omit<Campaing, 'id'> = {
-    mapUrl: 'https://mapas.com/mapa.jpg',
-    createdAt: currentDate,
-    updatedAt: currentDate,
-    name: 'campaña1'
-  }
 
-  // const createCampaing = () => createDoc('campaings', campaingData) as MouseEventHandler<HTMLButtonElement>;
-  function createCampaing() {
-    createDoc('campaings', campaingData) as any;
+  async function createCampaing() {
+    const campaingData: Omit<Campaing, 'id'> = {
+      mapUrl: 'https://mapas.com/mapa.jpg',
+      createdAt: currentDate,
+      updatedAt: currentDate,
+      name: 'campaña1'
+    }
+
+    await saveDoc('campaings', campaingData);
   }
 
   const deleteCampaings = async () => {
